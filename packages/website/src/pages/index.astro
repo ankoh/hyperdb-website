@@ -1,14 +1,14 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
 import WordCarousel from '../components/WordCarousel.astro';
+import styles from './index.module.css';
 ---
 
 <SiteLayout title="Fast analytical queries" description="Hyper is a fast database for analytical queries.">
   <link slot="head" rel="stylesheet" href="/carousel.css" />
   <section class="intro">
-    <p class="eyebrow">HYPERDB</p>
     <WordCarousel />
-    <p>Hyper is powering billions of interactive queries per day for Salesforce Data 360 and Tableau.</p>
-    <a class="action" href="/docs/hello-world/">Explore the playground &rarr;</a>
+    <p>Running billions of queries per day for Salesforce Data 360 and Tableau.</p>
+    <a class={styles.try_in_browser} href="https://hyperdb.sh/" target="_blank" rel="noopener noreferrer">Try in Browser</a>
   </section>
 </SiteLayout>

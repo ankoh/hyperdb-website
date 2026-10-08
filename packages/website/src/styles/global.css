@@ -8,5 +8,4 @@ main { max-width: 68rem; min-height: 60vh; margin: auto; padding: 3rem 1rem; }
 h1 { font-size: clamp(2rem, 6vw, 4.5rem); line-height: 1.1; }
 .intro { max-width: 42rem; }
 .eyebrow { letter-spacing: 0.15em; font-size: 0.8rem; }
-.action { display: inline-block; margin-top: 1rem; padding: 0.8rem 1rem; border: 1px solid currentColor; border-radius: 5px; }
 .docs { max-width: 48rem; line-height: 1.6; }

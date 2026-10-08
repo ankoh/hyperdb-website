@@ -1,6 +1,7 @@
 import css from '../components/WordCarousel.module.css?inline';
 import styles from '../components/WordCarousel.module.css';
 import { carouselWords } from '../components/carousel_words';
+import pageCss from './index.module.css?inline';
 
 export function GET() {
   const count = carouselWords.length;
@@ -20,5 +21,5 @@ export function GET() {
     @keyframes cycle-words { ${keyframes.join('\n')} }
   ` : '';
 
-  return new Response(css + animation, { headers: { 'Content-Type': 'text/css; charset=utf-8' } });
+  return new Response(css + pageCss + animation, { headers: { 'Content-Type': 'text/css; charset=utf-8' } });
 }
