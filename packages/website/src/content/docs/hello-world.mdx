@@ -1,0 +1,13 @@
+---
+title: Try a HyperDB query
+description: Run a sample query in the HyperDB playground.
+---
+
+import SQLExample from '../../components/SQLExample.astro';
+
+# Try a HyperDB query
+
+Hyper is a fast database for analytical queries. This playground uses hyperdb-wasm to let you experiment with a sample query locally, without connecting to a database server.
+
+<SQLExample sql={`SELECT name, value * 2 AS doubled
+FROM (VALUES ('hello', 21), ('world', 42)) AS input(name, value)`} />

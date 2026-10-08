@@ -1,0 +1,4 @@
+node_modules
+packages/website/node_modules
+packages/website/.astro
+packages/website/dist

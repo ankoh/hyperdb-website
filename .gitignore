@@ -1,0 +1,6 @@
+node_modules/
+.astro/
+dist/
+bazel-*
+.bazelrc.user
+packages/website/astro.config.dev.ts

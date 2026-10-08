@@ -1,0 +1,63 @@
+load("@npm//packages/website:astro/package_json.bzl", astro_bin = "bin")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
+load("@aspect_bazel_lib//lib:copy_to_directory.bzl", "copy_to_directory")
+load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
+
+exports_files(["package.json", "tsconfig.json"])
+
+npm_link_all_packages(name = "node_modules")
+
+copy_to_bin(
+    name = "srcs",
+    srcs = glob(["src/**", "public/**"]) + ["tsconfig.json", "package.json"],
+)
+
+genrule(
+    name = "astro_config",
+    srcs = ["astro.config.tpl.ts"],
+    outs = ["astro.config.generated.ts"],
+    cmd = "sed 's|__WASM_DIR__|node_modules/hyperdb-wasm/dist|g' $(location astro.config.tpl.ts) > $@",
+)
+
+genrule(
+    name = "dev_config",
+    srcs = ["astro.config.tpl.ts"],
+    outs = ["astro.config.dev.ts"],
+    cmd = "sed 's|__WASM_DIR__|node_modules/hyperdb-wasm/dist|g' $(location astro.config.tpl.ts) > $@",
+)
+
+astro_bin.astro(
+    name = "pages",
+    srcs = [":srcs", ":astro_config", ":node_modules"],
+    args = ["build", "--config", "astro.config.generated.ts", "--outDir", "pages"],
+    chdir = "packages/website",
+    env = {"ASTRO_TELEMETRY_DISABLED": "1"},
+    out_dirs = ["pages"],
+    visibility = ["//visibility:public"],
+)
+
+copy_to_directory(
+    name = "pages_deploy",
+    srcs = [":pages"],
+    out = "pages_deploy",
+    replace_prefixes = {"pages": ""},
+    visibility = ["//visibility:public"],
+)
+
+astro_bin.astro_test(
+    name = "check",
+    data = [":srcs", ":astro_config", ":node_modules"],
+    args = ["check", "--config", "astro.config.generated.ts"],
+    chdir = "packages/website",
+    env = {"ASTRO_TELEMETRY_DISABLED": "1"},
+    visibility = ["//visibility:public"],
+)
+
+sh_binary(
+    name = "dev",
+    srcs = ["dev.sh"],
+    args = ["$(location :dev_config)"],
+    data = [":dev_config"],
+    visibility = ["//visibility:public"],
+)

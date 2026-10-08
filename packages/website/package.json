@@ -1,0 +1,19 @@
+{
+  "name": "@hyperdb/website",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@astrojs/mdx": "^8.0.3",
+    "@astrojs/react": "^7.0.1",
+    "astro": "^7.3.7",
+    "hyperdb-wasm": "0.0.26845-dev.wasm.g5b622080",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "typescript": "^6.0.3"
+  }
+}

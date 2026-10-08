@@ -1,0 +1,11 @@
+.control { padding: 0.9rem 1.25rem; }
+.control button, .dialog button { cursor: pointer; padding: 0.6rem 0.9rem; font: inherit; }
+.dialog { width: min(42rem, calc(100% - 2rem)); max-height: calc(100% - 2rem); border: 1px solid #333; border-radius: 12px; padding: 1.5rem; color: #1e1e1e; }
+.dialog::backdrop { background: rgb(0 0 0 / 0.65); }
+.heading { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.heading h2 { margin: 0 0 1rem; }
+.dialog label { display: block; margin-bottom: 0.5rem; }
+.dialog textarea { display: block; box-sizing: border-box; width: 100%; margin-bottom: 1rem; padding: 0.8rem; font: inherit; resize: vertical; }
+.results { max-height: 20rem; overflow: auto; }
+.results table { width: 100%; border-collapse: collapse; text-align: left; }
+.results th, .results td { padding: 0.5rem; border: 1px solid #bbb; }
