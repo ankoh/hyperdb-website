@@ -4,11 +4,11 @@ import { carouselWords } from './carousel_words';
 ---
 
 <h1>
-  Your database for interactive&nbsp;<span class={styles.words} aria-hidden="true">
-    <span class={styles.wordTrack}>
-      {carouselWords.map((word) => <span>{word}</span>)}
-      <span>{carouselWords[0]}</span>
+    Your database for interactive&nbsp;<span class={styles.words} aria-hidden="true">
+        <span class={styles.wordTrack}>
+            {carouselWords.map((word) => <span>{word}</span>)}
+            <span>{carouselWords[0]}</span>
+        </span>
     </span>
-  </span>
-  <span class={styles.srOnly}>{carouselWords.join(', ')}.</span>
+    <span class={styles.screen_reader_only}>{carouselWords.join(', ')}.</span>
 </h1>
