@@ -8,7 +8,13 @@ import styles from './index.module.css';
   <link slot="head" rel="stylesheet" href="/carousel.css" />
   <section class={styles.intro}>
     <WordCarousel />
-    <p>Running billions of SQL queries each day for Salesforce Data 360 and Tableau.</p>
     <a class={styles.try_in_browser} href="https://hyperdb.sh/" target="_blank" rel="noopener noreferrer">Web Shell</a>
+  </section>
+  <section class={styles.usage}>
+    <div class={styles.brand_logos}>
+      <img class={styles.brand_logo_salesforce} src="/svg/logo/salesforce.svg" alt="" />
+      <img class={styles.brand_logo_tableau} src="/svg/logo/tableau.svg" alt="" />
+    </div>
+    <p>Hyper runs billions of queries each day for <span className={styles.usage_location}>Salesforce Data Cloud</span> and <span class={styles.usage_location}>Tableau</span>.</p>
   </section>
 </SiteLayout>
