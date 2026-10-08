@@ -19,6 +19,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href={globalStyles} />
+    <slot name="head" />
     <title>{title} | HyperDB</title>
   </head>
   <body>

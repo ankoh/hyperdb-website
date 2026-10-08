@@ -1,11 +1,13 @@
 ---
 import SiteLayout from '../layouts/SiteLayout.astro';
+import WordCarousel from '../components/WordCarousel.astro';
 ---
 
 <SiteLayout title="Fast analytical queries" description="Hyper is a fast database for analytical queries.">
+  <link slot="head" rel="stylesheet" href="/carousel.css" />
   <section class="intro">
     <p class="eyebrow">HYPERDB</p>
-    <h1>When interactivity matters.</h1>
+    <WordCarousel />
     <p>Hyper is powering billions of interactive queries per day for Salesforce Data 360 and Tableau.</p>
     <a class="action" href="/docs/hello-world/">Explore the playground &rarr;</a>
   </section>
