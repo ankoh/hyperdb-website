@@ -1,11 +1,11 @@
-import css from '../components/WordCarousel.module.css?inline';
-import styles from '../components/WordCarousel.module.css';
-import { carouselWords } from '../components/carousel_words';
+import css from '../components/LandingUsecaseCarousel.module.css?inline';
+import styles from '../components/LandingUsecaseCarousel.module.css';
+import { landingUsecases } from '../components/landing_usecases';
 import pageCss from './index.module.css?inline';
 
 export function GET() {
-  const count = carouselWords.length;
-  const keyframes = carouselWords.flatMap((_, index) => {
+  const count = landingUsecases.length;
+  const keyframes = landingUsecases.flatMap((_, index) => {
     const position = `translateY(-${index * 100 / (count + 1)}%)`;
     return [
       `${index * 100 / count}% { transform: ${position}; }`,
@@ -16,7 +16,7 @@ export function GET() {
 
   const animation = count > 1 ? `
     @media (prefers-reduced-motion: no-preference) {
-      .${styles.wordTrack} { animation: cycle-words ${count * 3}s infinite; }
+      .${styles.usecase_carousel} { animation: cycle-words ${count * 3}s infinite; }
     }
     @keyframes cycle-words { ${keyframes.join('\n')} }
   ` : '';

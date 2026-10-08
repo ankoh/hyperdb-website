@@ -1,0 +1,14 @@
+---
+import styles from './LandingUsecaseCarousel.module.css';
+import { landingUsecases } from './landing_usecases';
+---
+
+<div class={styles.your_database_text}>
+    Your database for interactive&nbsp;<span class={styles.usecase_container} aria-hidden="true">
+        <span class={styles.usecase_carousel}>
+            {landingUsecases.map((word) => <span>{word}</span>)}
+            <span>{landingUsecases[0]}</span>
+        </span>
+    </span>
+    <span class={styles.screen_reader_only}>{landingUsecases.join(', ')}.</span>
+</div>

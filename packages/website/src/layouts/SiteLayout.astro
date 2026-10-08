@@ -5,9 +5,10 @@ import layoutCss from './SiteLayout.module.css?inline';
 interface Props {
   title: string;
   description: string;
+  fullWidth?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, fullWidth = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -25,7 +26,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body class={styles.body}>
   <header class={styles.header}><a href="/" aria-label="HyperDB home"><img class={styles.header_logo} src="/svg/logo/hyper-banner.svg" alt="" /></a> <nav aria-label="Main navigation"><a href="/docs/hello-world/">Docs</a></nav></header>
-    <main class={styles.main}><slot /></main>
+    <main class:list={[styles.main, { [styles.main_full_width]: fullWidth }]}><slot /></main>
     <footer class={styles.footer}>HyperDB</footer>
   </body>
 </html>

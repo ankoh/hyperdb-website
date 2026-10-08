@@ -1,24 +1,30 @@
-.words {
+.usecase_container {
   display: inline-block;
   width: max-content;
   max-width: 100%;
   height: 1.25em;
   overflow: hidden;
-  vertical-align: -0.15em;
+  vertical-align: -0.225em;
   white-space: nowrap;
   clip-path: inset(0);
 }
 
-.wordTrack {
+.usecase_carousel {
   display: flex;
   flex-direction: column;
 }
 
-.wordTrack span {
+.usecase_carousel span {
   flex: none;
   box-sizing: border-box;
   height: 1.25em;
   padding-block: 0.075em;
+  font-weight: 500;
+}
+
+.your_database_text {
+  font-size: 3.3rem;
+  font-weight: 300;
 }
 
 .screen_reader_only {
