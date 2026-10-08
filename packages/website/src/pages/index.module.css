@@ -1,3 +1,7 @@
+.intro {
+  max-width: 42rem;
+}
+
 .try_in_browser {
   display: inline-block;
   margin-top: 1rem;

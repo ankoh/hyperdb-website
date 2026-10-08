@@ -1,5 +1,6 @@
 ---
-import globalStyles from '../styles/global.css?url';
+import styles from './SiteLayout.module.css';
+import layoutCss from './SiteLayout.module.css?inline';
 
 interface Props {
   title: string;
@@ -18,13 +19,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href={globalStyles} />
+    <style is:global set:html={layoutCss} />
     <slot name="head" />
     <title>{title} | HyperDB</title>
   </head>
-  <body>
-    <header><a href="/" aria-label="HyperDB home">HyperDB</a> <nav aria-label="Main navigation"><a href="/docs/hello-world/">Docs</a></nav></header>
-    <main><slot /></main>
-    <footer>HyperDB</footer>
+  <body class={styles.body}>
+  <header class={styles.header}><a href="/" aria-label="HyperDB home"><img class={styles.header_logo} src="/svg/logo/hyper-banner.svg" alt="" /></a> <nav aria-label="Main navigation"><a href="/docs/hello-world/">Docs</a></nav></header>
+    <main class={styles.main}><slot /></main>
+    <footer class={styles.footer}>HyperDB</footer>
   </body>
 </html>
