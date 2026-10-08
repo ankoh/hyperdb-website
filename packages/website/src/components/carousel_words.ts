@@ -1,1 +1,1 @@
-export const carouselWords = ['Agents', 'Dashboards', 'Apps', 'Scripts'] satisfies [string, ...string[]];
+export const carouselWords = ['Agents', 'Dashboards', 'Apps'] satisfies [string, ...string[]];
