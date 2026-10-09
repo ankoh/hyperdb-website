@@ -98,6 +98,10 @@
   grid-column: span 2;
 }
 
+.production_card {
+  scroll-margin-top: 7rem;
+}
+
 .card_copy {
   position: relative;
   z-index: 1;
@@ -201,48 +205,27 @@
   transform: translateX(-0.5rem);
 }
 
-.usage {
+.brand_graphic {
   box-sizing: border-box;
-  display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
-  margin-top: 4rem;
-  padding: 2.5rem 1.5rem;
+  gap: 1rem;
+  color: var(--greeter-card-brand-logos);
 }
 
-.usage_label {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.875rem;
-  text-align: center;
-}
-
-.brand_logos {
-  box-sizing: border-box;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 2.5rem;
-  max-width: 100%;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.75rem;
-  background: var(--brand-bg);
-}
-
-.brand_logos img {
+.brand_graphic svg {
   display: block;
+  flex: none;
   max-width: 100%;
-  width: auto;
 }
 
-.brand_logo_salesforce {
-  height: 3.5rem;
+.brand_salesforce {
+  width: 68px;
 }
 
-.brand_logo_tableau {
-  height: 2.25rem;
+.brand_tableau {
+  width: 140px;
+  height: auto;
 }
 
 .feature_section {
@@ -541,6 +524,32 @@
 
   .card_graphic {
     display: none;
+  }
+
+  .production_card {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .brand_graphic {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    align-self: flex-end;
+    width: auto;
+    max-width: 100%;
+    margin-top: auto;
+  }
+
+  .brand_salesforce {
+    width: 4.5rem;
+    height: auto;
+  }
+
+  .brand_tableau {
+    width: 6rem;
   }
 
   .io_graphic {

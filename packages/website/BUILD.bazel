@@ -24,7 +24,14 @@ js_test(
 
 genrule(
     name = "svg_symbols",
-    srcs = ["src/assets/gazelle.svg", "src/assets/hyper-banner.svg"],
+    srcs = [
+        "src/assets/gazelle.svg",
+        "src/assets/hyper_banner.svg",
+        "src/assets/salesforce.svg",
+        "src/assets/salesforce_monochrome.svg",
+        "src/assets/tableau.svg",
+        "src/assets/tableau_monochrome.svg",
+    ],
     outs = ["dependencies/svg-symbols/symbols.generated.svg"],
     cmd = "python3 $(location generate_svg_symbols.py) --output $@ $(SRCS)",
     tools = ["generate_svg_symbols.py"],

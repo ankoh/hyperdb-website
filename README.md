@@ -4,7 +4,9 @@ An Astro/TypeScript static website for [hyperdb.de](https://hyperdb.de), present
 
 ## Styling and themes
 
-Author styles in CSS Modules. `src/layouts/Theme.module.css` owns the shared semantic color tokens; component modules consume them with `var(...)`. Light/dark values use `light-dark()` and the root `color-scheme`, so System mode follows OS changes without JavaScript or React state. This requires browsers supporting `light-dark()` (Chrome 123+, Firefox 120+, Safari 17.5+).
+Use lowercase `snake_case` filenames for authored components, layouts, stylesheets, and assets, while keeping component identifiers PascalCase. Leave framework-required filenames, public routes, and vendored font filenames unchanged. The style contract test enforces UI and SVG filenames.
+
+Author styles in CSS Modules. `src/layouts/theme.module.css` owns the shared semantic color tokens; component modules consume them with `var(...)`. Light/dark values use `light-dark()` and the root `color-scheme`, so System mode follows OS changes without JavaScript or React state. This requires browsers supporting `light-dark()` (Chrome 123+, Firefox 120+, Safari 17.5+).
 
 The sticky header offers System, Light, and Dark preferences. A small head script restores an explicit preference before first paint; the control persists it in `localStorage` and syncs other tabs. With JavaScript or storage unavailable, the CSS system theme still works. Theme scripts never set style properties or contain palettes. Markdown highlighting uses Shiki's CSS-variable theme, with colors supplied by the same theme module. Keep brand artwork on its intentional light surface rather than inverting it.
 

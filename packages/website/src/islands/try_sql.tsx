@@ -1,5 +1,5 @@
 import { useId, useRef, useState } from 'react';
-import styles from './TrySQL.module.css';
+import styles from './try_sql.module.css';
 
 interface Result {
   columns: string[];

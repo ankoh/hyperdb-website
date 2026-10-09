@@ -13,6 +13,14 @@ function sourceFiles(directory) {
 }
 const files = sourceFiles(source);
 
+test('authored UI and SVG filenames use snake_case', () => {
+  for (const file of files) {
+    const path = relative(source, file);
+    if (!/^(components|layouts|islands)\//.test(path) && !path.endsWith('.svg')) continue;
+    assert.match(path.split('/').at(-1), /^[a-z][a-z0-9_]*(?:\.module)?\.(?:astro|tsx?|css|svg)$/, `${path}: use snake_case filenames`);
+  }
+});
+
 test('authored styles live in CSS Modules and the shared palette', () => {
   for (const file of files) {
     const path = relative(source, file);
@@ -20,7 +28,7 @@ test('authored styles live in CSS Modules and the shared palette', () => {
     const content = readFileSync(file, 'utf8');
     if (file.endsWith('.css')) {
       assert.ok(file.endsWith('.module.css'), `${path}: use CSS Modules`);
-      if (path !== 'layouts/Theme.module.css') {
+      if (path !== 'layouts/theme.module.css') {
         assert.doesNotMatch(content, /#[\da-f]{3,8}\b|\b(?:rgba?|hsla?|oklch|oklab|light-dark)\s*\(/i, `${path}: use shared color tokens`);
         for (const declaration of content.matchAll(/(?:^|[;{])\s*(?:color|background(?:-color)?|(?:outline|border)(?:-(?:top|right|bottom|left|block|inline))?(?:-color)?)\s*:\s*([^;}]+)/g)) {
           assert.match(declaration[1], /var\(|^(?:inherit|transparent|currentColor|none|0)\s*$/i, `${path}: use semantic colors`);
@@ -48,8 +56,26 @@ test('the landing gazelle remains in the hero, not a property card', () => {
   }
 });
 
+test('the production card owns the query claim and colored atlas logos', () => {
+  const pages = join(source, '../pages');
+  const html = readFileSync(join(pages, 'index.html'), 'utf8');
+  const card = html.match(/<article\b[^>]*id="production"[^]*?<\/article>/)?.[0];
+  assert.ok(card?.includes('Powering Salesforce Data 360 and Tableau'));
+  assert.ok(card.includes('billions of queries every day'));
+  assert.equal([...html.matchAll(/billions of queries/g)].length, 1, 'Keep the query claim in one card');
+  const graphic = card.match(/<div\b[^>]*data-graphic="brands"[^]*?<\/div>/)?.[0];
+  assert.ok(graphic?.includes('aria-hidden="true"'), 'Brand artwork is decorative');
+  for (const [id, color] of [['salesforce', '#00a1e0'], ['tableau', '#1f447e']]) {
+    const href = graphic.match(new RegExp(`href="([^"]+)#${id}"`))?.[1];
+    assert.ok(href?.startsWith('/_astro/'), `${id}: use the hashed atlas`);
+    const atlas = readFileSync(join(pages, href), 'utf8');
+    const symbol = atlas.match(new RegExp(`<symbol\\b[^>]*id="${id}"[^]*?<\\/symbol>`))?.[0];
+    assert.ok(symbol?.includes(`fill="${color}"`), `${id}: preserve the original brand colors`);
+  }
+});
+
 test('generated syntax highlighting uses the shared palette', () => {
-  const palette = readFileSync(join(source, 'layouts/Theme.module.css'), 'utf8');
+  const palette = readFileSync(join(source, 'layouts/theme.module.css'), 'utf8');
   for (const route of ['index.html', 'docs/hello-world/index.html']) {
     const html = readFileSync(join(source, '../pages', route), 'utf8');
     const blocks = [...html.matchAll(/<pre\b[^>]*class="astro-code[^]*?<\/pre>/g)];

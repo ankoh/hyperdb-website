@@ -16,7 +16,8 @@
   --focus: light-dark(#245bba, #8bb8ff);
   --gazelle-color: light-dark(rgb(160, 160, 160), #656565);
   --backdrop: rgb(0 0 0 / 0.65);
-  /* Brand artwork retains its original colors on a light surface. */
+  --greeter-card-brand-logos: light-dark(rgb(200, 200, 200), rgb(180, 180, 180));
+
   --brand-bg: #ffffff;
   --syntax-keyword: light-dark(#963d73, #e8a0c9);
   --syntax-string: light-dark(#326135, #a4d6a5);

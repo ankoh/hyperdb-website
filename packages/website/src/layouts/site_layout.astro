@@ -1,7 +1,7 @@
 ---
-import styles from './SiteLayout.module.css';
-import theme from './Theme.module.css';
-import ThemePreference from '../components/ThemePreference.astro';
+import styles from './site_layout.module.css';
+import theme from './theme.module.css';
+import ThemePreference from '../components/theme_preference.astro';
 import faviconUrl from '../assets/favicon.svg?url';
 import symbolAtlasUrl from 'hyperdb-symbol-atlas';
 
@@ -39,7 +39,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <header class={styles.header}>
       <a href="/" aria-label="HyperDB home">
         <svg class={styles.header_logo} viewBox="0 0 740 140" aria-hidden="true" focusable="false">
-          <use href={`${symbolAtlasUrl}#hyper-banner`} />
+          <use href={`${symbolAtlasUrl}#hyper_banner`} />
         </svg>
       </a>
       <div class={styles.header_actions}>
