@@ -6,55 +6,6 @@ import symbolAtlasUrl from 'hyperdb-symbol-atlas';
 import { Code } from 'astro:components';
 
 const documentation = 'https://tableau.github.io/hyper-db/docs';
-const properties = [
-    {
-        title: 'Powering Salesforce Data 360 and Tableau',
-        description: 'Hyper executes billions of queries every day for Salesforce Data 360 and Tableau.',
-        href: '#qualities',
-        link: 'Meet the engine',
-        icon: 'M13 2 4 14h7l-1 8 10-13h-7l0-7Z',
-        graphic: 'brands',
-        id: 'production',
-        wide: true,
-    },
-    {
-        title: 'SQL you know',
-        description: 'Express your analysis with SQL. Join, aggregate, and explore your data with one query language.',
-        href: `${documentation}/sql`,
-        link: 'Explore SQL',
-        icon: 'm8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16',
-    },
-    {
-        title: 'Built into your app',
-        description: 'Work with Hyper from Python, C++, or Java. Run the database locally, alongside your application.',
-        href: '#install',
-        link: 'Get Hyper',
-        icon: 'M4 4h16v16H4ZM8 8l3 3-3 3m5 2h4',
-    },
-    {
-        title: 'Browser ready',
-        description: 'Try real analytical queries in your browser with WebAssembly. No database server to connect to.',
-        href: 'https://hyperdb.sh/',
-        link: 'Open the web shell',
-        icon: 'M3 4h18v16H3ZM3 9h18M6 6.5h.01M9 6.5h.01m-1 6 3 2-3 2',
-    },
-    {
-        title: 'Data in. Answers out.',
-        description: 'Load CSV data, transform it with SQL, and store the results in portable .hyper files.',
-        href: '#io',
-        link: 'Explore data I/O',
-        icon: 'M14 3H5v18h14V8Zm0 0v5h5M8 12h8m-8 4h8',
-        graphic: 'files',
-        wide: true,
-    },
-    {
-        title: 'Proven at scale',
-        description: 'An analytical database built for interactive workloads. Keep up with the questions your agents, dashboards, and apps ask.',
-        href: '#qualities',
-        link: 'Explore Hyper',
-        icon: 'M3 21h18M5 17v-5m7 5V7m7 10V3',
-    },
-];
 ---
 
 <SiteLayout title="Fast analytical queries" description="Hyper is a fast database for analytical queries." fullWidth>
@@ -68,42 +19,109 @@ const properties = [
                 </div>
             </div>
             <svg class={styles.gazelle} viewBox="0 0 480 700" aria-hidden="true" focusable="false">
-                <use href={`${symbolAtlasUrl}#gazelle`} />
+                <use href={`${symbolAtlasUrl}#gazelle_fill`} />
             </svg>
         </div>
     </section>
 
     <section class={styles.properties} aria-label="HyperDB at a glance">
         <div class={styles.property_grid}>
-            {properties.map((property) => (
-                <article id={property.id} class:list={[styles.property_card, { [styles.wide_card]: property.wide, [styles.production_card]: property.graphic === 'brands' }]}>
-                    <div class={styles.card_copy}>
-                        <h2 class={styles.card_title}>
-                            <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d={property.icon} /></svg>
-                            {property.title}
-                        </h2>
-                        <p>{property.description}</p>
-                        <a class={styles.text_link} href={property.href}>{property.link}<span aria-hidden="true">&rarr;</span></a>
-                    </div>
-                    {property.graphic === 'brands' && (
-                        <div class:list={[styles.card_graphic, styles.brand_graphic]} data-graphic="brands" aria-hidden="true">
-                            <svg class={styles.brand_salesforce} viewBox="0 0 273 191" focusable="false">
-                                <use href={`${symbolAtlasUrl}#salesforce_monochrome`} />
-                            </svg>
-                            <svg class={styles.brand_tableau} viewBox="0 0 249.97 53" focusable="false">
-                                <use href={`${symbolAtlasUrl}#tableau_monochrome`} />
-                            </svg>
-                        </div>
-                    )}
-                    {property.graphic === 'files' && (
-                        <div class:list={[styles.card_graphic, styles.file_graphic]} data-graphic="files" aria-hidden="true">
-                            <span class={styles.file_sheet}>CSV</span>
-                            <span class={styles.file_sheet}>SQL</span>
-                            <span class={styles.file_sheet}>.hyper</span>
-                        </div>
-                    )}
-                </article>
-            ))}
+            <article id="production" class:list={[styles.property_card, styles.wide_card, styles.production_card]}>
+                <div class={styles.card_copy}>
+                    <h2 class={styles.card_title}>
+                        <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 2 4 14h7l-1 8 10-13h-7l0-7Z" /></svg>
+                        Powering Salesforce Data 360 and Tableau
+                    </h2>
+                    <p>Hyper executes billions of analytical queries every day for Salesforce Data 360 and Tableau.</p>
+                    <a class={styles.text_link} href="#qualities">Meet the engine<span aria-hidden="true">&rarr;</span></a>
+                </div>
+                <div class:list={[styles.card_graphic, styles.brand_graphic]} data-graphic="brands" aria-hidden="true">
+                    <svg class={styles.brand_salesforce} viewBox="0 0 273 191" focusable="false">
+                        <use href={`${symbolAtlasUrl}#salesforce_monochrome`} />
+                    </svg>
+                    <svg class={styles.brand_tableau} viewBox="0 0 249.97 53" focusable="false">
+                        <use href={`${symbolAtlasUrl}#tableau_monochrome`} />
+                    </svg>
+                </div>
+            </article>
+
+            <article class={styles.property_card}>
+                <div class={styles.card_copy}>
+                    <h2 class={styles.card_title}>
+                        <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16" /></svg>
+                        SQL you know
+                    </h2>
+                    <p>Express your analysis with SQL. Join, aggregate, and explore your data with one query language.</p>
+                    <a class={styles.text_link} href={`${documentation}/sql`}>Explore SQL<span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </article>
+
+            <article class={styles.property_card}>
+                <div class={styles.card_copy}>
+                    <h2 class={styles.card_title}>
+                        <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h16v16H4ZM8 8l3 3-3 3m5 2h4" /></svg>
+                        Built into your app
+                    </h2>
+                    <p>Work with Hyper from Python, C++, or Java. Run the database locally, alongside your application.</p>
+                    <a class={styles.text_link} href="#install">Get Hyper<span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </article>
+
+            <article class={styles.property_card}>
+                <div class={styles.card_copy}>
+                    <h2 class={styles.card_title}>
+                        <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16" /></svg>
+                        Frontier Engine
+                    </h2>
+                    <p>Hyper pairs a code-generating query engine with one of the best query optimizers in the world.</p>
+                    <a class={styles.text_link} href="#qualities">Explore the engine<span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </article>
+
+            <article class:list={[styles.property_card, styles.wide_card, styles.federation_card]}>
+                <div class={styles.card_copy}>
+                    <h2 class={styles.card_title}>
+                        <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 8V3m-6 9H3m18 0h-3m-6 4v5M8 8h8v8H8ZM3 3h3v3H3Zm15 0h3v3h-3ZM3 18h3v3H3Zm15 0h3v3h-3Z" /></svg>
+                        Embracing Zero-Copy
+                    </h2>
+                    <p>Process data where it lives with aligned semantics. Hyper pushes complex subqueries to Snowflake, Google BigQuery, Databricks and many more.</p>
+                    <a class={styles.text_link} href="#io">Explore integrations<span aria-hidden="true">&rarr;</span></a>
+                </div>
+                <div class:list={[styles.card_graphic, styles.federation_graphic]} data-graphic="federation" aria-hidden="true">
+                    <span class={styles.federation_tile}>
+                        <svg viewBox="0 0 24 24" focusable="false"><use href={`${symbolAtlasUrl}#snowflake`} /></svg>
+                    </span>
+                    <span class={styles.federation_tile}>
+                        <svg viewBox="0 0 24 24" focusable="false"><use href={`${symbolAtlasUrl}#google_bigquery`} /></svg>
+                    </span>
+                    <span class={styles.federation_tile}>
+                        <svg viewBox="0 0 24 24" focusable="false"><use href={`${symbolAtlasUrl}#databricks`} /></svg>
+                    </span>
+                    <span class={styles.federation_tile}>
+                        <svg viewBox="0 0 24 24" focusable="false"><use href={`${symbolAtlasUrl}#apache_spark`} /></svg>
+                    </span>
+                    <span class={styles.federation_tile}>
+                        <svg viewBox="0 0 24 24" focusable="false"><use href={`${symbolAtlasUrl}#postgresql`} /></svg>
+                    </span>
+                    <span class={styles.federation_tile}>
+                        <svg viewBox="32 38 192 180" focusable="false"><use href={`${symbolAtlasUrl}#amazon_aurora`} /></svg>
+                    </span>
+                    <span class={styles.federation_tile}>
+                        <svg viewBox="0 0 24 24" focusable="false"><use href={`${symbolAtlasUrl}#amazon_redshift`} /></svg>
+                    </span>
+                </div>
+            </article>
+
+            <article class={styles.property_card}>
+                <div class={styles.card_copy}>
+                    <h2 class={styles.card_title}>
+                        <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18M5 17v-5m7 5V7m7 10V3" /></svg>
+                        Proven at scale
+                    </h2>
+                    <p>An analytical database built for interactive workloads. Keep up with the questions your agents, dashboards, and apps ask.</p>
+                    <a class={styles.text_link} href="#qualities">Explore Hyper<span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </article>
         </div>
     </section>
 

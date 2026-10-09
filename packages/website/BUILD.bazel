@@ -25,10 +25,18 @@ js_test(
 genrule(
     name = "svg_symbols",
     srcs = [
+        "src/assets/amazon_aurora.svg",
+        "src/assets/amazon_redshift.svg",
+        "src/assets/apache_spark.svg",
+        "src/assets/databricks.svg",
         "src/assets/gazelle.svg",
+        "src/assets/gazelle_fill.svg",
+        "src/assets/google_bigquery.svg",
         "src/assets/hyper_banner.svg",
+        "src/assets/postgresql.svg",
         "src/assets/salesforce.svg",
         "src/assets/salesforce_monochrome.svg",
+        "src/assets/snowflake.svg",
         "src/assets/tableau.svg",
         "src/assets/tableau_monochrome.svg",
     ],

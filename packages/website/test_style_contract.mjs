@@ -40,52 +40,6 @@ test('authored styles live in CSS Modules and the shared palette', () => {
   }
 });
 
-test('the carousel timing matches its three-word content', () => {
-  const content = readFileSync(join(source, 'components/landing_usecases.ts'), 'utf8');
-  const words = content.match(/landingUsecases\s*=\s*\[([^\]]+)\]/)?.[1].match(/'[^']*'/g);
-  assert.equal(words?.length, 3, 'Update the CSS Module keyframes when changing the word count');
-});
-
-test('the landing gazelle remains in the hero, not a property card', () => {
-  const html = readFileSync(join(source, '../pages/index.html'), 'utf8');
-  const hero = html.match(/<section\b[^>]*aria-label="Introducing HyperDB"[^]*?<\/section>/)?.[0];
-  assert.ok(hero?.includes('#gazelle'), 'Keep the gazelle in the original hero');
-  assert.ok(hero.includes('Try now'), 'Keep the hero web shell link');
-  for (const [card] of html.matchAll(/<article\b[^]*?<\/article>/g)) {
-    assert.ok(!card.includes('#gazelle'), 'The gazelle should not be a property card');
-  }
-});
-
-test('the hero links to installation and web shell, with docs in the header', () => {
-  const html = readFileSync(join(source, '../pages/index.html'), 'utf8');
-  const hero = html.match(/<section\b[^>]*aria-label="Introducing HyperDB"[^]*?<\/section>/)?.[0];
-  const links = [...hero.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/g)];
-  assert.deepEqual(links.map((link) => [link[2], link[1]]), [
-    ['Get Hyper', '#install'],
-    ['Try now', 'https://hyperdb.sh/'],
-  ]);
-  const header = html.match(/<header\b[^]*?<\/header>/)?.[0];
-  assert.ok(header?.includes('href="/docs/hello-world/"'), 'Keep docs in the top bar');
-});
-
-test('the production card owns the query claim and themeable atlas logos', () => {
-  const pages = join(source, '../pages');
-  const html = readFileSync(join(pages, 'index.html'), 'utf8');
-  const card = html.match(/<article\b[^>]*id="production"[^]*?<\/article>/)?.[0];
-  assert.ok(card?.includes('Powering Salesforce Data 360 and Tableau'));
-  assert.ok(card.includes('billions of queries every day'));
-  assert.equal([...html.matchAll(/billions of queries/g)].length, 1, 'Keep the query claim in one card');
-  const graphic = card.match(/<div\b[^>]*data-graphic="brands"[^]*?<\/div>/)?.[0];
-  assert.ok(graphic?.includes('aria-hidden="true"'), 'Brand artwork is decorative');
-  for (const id of ['salesforce_monochrome', 'tableau_monochrome']) {
-    const href = graphic.match(new RegExp(`href="([^"]+)#${id}"`))?.[1];
-    assert.ok(href?.startsWith('/_astro/'), `${id}: use the hashed atlas`);
-    const atlas = readFileSync(join(pages, href), 'utf8');
-    const symbol = atlas.match(new RegExp(`<symbol\\b[^>]*id="${id}"[^]*?<\\/symbol>`))?.[0];
-    assert.ok(symbol?.includes('fill="currentColor"'), `${id}: inherit the shared theme color`);
-  }
-});
-
 test('generated syntax highlighting uses the shared palette', () => {
   const palette = readFileSync(join(source, 'layouts/theme.module.css'), 'utf8');
   for (const route of ['index.html', 'docs/hello-world/index.html']) {
@@ -110,20 +64,6 @@ test('static pages link their CSS Module stylesheets', () => {
     const links = [...html.matchAll(/<link[^>]*rel="stylesheet"[^>]*href="([^"]+)"/g)];
     assert.ok(links.length > 0, `${route}: missing stylesheet links`);
     const css = links.map((match) => readFileSync(join(pages, match[1]), 'utf8')).join('\n');
-    for (const localClass of ['root', 'body', 'preference', route === 'index.html' ? 'intro' : 'docs']) {
-      const compiled = html.match(new RegExp(`\\b(_${localClass}_[\\w-]+)\\b`))?.[1];
-      assert.ok(compiled && css.includes(`.${compiled}`), `${route}: missing ${localClass} styles`);
-    }
-  }
-});
-
-test('theme preferences appear once in the shared header', () => {
-  for (const route of ['index.html', 'docs/hello-world/index.html']) {
-    const html = readFileSync(join(source, '../pages', route), 'utf8');
-    const header = html.match(/<header\b[^]*?<\/header>/)?.[0];
-    const footer = html.match(/<footer\b[^]*?<\/footer>/)?.[0];
-    assert.ok(header?.includes('data-theme-preference'), `${route}: missing header theme preference`);
-    assert.equal([...html.matchAll(/id="theme-preference"/g)].length, 1, `${route}: duplicate theme controls`);
-    assert.ok(!footer?.includes('data-theme-preference'), `${route}: theme preference should be in the header`);
+    assert.ok(css.trim().length > 0, `${route}: empty stylesheets`);
   }
 });

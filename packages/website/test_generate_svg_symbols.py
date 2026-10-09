@@ -20,8 +20,8 @@ class GenerateSvgSymbolsTest(unittest.TestCase):
             ),
             "second.svg": (
                 '<svg xmlns="http://www.w3.org/2000/svg" id="original-second" '
-                'viewBox="-5 -5 10 10" fill="currentColor">'
-                '<circle cx="0" cy="0" r="5"/></svg>'
+                'viewBox="-5 -5 10 10" fill="var(--gazelle-outline, currentColor)">'
+                '<circle cx="0" cy="0" r="5" fill="var(--gazelle-fill, currentColor)"/></svg>'
             ),
         }
         with tempfile.TemporaryDirectory() as directory:
@@ -42,7 +42,7 @@ class GenerateSvgSymbolsTest(unittest.TestCase):
                 "stroke": "currentColor", "stroke-width": "2", "style": "color: red",
             })
             self.assertEqual(symbols[1].attrib, {
-                "id": "second", "viewBox": "-5 -5 10 10", "fill": "currentColor",
+                "id": "second", "viewBox": "-5 -5 10 10", "fill": "var(--gazelle-outline, currentColor)",
             })
             for symbol, path, source in zip(symbols, inputs, sources.values()):
                 self.assertEqual(symbol.tag, f"{{{generate_svg_symbols.SVG_NS}}}symbol")

@@ -14,9 +14,11 @@
   --action-bg: light-dark(#242424, #f2f2f2);
   --action-text: light-dark(#ffffff, #171717);
   --focus: light-dark(#245bba, #8bb8ff);
-  --gazelle-color: light-dark(rgb(160, 160, 160), #656565);
+  --gazelle-outline: light-dark(rgb(180, 180, 180), rgba(220, 220, 220));
+  --gazelle-fill-color: light-dark(rgb(250, 250, 250), rgba(80, 80, 80));
   --backdrop: rgb(0 0 0 / 0.65);
   --greeter-card-brand-logos: light-dark(rgb(200, 200, 200), rgb(180, 180, 180));
+  --federation-tile-border: light-dark(rgb(200, 200, 200), rgb(100, 100, 100));
 
   --brand-bg: #ffffff;
   --syntax-keyword: light-dark(#963d73, #e8a0c9);
