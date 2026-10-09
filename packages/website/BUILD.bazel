@@ -4,6 +4,7 @@ load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("@aspect_bazel_lib//lib:copy_to_directory.bzl", "copy_to_directory")
 load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
 load("@rules_shell//shell:sh_test.bzl", "sh_test")
+load("@aspect_rules_js//js:defs.bzl", "js_test")
 
 exports_files(["package.json", "tsconfig.json"])
 
@@ -14,9 +15,16 @@ copy_to_bin(
     srcs = glob(["src/**", "public/**"]) + ["tsconfig.json", "package.json"],
 )
 
+js_test(
+    name = "style_contract_test",
+    entry_point = "test_style_contract.mjs",
+    data = glob(["src/**"]) + [":pages"],
+    node_options = ["--test"],
+)
+
 genrule(
     name = "svg_symbols",
-    srcs = ["src/assets/gazelle.svg"],
+    srcs = ["src/assets/gazelle.svg", "src/assets/hyper-banner.svg"],
     outs = ["dependencies/svg-symbols/symbols.generated.svg"],
     cmd = "python3 $(location generate_svg_symbols.py) --output $@ $(SRCS)",
     tools = ["generate_svg_symbols.py"],

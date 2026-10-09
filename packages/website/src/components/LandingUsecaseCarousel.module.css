@@ -14,6 +14,20 @@
   flex-direction: column;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .usecase_carousel {
+    animation: cycle-words 9s infinite;
+  }
+}
+
+/* Three words, followed by the first word again for a seamless loop. */
+@keyframes cycle-words {
+  0%, 26.6667% { transform: translateY(0); }
+  33.3333%, 60% { transform: translateY(-1.25em); }
+  66.6667%, 93.3333% { transform: translateY(-2.5em); }
+  100% { transform: translateY(-3.75em); }
+}
+
 .usecase_carousel span {
   flex: none;
   box-sizing: border-box;
@@ -23,7 +37,7 @@
 }
 
 .your_database_text {
-  font-size: 3.3rem;
+  font-size: clamp(1.75rem, 5vw, 3.3rem);
   font-weight: 300;
 }
 

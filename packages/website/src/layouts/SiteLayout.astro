@@ -1,8 +1,9 @@
 ---
 import styles from './SiteLayout.module.css';
-import layoutCss from './SiteLayout.module.css?inline';
+import theme from './Theme.module.css';
+import ThemePreference from '../components/ThemePreference.astro';
 import faviconUrl from '../assets/favicon.svg?url';
-import hyperLogoUrl from '../assets/hyper-banner.svg?url';
+import symbolAtlasUrl from 'hyperdb-symbol-atlas';
 
 interface Props {
   title: string;
@@ -15,20 +16,35 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class={theme.root} data-theme="system">
   <head>
     <meta charset="utf-8" />
+    <script is:inline>
+      // Restore the preference before paint; CSS resolves the system scheme.
+      try {
+        const preference = localStorage.getItem('theme');
+        if (preference === 'light' || preference === 'dark') {
+          document.documentElement.dataset.theme = preference;
+        }
+      } catch {}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={faviconUrl} type="image/svg+xml" />
-    <style is:global set:html={layoutCss} />
     <slot name="head" />
     <title>{title} | HyperDB</title>
   </head>
   <body class={styles.body}>
-  <header class={styles.header}><a href="/" aria-label="HyperDB home"><img class={styles.header_logo} src={hyperLogoUrl} alt="" /></a> <nav aria-label="Main navigation"><a href="/docs/hello-world/">Docs</a></nav></header>
+    <header class={styles.header}>
+      <a href="/" aria-label="HyperDB home">
+        <svg class={styles.header_logo} viewBox="0 0 740 140" aria-hidden="true" focusable="false">
+          <use href={`${symbolAtlasUrl}#hyper-banner`} />
+        </svg>
+      </a>
+      <nav aria-label="Main navigation"><a href="/docs/hello-world/">Docs</a></nav>
+    </header>
     <main class:list={[styles.main, { [styles.main_full_width]: fullWidth }]}><slot /></main>
-    <footer class={styles.footer}>HyperDB</footer>
+    <footer class={styles.footer}><span>HyperDB</span><ThemePreference /></footer>
   </body>
 </html>

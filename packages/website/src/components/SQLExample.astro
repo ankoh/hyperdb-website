@@ -1,5 +1,7 @@
 ---
 import TrySQL from '../islands/TrySQL';
+import styles from './SQLExample.module.css';
+import { Code } from 'astro:components';
 
 interface Props {
   sql: string;
@@ -8,12 +10,7 @@ interface Props {
 const { sql } = Astro.props;
 ---
 
-<div class="example">
-  <pre><code>{sql}</code></pre>
+<div class={styles.example}>
+  <Code code={sql} lang="sql" theme="css-variables" />
   <TrySQL sql={sql} client:load />
 </div>
-
-<style>
-  .example { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-  pre { margin: 0; padding: 1.25rem; overflow-x: auto; background: #f5f5ef; }
-</style>

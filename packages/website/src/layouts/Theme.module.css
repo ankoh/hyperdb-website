@@ -1,0 +1,43 @@
+.root {
+  color-scheme: light dark;
+  --page-bg: light-dark(#ffffff, #171715);
+  --surface-bg: light-dark(#ffffff, #242420);
+  --subtle-bg: light-dark(#f5f5ef, #1f1f1b);
+  --text: light-dark(#242420, #f2f2eb);
+  --text-muted: light-dark(#65655c, #b8b8ac);
+  --border: light-dark(#c6c6bb, #65655c);
+  --control-border: light-dark(#76766a, #929284);
+  --action-bg: light-dark(#242420, #f2f2eb);
+  --action-text: light-dark(#fffefa, #171715);
+  --focus: light-dark(#245bba, #8bb8ff);
+  --illustration: light-dark(#c8c8c8, #65655c);
+  --backdrop: rgb(0 0 0 / 0.65);
+  /* Brand artwork retains its original colors on a light surface. */
+  --brand-bg: #ffffff;
+  --syntax-keyword: light-dark(#963d73, #e8a0c9);
+  --syntax-string: light-dark(#326135, #a4d6a5);
+  --syntax-constant: light-dark(#245bba, #8bb8ff);
+  --syntax-function: light-dark(#754d9b, #ccb1eb);
+  --astro-code-foreground: var(--text);
+  --astro-code-background: var(--subtle-bg);
+  --astro-code-token-comment: var(--text-muted);
+  --astro-code-token-keyword: var(--syntax-keyword);
+  --astro-code-token-string: var(--syntax-string);
+  --astro-code-token-string-expression: var(--syntax-string);
+  --astro-code-token-constant: var(--syntax-constant);
+  --astro-code-token-function: var(--syntax-function);
+  --astro-code-token-parameter: var(--text);
+  --astro-code-token-punctuation: var(--text);
+  --astro-code-token-link: var(--focus);
+  --astro-code-token-inserted: var(--syntax-string);
+  --astro-code-token-deleted: var(--syntax-keyword);
+  background: var(--page-bg);
+}
+
+.root[data-theme='light'] {
+  color-scheme: light;
+}
+
+.root[data-theme='dark'] {
+  color-scheme: dark;
+}

@@ -1,0 +1,13 @@
+.example {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.example pre {
+  margin: 0;
+  padding: 1.25rem;
+  overflow-x: auto;
+  color: var(--text);
+  background: var(--subtle-bg);
+}

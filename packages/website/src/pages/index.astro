@@ -2,14 +2,12 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import LandingUsecaseCarousel from '../components/LandingUsecaseCarousel.astro';
 import styles from './index.module.css';
-import pageCss from './index.module.css?inline';
 import symbolAtlasUrl from 'hyperdb-symbol-atlas';
 import salesforceLogoUrl from '../assets/salesforce.svg?url';
 import tableauLogoUrl from '../assets/tableau.svg?url';
 ---
 
 <SiteLayout title="Fast analytical queries" description="Hyper is a fast database for analytical queries." fullWidth>
-  <style slot="head" is:global set:html={pageCss} />
   <section class={styles.intro}>
     <div class={styles.intro_copy}>
       <LandingUsecaseCarousel />

@@ -17,21 +17,28 @@
 .body {
   margin: 0;
   font-family: Geist, sans-serif;
-  color: #242420;
-  background: #fffefa;
-  --border: #c6c6bb;
+  color: var(--text);
+  background: var(--page-bg);
 }
 
 .body :where(pre, code) {
   font-family: 'Geist Mono', monospace;
 }
 
-.body :where(a) {
+:where(.body a) {
   color: inherit;
+}
+
+.body :where(a, button, select, textarea, pre[tabindex]):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
 }
 
 .header, .footer {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
   justify-content: space-between;
   padding: 1.25rem max(1rem, calc((100% - 68rem) / 2));
   border-bottom: 1px solid var(--border);
@@ -40,6 +47,7 @@
 .header_logo {
   display: block;
   max-width: 100%;
+  width: auto;
   height: 24px;
 }
 

@@ -1,0 +1,36 @@
+---
+import styles from './ThemePreference.module.css';
+---
+
+<div class={styles.preference}>
+  <label for="theme-preference">Theme</label>
+  <select id="theme-preference" name="theme" data-theme-preference disabled>
+    <option value="system">System</option>
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+  </select>
+</div>
+
+<script>
+  const select = document.querySelector<HTMLSelectElement>('[data-theme-preference]');
+  if (select) {
+    const root = document.documentElement;
+    select.value = root.dataset.theme ?? 'system';
+    select.disabled = false;
+
+    select.addEventListener('change', () => {
+      root.dataset.theme = select.value;
+      try {
+        if (select.value === 'system') localStorage.removeItem('theme');
+        else localStorage.setItem('theme', select.value);
+      } catch {}
+    });
+
+    window.addEventListener('storage', (event) => {
+      if (event.storageArea !== localStorage || (event.key !== 'theme' && event.key !== null)) return;
+      const preference = event.key === 'theme' ? event.newValue : null;
+      root.dataset.theme = preference === 'light' || preference === 'dark' ? preference : 'system';
+      select.value = root.dataset.theme;
+    });
+  }
+</script>

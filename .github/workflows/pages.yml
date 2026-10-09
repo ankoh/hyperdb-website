@@ -21,7 +21,7 @@ jobs:
         run: npm install --global @bazel/bazelisk
       - name: Check and build
         run: |
-          bazelisk test //packages/website:check
+          bazelisk test //packages/website:check //packages/website:style_contract_test
           bazelisk build //packages/website:pages_deploy
       - name: Deploy prebuilt site
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'

@@ -2,6 +2,14 @@
 
 An Astro/TypeScript static website for [hyperdb.de](https://hyperdb.de), presenting Hyper as a fast database for analytical queries. React islands and CSS Modules support optional interactive examples in the documentation.
 
+## Styling and themes
+
+Author styles in CSS Modules. `src/layouts/Theme.module.css` owns the shared semantic color tokens; component modules consume them with `var(...)`. Light/dark values use `light-dark()` and the root `color-scheme`, so System mode follows OS changes without JavaScript or React state. This requires browsers supporting `light-dark()` (Chrome 123+, Firefox 120+, Safari 17.5+).
+
+The footer offers System, Light, and Dark preferences. A small head script restores an explicit preference before first paint; the control persists it in `localStorage` and syncs other tabs. With JavaScript or storage unavailable, the CSS system theme still works. Theme scripts never set style properties or contain palettes. Markdown highlighting uses Shiki's CSS-variable theme, with colors supplied by the same theme module. Keep brand artwork on its intentional light surface rather than inverting it.
+
+`bazel test //packages/website:style_contract_test` enforces the module/palette boundaries in CI. When changing the carousel word count, update its CSS Module keyframes together; the contract test checks that assumption.
+
 ## Development
 
 Install dependencies with `pnpm install`, then run `bazel run //packages/website:dev`. The dev target generates a local Astro config from the same template used by the Bazel build. The SQL playground downloads `hyperdb-wasm` only after clicking **Run query**; it requires a cross-origin-isolated browser with WebAssembly memory64 and OPFS support.

@@ -10,7 +10,11 @@ const svgSymbolsPath = resolve(process.cwd(), '__SVG_SYMBOLS_PATH__');
 export default defineConfig({
   site: 'https://hyperdb.de',
   output: 'static',
+  build: { inlineStylesheets: 'never' },
   integrations: [mdx(), react()],
+  markdown: {
+    shikiConfig: { theme: 'css-variables' },
+  },
   server: {
     headers: {
       'Cross-Origin-Opener-Policy': 'same-origin',
@@ -25,6 +29,8 @@ export default defineConfig({
     },
     build: {
       assetsInlineLimit: 0,
+      // Keep shared CSS Modules reachable in Astro's static page output.
+      cssCodeSplit: false,
     },
     optimizeDeps: {
       exclude: ['hyperdb-worker-url', 'hyperdb-engine-url', 'hyperdb-wasm-url'],
