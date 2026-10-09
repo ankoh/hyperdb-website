@@ -50,13 +50,25 @@ test('the landing gazelle remains in the hero, not a property card', () => {
   const html = readFileSync(join(source, '../pages/index.html'), 'utf8');
   const hero = html.match(/<section\b[^>]*aria-label="Introducing HyperDB"[^]*?<\/section>/)?.[0];
   assert.ok(hero?.includes('#gazelle'), 'Keep the gazelle in the original hero');
-  assert.ok(hero.includes('Web Shell'), 'Keep the hero web shell link');
+  assert.ok(hero.includes('Try now'), 'Keep the hero web shell link');
   for (const [card] of html.matchAll(/<article\b[^]*?<\/article>/g)) {
     assert.ok(!card.includes('#gazelle'), 'The gazelle should not be a property card');
   }
 });
 
-test('the production card owns the query claim and colored atlas logos', () => {
+test('the hero links to installation and web shell, with docs in the header', () => {
+  const html = readFileSync(join(source, '../pages/index.html'), 'utf8');
+  const hero = html.match(/<section\b[^>]*aria-label="Introducing HyperDB"[^]*?<\/section>/)?.[0];
+  const links = [...hero.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/g)];
+  assert.deepEqual(links.map((link) => [link[2], link[1]]), [
+    ['Get Hyper', '#install'],
+    ['Try now', 'https://hyperdb.sh/'],
+  ]);
+  const header = html.match(/<header\b[^]*?<\/header>/)?.[0];
+  assert.ok(header?.includes('href="/docs/hello-world/"'), 'Keep docs in the top bar');
+});
+
+test('the production card owns the query claim and themeable atlas logos', () => {
   const pages = join(source, '../pages');
   const html = readFileSync(join(pages, 'index.html'), 'utf8');
   const card = html.match(/<article\b[^>]*id="production"[^]*?<\/article>/)?.[0];
@@ -65,12 +77,12 @@ test('the production card owns the query claim and colored atlas logos', () => {
   assert.equal([...html.matchAll(/billions of queries/g)].length, 1, 'Keep the query claim in one card');
   const graphic = card.match(/<div\b[^>]*data-graphic="brands"[^]*?<\/div>/)?.[0];
   assert.ok(graphic?.includes('aria-hidden="true"'), 'Brand artwork is decorative');
-  for (const [id, color] of [['salesforce', '#00a1e0'], ['tableau', '#1f447e']]) {
+  for (const id of ['salesforce_monochrome', 'tableau_monochrome']) {
     const href = graphic.match(new RegExp(`href="([^"]+)#${id}"`))?.[1];
     assert.ok(href?.startsWith('/_astro/'), `${id}: use the hashed atlas`);
     const atlas = readFileSync(join(pages, href), 'utf8');
     const symbol = atlas.match(new RegExp(`<symbol\\b[^>]*id="${id}"[^]*?<\\/symbol>`))?.[0];
-    assert.ok(symbol?.includes(`fill="${color}"`), `${id}: preserve the original brand colors`);
+    assert.ok(symbol?.includes('fill="currentColor"'), `${id}: inherit the shared theme color`);
   }
 });
 

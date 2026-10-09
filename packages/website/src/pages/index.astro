@@ -62,7 +62,10 @@ const properties = [
         <div class={styles.intro}>
             <div class={styles.intro_text}>
                 <LandingUsecaseCarousel />
-                <a class={styles.try_in_browser} href="https://hyperdb.sh/" target="_blank" rel="noopener noreferrer">Web Shell</a>
+                <div class={styles.hero_actions}>
+                    <a class={styles.hero_button} href="#install">Get Hyper</a>
+                    <a class={styles.hero_button} href="https://hyperdb.sh/" target="_blank" rel="noopener noreferrer">Try now</a>
+                </div>
             </div>
             <svg class={styles.gazelle} viewBox="0 0 480 700" aria-hidden="true" focusable="false">
                 <use href={`${symbolAtlasUrl}#gazelle`} />
