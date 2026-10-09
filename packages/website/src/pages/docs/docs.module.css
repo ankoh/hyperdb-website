@@ -1,6 +1,7 @@
 .docs {
   max-width: 48rem;
   line-height: 1.6;
+  padding: 3rem 1rem;
 }
 
 .docs :global(.astro-code) {

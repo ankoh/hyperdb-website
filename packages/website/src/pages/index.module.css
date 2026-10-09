@@ -1,47 +1,37 @@
-.intro {
+.intro_container {
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  max-width: 68rem;
-  min-height: 28rem;
-  margin-inline: max(1rem, calc((100% - 68rem) / 2));
+  justify-content: center;
+  width: 100%;
+  padding: 60px 1rem;
 }
 
-.intro_copy {
-  width: calc(100% - 20rem);
+.intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 16px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.intro_text {
   max-width: 42rem;
 }
 
 .gazelle {
   display: block;
   flex: none;
-  width: calc(26rem * 480 / 700);
+  width: calc(320px * 480 / 700);
   max-width: 100%;
-  height: 26rem;
-  margin-left: auto;
-  color: var(--illustration);
-}
-
-@media (max-width: 64rem) {
-  .intro {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 2rem;
-    min-height: 0;
-  }
-
-  .intro_copy {
-    width: 100%;
-  }
-
-  .gazelle {
-    width: calc(24rem * 480 / 700);
-    height: 24rem;
-  }
+  height: 300px;
+  color: var(--gazelle-color);
 }
 
 .intro :global(h1) {
-  font-size: clamp(2rem, 5vw, 3.75rem);
+  font-size: clamp(1.75rem, 5vw, 3.3rem);
+  line-height: normal;
 }
 
 .try_in_browser {
@@ -49,45 +39,195 @@
   margin-top: 1rem;
   padding: 0.6rem 1rem;
   border-radius: 24px;
-  background-color: var(--action-bg);
+  background: var(--action-bg);
   color: var(--action-text);
   text-decoration: none;
 }
 
+@media (max-width: 64rem) {
+  .intro {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+  }
+}
+
+.primary_button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--action-bg);
+  border-radius: 2rem;
+  font-weight: 500;
+  text-decoration: none;
+  background: var(--action-bg);
+  color: var(--action-text);
+}
+
+.primary_button:hover, .try_in_browser:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.properties, .feature_section {
+  box-sizing: border-box;
+  width: min(100% - 3rem, var(--content-width));
+  margin-inline: auto;
+}
+
+.property_grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.property_card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  padding: 1.25rem;
+  border: 1px solid var(--surface-border);
+  border-radius: 0.875rem;
+  background: var(--subtle-bg);
+}
+
+.wide_card {
+  grid-column: span 2;
+}
+
+.card_copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.wide_card:has(.card_graphic) .card_copy {
+  width: 65%;
+}
+
+.card_title {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+}
+
+.card_icon {
+  flex: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  color: var(--text-muted);
+}
+
+.card_copy p, .section_copy > p, .install_content > p:not(.install_label) {
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.card_copy p {
+  margin: 0.5rem 0 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.card_copy .text_link {
+  font-size: 0.875rem;
+}
+
+.text_link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 2rem;
+  margin-top: auto;
+  color: var(--text-muted);
+  text-decoration: none;
+  line-height: 1.5;
+}
+
+.text_link:hover {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* These decorative panels can be replaced with animated artwork. */
+.card_graphic {
+  position: absolute;
+  inset: 1rem 1rem 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28%;
+  pointer-events: none;
+}
+
+.file_graphic {
+  flex-direction: column;
+  gap: 0.5rem;
+  transform: rotate(-8deg);
+}
+
+.file_sheet {
+  box-sizing: border-box;
+  width: 4.5rem;
+  max-width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--surface-border);
+  border-radius: 0.5rem;
+  background: var(--surface-bg);
+  color: var(--text-muted);
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.7rem;
+}
+
+.file_sheet:nth-child(2) {
+  transform: translateX(-0.5rem);
+}
+
 .usage {
   box-sizing: border-box;
-  margin-top: 80px;
-  min-height: 200px;
-  border-block: 1px solid var(--border);
-  background: var(--subtle-bg);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  row-gap: 16px;
-  padding: 1.5rem 1rem;
+  gap: 1.25rem;
+  margin-top: 4rem;
+  padding: 2.5rem 1.5rem;
 }
 
 .usage_label {
-  margin-top: -8px;
-  font-size: clamp(0.875rem, 2vw, 1rem);
-  font-weight: 400;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  margin: 0;
   color: var(--text-muted);
+  font-size: 0.875rem;
   text-align: center;
 }
 
 .brand_logos {
   box-sizing: border-box;
-  max-width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: clamp(1.25rem, 6vw, 4rem);
+  gap: 2.5rem;
+  max-width: 100%;
   padding: 0.75rem 1.5rem;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   background: var(--brand-bg);
 }
 
@@ -98,9 +238,386 @@
 }
 
 .brand_logo_salesforce {
-  height: 72px;
+  height: 3.5rem;
 }
 
 .brand_logo_tableau {
-  height: 48px;
+  height: 2.25rem;
+}
+
+.feature_section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+  scroll-margin-top: 2rem;
+}
+
+.section_copy h2 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 550;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.section_copy > p {
+  margin: 0 0 1.5rem;
+  font-size: 1.125rem;
+}
+
+.stack_groups {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.stack_groups h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.stack_groups ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stack_groups a {
+  color: var(--text-muted);
+  text-underline-offset: 0.2em;
+  line-height: 1.5;
+}
+
+.graphic_panel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 24rem;
+  padding: 2.5rem;
+  border: 1px solid var(--surface-border);
+  border-radius: 1.25rem;
+  background: var(--subtle-bg);
+}
+
+.query_window, .result_window {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 24rem;
+  border: 1px solid var(--surface-border);
+  border-radius: 0.75rem;
+  background: var(--surface-bg);
+}
+
+.window_heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--surface-border);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.query_window pre {
+  margin: 0;
+  padding: 1.25rem;
+  font-size: clamp(0.65rem, 1.1vw, 0.85rem);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.sql_keyword {
+  color: var(--syntax-keyword);
+}
+
+.sql_function {
+  color: var(--syntax-function);
+}
+
+.query_connector {
+  width: 1px;
+  height: 1.75rem;
+  background: var(--border);
+}
+
+.result_window {
+  max-width: 20rem;
+  padding: 0.5rem 1rem;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.75rem;
+}
+
+.result_row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0;
+}
+
+.result_row:first-child {
+  color: var(--text-muted);
+}
+
+.result_row + .result_row {
+  border-top: 1px solid var(--surface-border);
+}
+
+.io_graphic {
+  flex-direction: row;
+  padding: 2rem;
+}
+
+.io_sources {
+  display: grid;
+  flex: 1;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.io_sources span {
+  padding: 0.85rem 0.5rem;
+  border: 1px solid var(--surface-border);
+  border-radius: 0.5rem;
+  background: var(--surface-bg);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.io_connector {
+  width: 1.5rem;
+  height: 1px;
+  background: var(--border);
+}
+
+.engine_node {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 5rem;
+  padding: 1rem 0.25rem;
+  border: 1px solid var(--control-border);
+  border-radius: 0.75rem;
+  background: var(--surface-bg);
+  font-weight: 500;
+}
+
+.engine_node svg {
+  width: 2.5rem;
+  height: 3.5rem;
+  color: var(--text-muted);
+}
+
+.install_section {
+  padding-bottom: 7rem;
+}
+
+.install_panel {
+  min-width: 0;
+  border: 1px solid var(--surface-border);
+  border-radius: 1rem;
+  background: var(--subtle-bg);
+}
+
+.install_options {
+  min-width: 0;
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  border: 0;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.install_options legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.environment_choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  clear: both;
+}
+
+.environment_choices label {
+  position: relative;
+  cursor: pointer;
+}
+
+.environment_choices input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.environment_choices span {
+  display: block;
+  padding: 0.65rem 1rem;
+  border-radius: 2rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.environment_choices input:checked + span {
+  background: var(--action-bg);
+  color: var(--action-text);
+}
+
+.environment_choices input:focus-visible + span {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.install_content {
+  display: none;
+  box-sizing: border-box;
+  min-height: 9rem;
+  padding: 1.5rem;
+}
+
+.install_panel:has(input[value='python']:checked) .python_install,
+.install_panel:has(input[value='cpp']:checked) .cpp_install,
+.install_panel:has(input[value='java']:checked) .java_install,
+.install_panel:has(input[value='browser']:checked) .browser_install {
+  display: block;
+}
+
+.install_label {
+  margin: 0 0 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.install_content :global(pre) {
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0 0 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--surface-border);
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.install_content :global(pre:last-child) {
+  margin-bottom: 0;
+}
+
+.install_content > .text_link {
+  display: flex;
+  margin-top: 1rem;
+}
+
+@media (max-width: 70rem) {
+  .property_grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .wide_card {
+    grid-column: span 1;
+  }
+
+  .wide_card:has(.card_graphic) .card_copy {
+    width: 100%;
+  }
+
+  .card_graphic {
+    display: none;
+  }
+
+  .io_graphic {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 54rem) {
+  .property_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .feature_section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+
+  .graphic_panel {
+    min-height: 22rem;
+  }
+
+  .query_window pre {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 36rem) {
+  .properties, .feature_section {
+    width: calc(100% - 2rem);
+  }
+
+  .intro_container {
+    padding-inline: 1rem;
+  }
+
+  .property_grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .graphic_panel {
+    min-height: 20rem;
+    padding: 1.5rem;
+  }
+
+  .io_graphic {
+    flex-direction: column;
+  }
+
+  .io_sources {
+    display: flex;
+    flex: none;
+    width: 100%;
+  }
+
+  .io_sources span {
+    flex: 1;
+  }
+
+  .io_connector {
+    width: 1px;
+    height: 1.5rem;
+  }
+
+  .install_options, .install_content {
+    padding: 1.25rem;
+  }
+
+  .environment_choices {
+    gap: 0.25rem;
+  }
+
+  .environment_choices span {
+    padding-inline: 0.75rem;
+  }
+
+  .install_section {
+    padding-bottom: 4rem;
+  }
 }

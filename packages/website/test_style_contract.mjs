@@ -38,17 +38,31 @@ test('the carousel timing matches its three-word content', () => {
   assert.equal(words?.length, 3, 'Update the CSS Module keyframes when changing the word count');
 });
 
-test('generated syntax highlighting uses the shared palette', () => {
-  const html = readFileSync(join(source, '../pages/docs/hello-world/index.html'), 'utf8');
-  const code = html.match(/<pre\b[^>]*class="astro-code[^]*?<\/pre>/)?.[0];
-  assert.ok(code, 'The SQL example should exercise Astro syntax highlighting');
-  const palette = readFileSync(join(source, 'layouts/Theme.module.css'), 'utf8');
-  const variables = [...code.matchAll(/var\((--[\w-]+)\)/g)].map((match) => match[1]);
-  assert.ok(variables.length > 0, 'Generated styles must reference CSS variables');
-  for (const variable of new Set(variables)) {
-    assert.ok(palette.includes(`${variable}:`), `${variable}: missing shared token`);
+test('the landing gazelle remains in the hero, not a property card', () => {
+  const html = readFileSync(join(source, '../pages/index.html'), 'utf8');
+  const hero = html.match(/<section\b[^>]*aria-label="Introducing HyperDB"[^]*?<\/section>/)?.[0];
+  assert.ok(hero?.includes('#gazelle'), 'Keep the gazelle in the original hero');
+  assert.ok(hero.includes('Web Shell'), 'Keep the hero web shell link');
+  for (const [card] of html.matchAll(/<article\b[^]*?<\/article>/g)) {
+    assert.ok(!card.includes('#gazelle'), 'The gazelle should not be a property card');
   }
-  assert.doesNotMatch(code, /#[\da-f]{3,8}\b|\b(?:rgba?|hsla?)\(/i, 'Do not embed a fixed highlighter palette');
+});
+
+test('generated syntax highlighting uses the shared palette', () => {
+  const palette = readFileSync(join(source, 'layouts/Theme.module.css'), 'utf8');
+  for (const route of ['index.html', 'docs/hello-world/index.html']) {
+    const html = readFileSync(join(source, '../pages', route), 'utf8');
+    const blocks = [...html.matchAll(/<pre\b[^>]*class="astro-code[^]*?<\/pre>/g)];
+    assert.ok(blocks.length > 0, `${route}: should exercise Astro syntax highlighting`);
+    for (const [code] of blocks) {
+      const variables = [...code.matchAll(/var\((--[\w-]+)\)/g)].map((match) => match[1]);
+      assert.ok(variables.length > 0, `${route}: generated styles must reference CSS variables`);
+      for (const variable of new Set(variables)) {
+        assert.ok(palette.includes(`${variable}:`), `${variable}: missing shared token`);
+      }
+      assert.doesNotMatch(code, /#[\da-f]{3,8}\b|\b(?:rgba?|hsla?)\(/i, `${route}: do not embed a fixed highlighter palette`);
+    }
+  }
 });
 
 test('static pages link their CSS Module stylesheets', () => {
@@ -62,5 +76,16 @@ test('static pages link their CSS Module stylesheets', () => {
       const compiled = html.match(new RegExp(`\\b(_${localClass}_[\\w-]+)\\b`))?.[1];
       assert.ok(compiled && css.includes(`.${compiled}`), `${route}: missing ${localClass} styles`);
     }
+  }
+});
+
+test('theme preferences appear once in the shared header', () => {
+  for (const route of ['index.html', 'docs/hello-world/index.html']) {
+    const html = readFileSync(join(source, '../pages', route), 'utf8');
+    const header = html.match(/<header\b[^]*?<\/header>/)?.[0];
+    const footer = html.match(/<footer\b[^]*?<\/footer>/)?.[0];
+    assert.ok(header?.includes('data-theme-preference'), `${route}: missing header theme preference`);
+    assert.equal([...html.matchAll(/id="theme-preference"/g)].length, 1, `${route}: duplicate theme controls`);
+    assert.ok(!footer?.includes('data-theme-preference'), `${route}: theme preference should be in the header`);
   }
 });

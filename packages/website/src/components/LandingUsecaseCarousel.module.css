@@ -34,11 +34,13 @@
   height: 1.25em;
   padding-block: 0.075em;
   font-weight: 500;
+  text-align: left;
 }
 
 .your_database_text {
+  margin: 0;
   font-size: clamp(1.75rem, 5vw, 3.3rem);
-  font-weight: 300;
+  font-weight: 200;
 }
 
 .screen_reader_only {

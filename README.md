@@ -6,9 +6,11 @@ An Astro/TypeScript static website for [hyperdb.de](https://hyperdb.de), present
 
 Author styles in CSS Modules. `src/layouts/Theme.module.css` owns the shared semantic color tokens; component modules consume them with `var(...)`. Light/dark values use `light-dark()` and the root `color-scheme`, so System mode follows OS changes without JavaScript or React state. This requires browsers supporting `light-dark()` (Chrome 123+, Firefox 120+, Safari 17.5+).
 
-The footer offers System, Light, and Dark preferences. A small head script restores an explicit preference before first paint; the control persists it in `localStorage` and syncs other tabs. With JavaScript or storage unavailable, the CSS system theme still works. Theme scripts never set style properties or contain palettes. Markdown highlighting uses Shiki's CSS-variable theme, with colors supplied by the same theme module. Keep brand artwork on its intentional light surface rather than inverting it.
+The sticky header offers System, Light, and Dark preferences. A small head script restores an explicit preference before first paint; the control persists it in `localStorage` and syncs other tabs. With JavaScript or storage unavailable, the CSS system theme still works. Theme scripts never set style properties or contain palettes. Markdown highlighting uses Shiki's CSS-variable theme, with colors supplied by the same theme module. Keep brand artwork on its intentional light surface rather than inverting it.
 
 `bazel test //packages/website:style_contract_test` enforces the module/palette boundaries in CI. When changing the carousel word count, update its CSS Module keyframes together; the contract test checks that assumption.
+
+The landing page's property content lives in `src/pages/index.astro`, with the responsive card grid and feature sections in `index.module.css`. Sections consistently place text on the left and graphics on the right, stacking text first on narrow screens. Decorative `data-graphic` containers mark the places for future animated artwork; keep their dimensions responsive and respect reduced-motion preferences when adding animations. The installation selector uses native radio controls and CSS `:has()`, so it also works without JavaScript. Astro `Code` components must explicitly use `theme="css-variables"` to share the site's syntax palette.
 
 ## Development
 

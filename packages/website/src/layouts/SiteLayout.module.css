@@ -40,8 +40,22 @@
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: space-between;
-  padding: 1.25rem max(1rem, calc((100% - 68rem) / 2));
+  padding: 1rem max(1rem, calc((100% - var(--content-width)) / 2));
   border-bottom: 1px solid var(--border);
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--header-bg);
+  backdrop-filter: blur(12px);
+}
+
+.header_actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
 }
 
 .header_logo {
@@ -58,10 +72,9 @@
 }
 
 .main {
-  max-width: 68rem;
+  max-width: var(--content-width);
   min-height: 60vh;
   margin: auto;
-  padding: 3rem 1rem;
 }
 
 .main_full_width {
@@ -72,4 +85,15 @@
 .main :global(h1) {
   font-size: clamp(2rem, 6vw, 4.5rem);
   line-height: 1.1;
+}
+
+@media (max-width: 36rem) {
+  .header_logo {
+    height: 20px;
+  }
+
+  .header_actions {
+    gap: 0.75rem;
+    font-size: 0.875rem;
+  }
 }

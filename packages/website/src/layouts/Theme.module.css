@@ -1,16 +1,20 @@
 .root {
   color-scheme: light dark;
-  --page-bg: light-dark(#ffffff, #171715);
-  --surface-bg: light-dark(#ffffff, #242420);
-  --subtle-bg: light-dark(#f5f5ef, #1f1f1b);
-  --text: light-dark(#242420, #f2f2eb);
-  --text-muted: light-dark(#65655c, #b8b8ac);
-  --border: light-dark(#c6c6bb, #65655c);
-  --control-border: light-dark(#76766a, #929284);
-  --action-bg: light-dark(#242420, #f2f2eb);
-  --action-text: light-dark(#fffefa, #171715);
+  --content-width: 1150px;
+  --header-bg: light-dark(rgb(255 255 255 / 0.9), rgb(23 23 23 / 0.9));
+  scroll-padding-top: 7rem;
+  --page-bg: light-dark(#ffffff, #171717);
+  --surface-bg: light-dark(#ffffff, #242424);
+  --subtle-bg: light-dark(#fafafa, #202020);
+  --text: light-dark(#242424, #f2f2f2);
+  --text-muted: light-dark(#656565, #b8b8b8);
+  --border: light-dark(#c6c6c6, #656565);
+  --surface-border: light-dark(#e5e5e5, #3d3d3d);
+  --control-border: light-dark(#767676, #929292);
+  --action-bg: light-dark(#242424, #f2f2f2);
+  --action-text: light-dark(#ffffff, #171717);
   --focus: light-dark(#245bba, #8bb8ff);
-  --illustration: light-dark(#c8c8c8, #65655c);
+  --gazelle-color: light-dark(rgb(160, 160, 160), #656565);
   --backdrop: rgb(0 0 0 / 0.65);
   /* Brand artwork retains its original colors on a light surface. */
   --brand-bg: #ffffff;

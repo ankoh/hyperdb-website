@@ -42,9 +42,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           <use href={`${symbolAtlasUrl}#hyper-banner`} />
         </svg>
       </a>
-      <nav aria-label="Main navigation"><a href="/docs/hello-world/">Docs</a></nav>
+      <div class={styles.header_actions}>
+        <nav aria-label="Main navigation"><a href="/docs/hello-world/">Docs</a></nav>
+        <ThemePreference />
+      </div>
     </header>
     <main class:list={[styles.main, { [styles.main_full_width]: fullWidth }]}><slot /></main>
-    <footer class={styles.footer}><span>HyperDB</span><ThemePreference /></footer>
+    <footer class={styles.footer}><span>HyperDB</span></footer>
   </body>
 </html>
