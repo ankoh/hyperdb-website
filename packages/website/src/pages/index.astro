@@ -9,6 +9,7 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
 ---
 
 <SiteLayout title="Fast analytical queries" description="Hyper is a fast database for analytical queries." fullWidth>
+    <link slot="head" rel="stylesheet" href="/landing_usecase_carousel.css" />
     <section class={styles.intro_container} aria-label="Introducing HyperDB">
         <div class={styles.intro}>
             <div class={styles.intro_text}>
@@ -18,8 +19,8 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                     <a class={styles.hero_button} href="https://hyperdb.sh/" target="_blank" rel="noopener noreferrer">Try now</a>
                 </div>
             </div>
-            <svg class={styles.gazelle} viewBox="0 0 480 700" aria-hidden="true" focusable="false">
-                <use href={`${symbolAtlasUrl}#gazelle_fill`} />
+            <svg class={styles.gazelle} viewBox="0 0 2400 1792" aria-hidden="true" focusable="false">
+                <use href={`${symbolAtlasUrl}#gazelle_fading_circles`} />
             </svg>
         </div>
     </section>
@@ -35,14 +36,10 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                     <p>Hyper executes billions of analytical queries every day for Salesforce Data 360 and Tableau.</p>
                     <a class={styles.text_link} href="#qualities">Meet the engine<span aria-hidden="true">&rarr;</span></a>
                 </div>
-                <div class:list={[styles.card_graphic, styles.brand_graphic]} data-graphic="brands" aria-hidden="true">
-                    <svg class={styles.brand_salesforce} viewBox="0 0 273 191" focusable="false">
-                        <use href={`${symbolAtlasUrl}#salesforce_monochrome`} />
-                    </svg>
-                    <svg class={styles.brand_tableau} viewBox="0 0 249.97 53" focusable="false">
-                        <use href={`${symbolAtlasUrl}#tableau_monochrome`} />
-                    </svg>
-                </div>
+                <svg class={styles.brand_salesforce} viewBox="0 0 273 191" aria-hidden="true" focusable="false">
+                    <use class={styles.brand_original} href={`${symbolAtlasUrl}#salesforce`} />
+                    <use class={styles.brand_monochrome} href={`${symbolAtlasUrl}#salesforce_monochrome`} />
+                </svg>
             </article>
 
             <article class={styles.property_card}>

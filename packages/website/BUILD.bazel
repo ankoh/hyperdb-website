@@ -30,6 +30,7 @@ genrule(
         "src/assets/apache_spark.svg",
         "src/assets/databricks.svg",
         "src/assets/gazelle.svg",
+        "src/assets/gazelle_fading_circles.svg",
         "src/assets/gazelle_fill.svg",
         "src/assets/google_bigquery.svg",
         "src/assets/hyper_banner.svg",
