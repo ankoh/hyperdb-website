@@ -1,6 +1,42 @@
 .intro {
-  max-width: 42rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  max-width: 68rem;
+  min-height: 28rem;
   margin-inline: max(1rem, calc((100% - 68rem) / 2));
+}
+
+.intro_copy {
+  width: calc(100% - 20rem);
+  max-width: 42rem;
+}
+
+.gazelle {
+  display: block;
+  flex: none;
+  width: calc(26rem * 480 / 700);
+  max-width: 100%;
+  height: 26rem;
+  margin-left: auto;
+}
+
+@media (max-width: 64rem) {
+  .intro {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2rem;
+    min-height: 0;
+  }
+
+  .intro_copy {
+    width: 100%;
+  }
+
+  .gazelle {
+    width: calc(24rem * 480 / 700);
+    height: 24rem;
+  }
 }
 
 .intro :global(h1) {

@@ -3,6 +3,7 @@ load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("@aspect_bazel_lib//lib:copy_to_directory.bzl", "copy_to_directory")
 load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
 
 exports_files(["package.json", "tsconfig.json"])
 
@@ -14,22 +15,36 @@ copy_to_bin(
 )
 
 genrule(
+    name = "svg_symbols",
+    srcs = ["src/assets/gazelle.svg"],
+    outs = ["dependencies/svg-symbols/symbols.generated.svg"],
+    cmd = "python3 $(location generate_svg_symbols.py) --output $@ $(SRCS)",
+    tools = ["generate_svg_symbols.py"],
+)
+
+sh_test(
+    name = "svg_symbols_test",
+    srcs = ["test_svg_symbols.sh"],
+    data = ["generate_svg_symbols.py", "test_generate_svg_symbols.py"],
+)
+
+genrule(
     name = "astro_config",
     srcs = ["astro.config.tpl.ts"],
     outs = ["astro.config.generated.ts"],
-    cmd = "sed 's|__WASM_DIR__|node_modules/hyperdb-wasm/dist|g' $(location astro.config.tpl.ts) > $@",
+    cmd = "sed -e 's|__WASM_DIR__|node_modules/hyperdb-wasm/dist|g' -e 's|__SVG_SYMBOLS_PATH__|dependencies/svg-symbols/symbols.generated.svg|g' $(location astro.config.tpl.ts) > $@",
 )
 
 genrule(
     name = "dev_config",
     srcs = ["astro.config.tpl.ts"],
     outs = ["astro.config.dev.ts"],
-    cmd = "sed 's|__WASM_DIR__|node_modules/hyperdb-wasm/dist|g' $(location astro.config.tpl.ts) > $@",
+    cmd = "sed -e 's|__WASM_DIR__|node_modules/hyperdb-wasm/dist|g' -e 's|__SVG_SYMBOLS_PATH__|../../bazel-bin/packages/website/dependencies/svg-symbols/symbols.generated.svg|g' $(location astro.config.tpl.ts) > $@",
 )
 
 astro_bin.astro(
     name = "pages",
-    srcs = [":srcs", ":astro_config", ":node_modules"],
+    srcs = [":srcs", ":astro_config", ":node_modules", ":svg_symbols"],
     args = ["build", "--config", "astro.config.generated.ts", "--outDir", "pages"],
     chdir = "packages/website",
     env = {"ASTRO_TELEMETRY_DISABLED": "1"},
@@ -47,7 +62,7 @@ copy_to_directory(
 
 astro_bin.astro_test(
     name = "check",
-    data = [":srcs", ":astro_config", ":node_modules"],
+    data = [":srcs", ":astro_config", ":node_modules", ":svg_symbols"],
     args = ["check", "--config", "astro.config.generated.ts"],
     chdir = "packages/website",
     env = {"ASTRO_TELEMETRY_DISABLED": "1"},
@@ -58,6 +73,6 @@ sh_binary(
     name = "dev",
     srcs = ["dev.sh"],
     args = ["$(location :dev_config)"],
-    data = [":dev_config"],
+    data = [":dev_config", ":svg_symbols"],
     visibility = ["//visibility:public"],
 )

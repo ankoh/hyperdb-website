@@ -1,5 +1,10 @@
 /// <reference types="astro/client" />
 
+declare module 'hyperdb-symbol-atlas' {
+  const url: string;
+  export default url;
+}
+
 declare module 'hyperdb-worker-url' {
   const url: string;
   export default url;

@@ -2,19 +2,28 @@
 import SiteLayout from '../layouts/SiteLayout.astro';
 import LandingUsecaseCarousel from '../components/LandingUsecaseCarousel.astro';
 import styles from './index.module.css';
+import pageCss from './index.module.css?inline';
+import symbolAtlasUrl from 'hyperdb-symbol-atlas';
+import salesforceLogoUrl from '../assets/salesforce.svg?url';
+import tableauLogoUrl from '../assets/tableau.svg?url';
 ---
 
 <SiteLayout title="Fast analytical queries" description="Hyper is a fast database for analytical queries." fullWidth>
-  <link slot="head" rel="stylesheet" href="/carousel.css" />
+  <style slot="head" is:global set:html={pageCss} />
   <section class={styles.intro}>
-    <LandingUsecaseCarousel />
-    <a class={styles.try_in_browser} href="https://hyperdb.sh/" target="_blank" rel="noopener noreferrer">Web Shell</a>
+    <div class={styles.intro_copy}>
+      <LandingUsecaseCarousel />
+      <a class={styles.try_in_browser} href="https://hyperdb.sh/" target="_blank" rel="noopener noreferrer">Web Shell</a>
+    </div>
+    <svg class={styles.gazelle} viewBox="0 0 480 700" aria-hidden="true" focusable="false">
+      <use href={`${symbolAtlasUrl}#gazelle`} />
+    </svg>
   </section>
   <section class={styles.usage}>
     <p class={styles.usage_label}>Hyper runs billions of queries each day for</p>
     <div class={styles.brand_logos}>
-      <img class={styles.brand_logo_salesforce} src="/svg/logo/salesforce.svg" alt="Salesforce Data Cloud" />
-      <img class={styles.brand_logo_tableau} src="/svg/logo/tableau.svg" alt="Tableau" />
+      <img class={styles.brand_logo_salesforce} src={salesforceLogoUrl} alt="Salesforce Data Cloud" />
+      <img class={styles.brand_logo_tableau} src={tableauLogoUrl} alt="Tableau" />
     </div>
   </section>
 </SiteLayout>
