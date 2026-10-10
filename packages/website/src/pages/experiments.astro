@@ -2,6 +2,7 @@
 import SiteLayout from '../layouts/site_layout.astro';
 import FederationAnimation from '../components/federation_animation.astro';
 import JitAnimation from '../components/jit_animation.astro';
+import JoinReorderingAnimation from '../components/join_reordering_animation.astro';
 import styles from './experiments.module.css';
 ---
 
@@ -30,6 +31,15 @@ import styles from './experiments.module.css';
         </div>
       </header>
       <JitAnimation />
+    </section>
+    <section id="join-reordering" class={styles.experiment} aria-labelledby="join-reordering-heading">
+      <header class={styles.experiment_heading}>
+        <div>
+          <p class={styles.eyebrow}>Experiment 03</p>
+          <h2 id="join-reordering-heading">Join reordering</h2>
+        </div>
+      </header>
+      <JoinReorderingAnimation />
     </section>
   </div>
 </SiteLayout>

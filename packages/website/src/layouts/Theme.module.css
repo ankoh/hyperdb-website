@@ -21,8 +21,8 @@
   --operator-orders: light-dark(#2874a6, #8ac6ef);
   --operator-orders-bg: light-dark(#e5f1fa, #243442);
 
-  --gazelle-outline: light-dark(hsl(0 0% 70.588235%), hsl(0 0% 86.27451%));
-  --gazelle-fill-color: light-dark(hsl(0 0% 98.039216%), hsl(0 0% 31.372549%));
+  --gazelle-outline: light-dark(hsl(0 0% 70.588235%), hsl(0 0% 46.27451%));
+  --gazelle-fill-color: light-dark(hsl(0 0% 98.039216%), hsl(0 0% 14.372549%));
   --backdrop: hsl(0 0% 0% / 0.65);
   --greeter-card-brand-logos: light-dark(hsl(0 0% 78.431373%), hsl(0 0% 70.588235%));
 

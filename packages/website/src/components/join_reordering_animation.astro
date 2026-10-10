@@ -1,0 +1,69 @@
+---
+import styles from './join_reordering_animation.module.css';
+import symbolAtlasUrl from 'hyperdb-symbol-atlas';
+
+const nodes = [
+  { className: styles.selection, kind: 'filter', symbol: 'σ' },
+  { className: styles.root_join, kind: 'join', icon: 'join' },
+  { className: styles.inner_join, kind: 'join', icon: 'join' },
+  { className: styles.orders, kind: 'scan', icon: 'scan' },
+  { className: styles.country, kind: 'scan', icon: 'scan' },
+  { className: styles.customer, kind: 'scan', icon: 'scan' },
+];
+
+const stages = [
+  {
+    className: styles.initial,
+    edges: [
+      'M270 47V83',
+      'M270 107V129Q270 133 266 133H174Q170 133 170 137V158',
+      'M270 107V129Q270 133 274 133H426Q430 133 430 137V248',
+      'M170 182V214Q170 218 166 218H104Q100 218 100 222V248',
+      'M170 182V214Q170 218 174 218H236Q240 218 240 222V248',
+    ],
+  },
+  {
+    className: styles.pushed_down,
+    edges: [
+      'M270 82V106Q270 110 266 110H174Q170 110 170 114V143',
+      'M270 82V106Q270 110 274 110H426Q430 110 430 114V188',
+      'M170 167V201Q170 205 166 205H104Q100 205 100 209V238',
+      'M170 167V201Q170 205 174 205H236Q240 205 240 209V238',
+      'M430 212V238',
+    ],
+  },
+  {
+    className: styles.reordered,
+    edges: [
+      'M270 82V106Q270 110 266 110H174Q170 110 170 114V133',
+      'M270 82V106Q270 110 274 110H426Q430 110 430 114V238',
+      'M170 157V171Q170 175 166 175H104Q100 175 100 179V188',
+      'M170 157V171Q170 175 174 175H236Q240 175 240 179V238',
+      'M100 212V238',
+    ],
+  },
+];
+---
+
+<figure class={styles.figure}>
+  <div class={styles.viewport} tabindex="0" role="region" aria-label="Join optimization animation. Hover or focus to pause.">
+    <svg class={styles.diagram} viewBox="0 0 560 300" role="img" aria-label="Selection pushdown and join reordering. First, a selection on customer sits above a left-deep tree: orders joined with country, then joined with customer. The selection moves directly above customer. Finally, the filtered customer moves from the far right to the far left and joins with country in the middle. Orders moves to the far right and joins with that result. The same six nodes remain throughout.">
+      {stages.map((stage) => (
+        <g class:list={[styles.stage, stage.className]} aria-hidden="true">
+          <g class={styles.edges}>{stage.edges.map((path) => <path d={path} />)}</g>
+        </g>
+      ))}
+      {nodes.map((node) => (
+        <g class:list={[styles.operator, node.className]} data-join-operator={node.kind} aria-hidden="true">
+          <rect x="-12" y="-12" width="24" height="24" rx="5" />
+          {node.icon && (
+            <svg x="-8" y="-8" width="16" height="16" viewBox="0 0 16 16" focusable="false">
+              <use href={`${symbolAtlasUrl}#relalg_${node.icon}`} />
+            </svg>
+          )}
+          {node.symbol && <text class={styles.symbol} y="4" text-anchor="middle">{node.symbol}</text>}
+        </g>
+      ))}
+    </svg>
+  </div>
+</figure>
