@@ -1,5 +1,6 @@
 ---
 import styles from './jit_animation.module.css';
+import timing from './animation_timing.module.css';
 import symbolAtlasUrl from 'hyperdb-symbol-atlas';
 
 const assembly = [
@@ -18,11 +19,11 @@ const assembly = [
 ];
 ---
 
-<div class={styles.experiment} data-jit-animation>
+<div class:list={[styles.experiment, timing.cycle]} data-jit-animation>
   <figure class={styles.figure}>
     <div class={styles.viewport} tabindex="0" role="region" aria-label="Just-in-time compilation diagram; hover or focus to show the final highlighted stage. Scroll horizontally on small screens.">
       <svg class={styles.diagram} viewBox="0 0 430 160" role="img" aria-label="Hyper compiles a SQL query in four steps: SQL appears on the left; a query plan with orders and customers feeding a join appears in the middle; the relations exchange positions to optimize the join order; then native x86 code appears on the right. Finally, matching colors connect code to operators: blue for the orders scan and loop, and purple for join hashing, hash-table lookup, key comparison, branching, and output. Both operator borders are solid. The customers node remains unhighlighted.">
-        <g aria-hidden="true">
+        <g transform="translate(17.2 6.4) scale(0.92)" aria-hidden="true">
           <text class={styles.code} x="12" y="60">
             <tspan x="12"><tspan class={styles.keyword}>select</tspan> o.id</tspan>
             <tspan x="12" dy="17"><tspan class={styles.keyword}>from</tspan> orders o</tspan>

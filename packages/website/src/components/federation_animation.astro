@@ -1,13 +1,15 @@
 ---
 import styles from './federation_animation.module.css';
+import timing from './animation_timing.module.css';
 import hyperUrl from '../assets/hyper.svg?url';
 import symbolAtlasUrl from 'hyperdb-symbol-atlas';
 ---
 
-<div class={styles.experiment} data-federation-animation>
+<div class:list={[styles.experiment, timing.cycle]} data-federation-animation>
   <figure class={styles.figure}>
     <div class={styles.viewport} tabindex="0" role="region" aria-label="Federation diagram; hover or focus to show request labels. Scroll horizontally on small screens.">
       <svg class={styles.diagram} viewBox="0 0 430 246" role="img" aria-label="A user queries Hyper, which sends SQL subqueries to Snowflake and Databricks and reads Iceberg data from Salesforce. All three return data to Hyper, which combines it and returns results to the user.">
+        <g transform="translate(17.2 4) scale(0.92)">
         <g class={styles.edges}>
           <path d="M64 122H182" />
           <path d="M230 122C290 122 294 42 354 42" />
@@ -25,11 +27,11 @@ import symbolAtlasUrl from 'hyperdb-symbol-atlas';
           <circle class:list={[styles.packet, styles.salesforce_data]} r="3" />
           <circle class:list={[styles.packet, styles.result]} r="3" />
           <text class:list={[styles.transfer_label, styles.query]} x="70" y="40">
-            <tspan x="70">select * from</tspan>
+            <tspan x="70"><tspan class={styles.keyword}>select</tspan> * <tspan class={styles.keyword}>from</tspan></tspan>
             <tspan x="78" dy="15">salesforce_table,</tspan>
             <tspan x="78" dy="16">snowflake_table,</tspan>
             <tspan x="78" dy="17">databricks_table</tspan>
-            <tspan x="70" dy="18">where</tspan><tspan dx="10">...</tspan>
+            <tspan x="70" dy="18" class={styles.keyword}>where</tspan><tspan dx="10">...</tspan>
           </text>
           <text class:list={[styles.transfer_label, styles.read_request]} x="260" y="70">Read Iceberg</text>
           <text class:list={[styles.transfer_label, styles.subquery]} x="260" y="125">SQL subquery</text>
@@ -77,6 +79,7 @@ import symbolAtlasUrl from 'hyperdb-symbol-atlas';
             <use href={`${symbolAtlasUrl}#databricks`} />
           </svg>
           <text x="376" y="242" text-anchor="middle">Databricks</text>
+        </g>
         </g>
       </svg>
     </div>

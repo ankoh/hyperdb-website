@@ -1,5 +1,4 @@
 .experiment {
-  --cycle: 5s;
   width: 100%;
   min-width: 0;
   max-width: 460px;
@@ -144,43 +143,56 @@
   white-space: nowrap;
 }
 
-.experiment:is(:hover, :focus-within) * {
-  animation: none;
+.experiment:is(:hover, :focus-within) :is(.plan, .native_code, .operator_outline, .line_background) {
+  /* Show the final stage while the shared timeline keeps advancing underneath. */
+  opacity: 1 !important;
+}
+
+.experiment:is(:hover, :focus-within) .orders {
+  transform: translate(56px, 0) !important;
+}
+
+.experiment:is(:hover, :focus-within) .customers {
+  transform: translate(-56px, 0) !important;
+}
+
+.experiment:is(:hover, :focus-within) :is(.orders_edge, .customers_edge) {
+  transform: scaleX(-1) !important;
 }
 
 @keyframes reveal_plan {
-  0%, 16%, 100% { opacity: 0; }
-  20.8%, 96% { opacity: 1; }
+  0%, 14%, 100% { opacity: 0; }
+  18%, 94% { opacity: 1; }
 }
 
 @keyframes reveal_code {
-  0%, 52.8%, 100% { opacity: 0; }
-  59.2%, 96% { opacity: 1; }
+  0%, 50%, 100% { opacity: 0; }
+  56%, 94% { opacity: 1; }
 }
 
 @keyframes highlight_code {
-  0%, 66.4%, 100% { opacity: 0; }
-  69.6%, 96% { opacity: 1; }
+  0%, 72%, 100% { opacity: 0; }
+  74%, 94% { opacity: 1; }
 }
 
 @keyframes swap_orders {
-  0%, 35.2%, 100% { transform: translate(0, 0); }
-  48%, 99% { transform: translate(56px, 0); }
+  0%, 30%, 100% { transform: translate(0, 0); }
+  38%, 99% { transform: translate(56px, 0); }
 }
 
 @keyframes swap_customers {
-  0%, 35.2%, 100% { transform: translate(0, 0); }
-  48%, 99% { transform: translate(-56px, 0); }
+  0%, 30%, 100% { transform: translate(0, 0); }
+  38%, 99% { transform: translate(-56px, 0); }
 }
 
 @keyframes swap_orders_edge {
-  0%, 35.2%, 100% { transform: scaleX(1); }
-  48%, 99% { transform: scaleX(-1); }
+  0%, 30%, 100% { transform: scaleX(1); }
+  38%, 99% { transform: scaleX(-1); }
 }
 
 @keyframes swap_customers_edge {
-  0%, 35.2%, 100% { transform: scaleX(1); }
-  48%, 99% { transform: scaleX(-1); }
+  0%, 30%, 100% { transform: scaleX(1); }
+  38%, 99% { transform: scaleX(-1); }
 }
 
 @media (prefers-reduced-motion: reduce) {

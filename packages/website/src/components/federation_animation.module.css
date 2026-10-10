@@ -1,5 +1,4 @@
 .experiment {
-  --cycle: 6s;
   width: 100%;
   min-width: 0;
   max-width: 460px;
@@ -16,7 +15,6 @@
 
 .viewport {
   overflow-x: auto;
-  padding: 0.5rem 0 1.25rem;
 }
 
 .viewport:focus-visible {
@@ -107,12 +105,24 @@
   animation-name: query_label;
 }
 
+.keyword {
+  fill: var(--syntax-keyword);
+}
+
 .transfer_label:not(.query, .result) {
   text-anchor: start;
 }
 
 .transfer_label:is(.subquery, .databricks_query, .read_request) {
   animation-name: dispatch_label;
+}
+
+.transfer_label:is(.snowflake_data, .databricks_data, .salesforce_data) {
+  animation-name: collect_label;
+}
+
+.transfer_label.result {
+  animation-name: result_label;
 }
 
 .packet.query, .packet.result {
@@ -154,10 +164,6 @@
   white-space: nowrap;
 }
 
-.experiment:is(:hover, :focus-within) * {
-  animation-play-state: paused;
-}
-
 .experiment:is(:hover, :focus-within) .transfer_label {
   /* Override the timeline's opacity without restarting it on pointer leave. */
   opacity: 1 !important;
@@ -171,11 +177,16 @@
   visibility: hidden;
 }
 
+.experiment:is(:hover, :focus-within) .node > rect {
+  stroke: var(--card-border) !important;
+  stroke-width: 1 !important;
+}
+
 @keyframes query {
   0%, 4% { opacity: 0; offset-distance: 0%; }
   6% { opacity: 1; }
-  18% { opacity: 1; offset-distance: 100%; }
-  20%, 100% { opacity: 0; offset-distance: 100%; }
+  14% { opacity: 1; offset-distance: 100%; }
+  16%, 100% { opacity: 0; offset-distance: 100%; }
 }
 
 @keyframes query_label {
@@ -187,8 +198,8 @@
 @keyframes dispatch {
   0%, 26% { opacity: 0; offset-distance: 0%; }
   28% { opacity: 1; }
-  44% { opacity: 1; offset-distance: 100%; }
-  46%, 100% { opacity: 0; offset-distance: 100%; }
+  40% { opacity: 1; offset-distance: 100%; }
+  42%, 100% { opacity: 0; offset-distance: 100%; }
 }
 
 @keyframes dispatch_label {
@@ -200,25 +211,37 @@
 @keyframes collect {
   0%, 52% { opacity: 0; offset-distance: 100%; }
   54% { opacity: 1; }
-  70% { opacity: 1; offset-distance: 0%; }
-  72%, 100% { opacity: 0; offset-distance: 0%; }
+  66% { opacity: 1; offset-distance: 0%; }
+  68%, 100% { opacity: 0; offset-distance: 0%; }
+}
+
+@keyframes collect_label {
+  0%, 52% { opacity: 0; }
+  54%, 70% { opacity: 1; }
+  72%, 100% { opacity: 0; }
 }
 
 @keyframes result {
   0%, 78% { opacity: 0; offset-distance: 100%; }
   80% { opacity: 1; }
-  92% { opacity: 1; offset-distance: 0%; }
-  94%, 100% { opacity: 0; offset-distance: 0%; }
+  88% { opacity: 1; offset-distance: 0%; }
+  90%, 100% { opacity: 0; offset-distance: 0%; }
+}
+
+@keyframes result_label {
+  0%, 78% { opacity: 0; }
+  80%, 92% { opacity: 1; }
+  94%, 100% { opacity: 0; }
 }
 
 @keyframes hyper_activity {
-  0%, 18%, 26%, 70%, 78%, 100% { stroke: var(--card-border); stroke-width: 1; }
-  20%, 24%, 72%, 76% { stroke: var(--primary-action-bg); stroke-width: 1.5; }
+  0%, 14%, 26%, 66%, 78%, 100% { stroke: var(--card-border); stroke-width: 1; }
+  16%, 24%, 68%, 76% { stroke: var(--primary-action-bg); stroke-width: 1.5; }
 }
 
 @keyframes source_activity {
-  0%, 44%, 54%, 100% { stroke: var(--card-border); stroke-width: 1; }
-  46%, 52% { stroke: var(--primary-action-bg); stroke-width: 1.5; }
+  0%, 40%, 54%, 100% { stroke: var(--card-border); stroke-width: 1; }
+  42%, 52% { stroke: var(--primary-action-bg); stroke-width: 1.5; }
 }
 
 @media (prefers-reduced-motion: reduce) {

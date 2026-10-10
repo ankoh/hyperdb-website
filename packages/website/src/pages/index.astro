@@ -2,6 +2,7 @@
 import SiteLayout from '../layouts/site_layout.astro';
 import LandingUsecaseCarousel from '../components/landing_usecase_carousel.astro';
 import FederationAnimation from '../components/federation_animation.astro';
+import JitAnimation from '../components/jit_animation.astro';
 import styles from './index.module.css';
 import symbolAtlasUrl from 'hyperdb-symbol-atlas';
 import { Code } from 'astro:components';
@@ -68,10 +69,10 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                 <div class={styles.card_copy}>
                     <h2 class={styles.card_title}>
                         <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16" /></svg>
-                        Frontier Engine
+                        Unmatched Performance
                     </h2>
                     <p>Hyper pairs a code-generating query engine with one of the best query optimizers in the world.</p>
-                    <a class={styles.text_link} href="#qualities">Explore the engine<span aria-hidden="true">&rarr;</span></a>
+                    <a class={styles.text_link} href="#performance">Explore the engine<span aria-hidden="true">&rarr;</span></a>
                 </div>
             </article>
 
@@ -82,7 +83,7 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                         Embracing Zero-Copy
                     </h2>
                     <p>Process data where it lives with aligned semantics. Hyper pushes complex subqueries to Snowflake, Google BigQuery, Databricks and many more.</p>
-                    <a class={styles.text_link} href="#qualities">Explore zero-copy<span aria-hidden="true">&rarr;</span></a>
+                    <a class={styles.text_link} href="#federation">Explore zero-copy<span aria-hidden="true">&rarr;</span></a>
                 </div>
                 <div class:list={[styles.card_graphic, styles.federation_graphic]} data-graphic="federation" aria-hidden="true">
                     <span class={styles.federation_tile}>
@@ -122,13 +123,22 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
         </div>
     </section>
 
-    <section class={styles.feature_section} id="qualities" aria-labelledby="zero-copy-heading">
+    <section class={styles.feature_section} id="performance" aria-labelledby="processing-heading">
         <div class={styles.section_copy}>
-            <h2 id="zero-copy-heading">Embracing Zero-Copy</h2>
-            <p>Query data where it lives, without moving it into another database.</p>
-            <p>Hyper pushes complex SQL subqueries to Snowflake, Databricks, Google BigQuery, and more, and reads open formats like Apache Iceberg. Combine sources in a single query with aligned semantics.</p>
+            <h2 id="processing-heading">Unmatched Performance</h2>
+            <p>Hyper optimizes query plans and compiles them just-in-time into native machine code. Analytical queries are expensive and Hyper runs them with unmatched performance.</p>
         </div>
-        <div class={styles.federation_panel}>
+        <div class={styles.animation_panel}>
+            <JitAnimation />
+        </div>
+    </section>
+
+    <section class={styles.feature_section} id="federation" aria-labelledby="zero-copy-heading">
+        <div class={styles.section_copy}>
+            <h2 id="zero-copy-heading">Powerful Federation</h2>
+            <p>Query Federation is hard as database behavior differs in subtle details. Aligning semantics is crucial for zero-copy correctness. Hyper pushes complex SQL subqueries to Snowflake, Databricks, Google BigQuery and many more.</p>
+        </div>
+        <div class={styles.animation_panel}>
             <FederationAnimation />
         </div>
     </section>
