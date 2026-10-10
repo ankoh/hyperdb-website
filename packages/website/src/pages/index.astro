@@ -34,10 +34,10 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                 <div class={styles.card_copy}>
                     <h2 class={styles.card_title}>
                         <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 2 4 14h7l-1 8 10-13h-7l0-7Z" /></svg>
-                        Powering Salesforce Data 360 and Tableau
+                        Salesforce Data 360 and Tableau
                     </h2>
                     <p>Hyper executes billions of analytical queries every day for Salesforce Data 360 and Tableau.</p>
-                    <a class={styles.text_link} href="#qualities">Meet the engine<span aria-hidden="true">&rarr;</span></a>
+                    <a class={styles.text_link} href="#install">Install Hyper<span aria-hidden="true">&rarr;</span></a>
                 </div>
                 <svg class={styles.brand_salesforce} viewBox="0 0 273 191" aria-hidden="true" focusable="false">
                     <use href={`${symbolAtlasUrl}#salesforce`} />
@@ -48,32 +48,32 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                 <div class={styles.card_copy}>
                     <h2 class={styles.card_title}>
                         <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16" /></svg>
-                        SQL you know
-                    </h2>
-                    <p>Express your analysis with SQL. Join, aggregate, and explore your data with one query language.</p>
-                    <a class={styles.text_link} href={`${documentation}/sql`}>Explore SQL<span aria-hidden="true">&rarr;</span></a>
-                </div>
-            </article>
-
-            <article class={styles.property_card}>
-                <div class={styles.card_copy}>
-                    <h2 class={styles.card_title}>
-                        <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h16v16H4ZM8 8l3 3-3 3m5 2h4" /></svg>
-                        Built into your app
-                    </h2>
-                    <p>Work with Hyper from Python, C++, or Java. Run the database locally, alongside your application.</p>
-                    <a class={styles.text_link} href="#install">Get Hyper<span aria-hidden="true">&rarr;</span></a>
-                </div>
-            </article>
-
-            <article class={styles.property_card}>
-                <div class={styles.card_copy}>
-                    <h2 class={styles.card_title}>
-                        <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16" /></svg>
                         Unmatched Efficiency
                     </h2>
-                    <p>Hyper pairs a code-generating query engine with one of the best query optimizers in the world.</p>
+                    <p>Hyper converts SQL into highly optimized machine code, maximizing the performance of modern hardware.</p>
                     <a class={styles.text_link} href="#performance">Explore the engine<span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </article>
+
+            <article class={styles.property_card}>
+                <div class={styles.card_copy}>
+                    <h2 class={styles.card_title}>
+                        <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 3h6v6H9ZM3 15h6v6H3Zm12 0h6v6h-6ZM12 9v3M6 15v-3h12v3" /></svg>
+                        Powerful Planner
+                    </h2>
+                    <p>The Hyper team has built a strong theoretical foundation for query optimization at scale.</p>
+                    <a class={styles.text_link} href="#query-planner">Explore the planner<span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </article>
+
+            <article class={styles.property_card}>
+                <div class={styles.card_copy}>
+                    <h2 class={styles.card_title}>
+                        <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6ZM8 12l3 3 5-6" /></svg>
+                        Reliable Governance
+                    </h2>
+                    <p>Data security is key at Salesforce and Hyper implements a robust data governance system.</p>
+                    <a class={styles.text_link} href="#governance">Explore governance<span aria-hidden="true">&rarr;</span></a>
                 </div>
             </article>
 
@@ -81,7 +81,7 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                 <div class={styles.card_copy}>
                     <h2 class={styles.card_title}>
                         <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 8V3m-6 9H3m18 0h-3m-6 4v5M8 8h8v8H8ZM3 3h3v3H3Zm15 0h3v3h-3ZM3 18h3v3H3Zm15 0h3v3h-3Z" /></svg>
-                        Embracing Zero-Copy
+                        Zero-Copy at Scale
                     </h2>
                     <p>Process data where it lives with aligned semantics. Hyper pushes complex subqueries to Snowflake, Google BigQuery, Databricks and many more.</p>
                     <a class={styles.text_link} href="#federation">Explore zero-copy<span aria-hidden="true">&rarr;</span></a>
@@ -115,10 +115,10 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                 <div class={styles.card_copy}>
                     <h2 class={styles.card_title}>
                         <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 21h18M5 17v-5m7 5V7m7 10V3" /></svg>
-                        Proven at scale
+                        Embracing SQL
                     </h2>
-                    <p>An analytical database built for interactive workloads. Keep up with the questions your agents, dashboards, and apps ask.</p>
-                    <a class={styles.text_link} href="#qualities">Explore Hyper<span aria-hidden="true">&rarr;</span></a>
+                    <p>Hyper is very careful about SQL semantics and elevates apps through powerful instrumentation and transpilers.</p>
+                    <a class={styles.text_link} href="#sql">Explore SQL<span aria-hidden="true">&rarr;</span></a>
                 </div>
             </article>
         </div>
@@ -129,7 +129,7 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
             <h2 id="processing-heading">Unmatched Efficiency</h2>
             <p>Hyper optimizes query plans and compiles them just-in-time into native machine code. Analytical queries are expensive and getting down to low-level hardware details pays off immediately.</p>
             <div class={styles.papers}>
-                <h3>Selected papers of our team:</h3>
+                <h3>Selected papers from our team:</h3>
                 <ul>
                     <li>
                         <PaperReference
@@ -168,12 +168,12 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
         </figure>
     </section>
 
-    <section class={styles.feature_section} id="performance" aria-labelledby="processing-heading">
+    <section class={styles.feature_section} id="query-planner" aria-labelledby="planner-heading">
         <div class={styles.section_copy}>
-            <h2 id="processing-heading">Powerful Query Planner</h2>
-            <p>Query Optimization is a complex field and Hyper has a very strong theoretical foundation, adopted by many of our competitors. A good query planner often weighs more than an efficient execution engine. Hyper gives you both.</p>
+            <h2 id="planner-heading">Powerful Query Planner</h2>
+            <p>Query Optimization is a complex field and the Hyper team has built a very strong theoretical foundation, that has been adopted by many of our competitors.</p>
             <div class={styles.papers}>
-                <h3>Selected papers of our team:</h3>
+                <h3>Selected papers from our team:</h3>
                 <ul>
                     <li>
                         <PaperReference
@@ -198,13 +198,6 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                     </li>
                     <li>
                         <PaperReference
-                            href="https://db.in.tum.de/~radke/papers/lindp++.pdf"
-                            title="LinDP++: Generalizing Linearized DP to Crossproducts and Non-Inner Joins"
-                            venue="BTW 2019"
-                        />
-                    </li>
-                    <li>
-                        <PaperReference
                             href="https://www.vldb.org/pvldb/vol16/p3018-fent.pdf"
                             title="Asymptotically Better Query Optimization Using Indexed Algebra"
                             venue="SIGMOD 2023"
@@ -221,7 +214,7 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
 
     <section class={styles.feature_section} id="federation" aria-labelledby="zero-copy-heading">
         <div class={styles.section_copy}>
-            <h2 id="zero-copy-heading">Embracing Zero-Copy</h2>
+            <h2 id="zero-copy-heading">Zero-Copy at Scale</h2>
             <p>Database behavior differs in subtle details and aligning semantics is crucial for correct query federation. Hyper pushes complex subqueries to Snowflake, Databricks, Google BigQuery and many more.</p>
         </div>
         <figure class={styles.animation_panel}>
@@ -230,46 +223,17 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
         </figure>
     </section>
 
-    <section class={styles.feature_section} id="io" aria-labelledby="io-heading">
+    <section class={styles.feature_section} id="governance" aria-labelledby="governance-heading">
         <div class={styles.section_copy}>
-            <h2 id="io-heading">Works with your stack</h2>
-            <p>Hyper integrates directly with languages and data formats.</p>
-            <div class={styles.stack_groups}>
-                <div>
-                    <h3>Clients</h3>
-                    <ul>
-                        <li><a href={`${documentation}/installation`}>Python</a></li>
-                        <li><a href={`${documentation}/installation`}>C++</a></li>
-                        <li><a href={`${documentation}/installation`}>Java</a></li>
-                        <li><a href="https://hyperdb.sh/">Web shell</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Formats</h3>
-                    <ul>
-                        <li><a href={`${documentation}/guides/hyper_file/insert_csv`}>CSV</a></li>
-                        <li><a href={`${documentation}/guides/hyper_file/create_update`}>Hyper</a></li>
-                        <li><a href={`${documentation}/guides/hyper_file/geodata`}>Geospatial</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Integrations</h3>
-                    <ul>
-                        <li><a href={`${documentation}/guides/pandas_integration`}>Pandas</a></li>
-                        <li><a href={`${documentation}/guides/hyper_file/publish`}>Tableau</a></li>
-                    </ul>
-                </div>
-            </div>
+            <h2 id="governance-heading">Reliable Governance</h2>
+            <p>Content coming soon.</p>
         </div>
-        <div class:list={[styles.graphic_panel, styles.io_graphic]} data-graphic="io" aria-hidden="true">
-            <div class={styles.io_sources}><span>CSV files</span><span>Hyper API</span></div>
-            <div class={styles.io_connector}></div>
-            <div class={styles.engine_node}>
-                <svg viewBox="0 0 480 700" focusable="false"><use href={`${symbolAtlasUrl}#gazelle`} /></svg>
-                <span>Hyper</span>
-            </div>
-            <div class={styles.io_connector}></div>
-            <div class={styles.io_sources}><span>Query results</span><span>.hyper files</span></div>
+    </section>
+
+    <section class={styles.feature_section} id="sql" aria-labelledby="sql-heading">
+        <div class={styles.section_copy}>
+            <h2 id="sql-heading">Embracing SQL</h2>
+            <p>Content coming soon.</p>
         </div>
     </section>
 
@@ -302,7 +266,6 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                 <a class={styles.text_link} href={`${documentation}/installation/?client-language=java#language-specific-requirements`} target="_blank" rel="noopener noreferrer">Java setup instructions<span aria-hidden="true">&rarr;</span></a>
             </div>
             <div class:list={[styles.install_content, styles.browser_install]}>
-                <Code code="pnpm install hyperdb-wasm" lang="bash" theme="css-variables" />
                 <a class={styles.text_link} href={`https://hyperdb.sh`} target="_blank" rel="noopener noreferrer">Try it in the browser<span aria-hidden="true">&rarr;</span></a>
             </div>
         </div>

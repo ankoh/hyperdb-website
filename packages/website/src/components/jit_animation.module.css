@@ -1,7 +1,7 @@
 .experiment {
   width: 100%;
   min-width: 0;
-  max-width: 460px;
+  max-width: 540px;
 }
 
 .figure {
@@ -15,7 +15,7 @@
 
 .viewport {
   overflow-x: auto;
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
 }
 
 .viewport:focus-visible {
@@ -32,7 +32,7 @@
 
 .code {
   fill: var(--text);
-  font: 10px 'Geist Mono', monospace;
+  font: 11px 'Geist Mono', monospace;
 }
 
 .keyword {
