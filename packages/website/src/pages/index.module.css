@@ -4,33 +4,31 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 8px 1rem;
-  overflow: clip;
+  padding: 60px 1rem;
 }
 
 .intro {
-  display: grid;
-  grid-template-columns: minmax(0, 600px) minmax(0, 1fr);
+  display: flex;
   align-items: center;
   justify-content: center;
+  column-gap: 16px;
   min-width: 0;
-  width: min(100%, var(--content-width));
+  max-width: 100%;
 }
 
 .intro_text {
   min-width: 0;
-  width: 100%;
+  max-width: 600px;
 }
 
 .gazelle {
   display: block;
-  /* Let the particle trail escape the centered content column. */
-  width: min(calc(100% + 6rem), 36rem);
-  justify-self: end;
-  margin-inline-end: -6rem;
-  height: auto;
-  aspect-ratio: 2400 / 1792;
+  flex: none;
+  width: calc(320px * 480 / 700);
+  max-width: 100%;
+  height: 280px;
   color: var(--gazelle-outline);
+  --gazelle-fill: var(--gazelle-fill-color);
 }
 
 .hero_actions {
@@ -54,14 +52,9 @@
 
 @media (max-width: 64rem) {
   .intro {
-    grid-template-columns: minmax(0, 1fr);
+    flex-direction: column;
+    align-items: stretch;
     gap: 2rem;
-  }
-
-  .gazelle {
-    width: min(calc(100% + 6rem), 36rem);
-    justify-self: start;
-    margin-inline-end: 0;
   }
 }
 

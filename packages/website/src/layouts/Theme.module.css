@@ -15,21 +15,8 @@
   --action-text: light-dark(hsl(0 0% 100%), hsl(0 0% 9.019608%));
   --focus: light-dark(hsl(218 67.567568% 43.529412%), hsl(216.724138 100% 77.254902%));
 
-  --gazelle-outline: light-dark(hsla(0, 0%, 70.588235%, 0.5), hsla(0, 0%, 86.27451%, 0.5));
-  --gazelle-fill-color: light-dark(hsla(0, 0%, 98.039216%, 0.5), hsla(0, 0%, 31.372549%, 0.5));
-  --gpoint-opacity: 0.1;
-  --gp-01: light-dark(hsla(207, 0%, 17.647059%, var(--gpoint-opacity)), hsla(213, 0%, 91.372549%, var(--gpoint-opacity)));
-  --gp-02: light-dark(hsla(208.571429, 30%, 18.235294%, var(--gpoint-opacity)), hsla(211.428571, 0%, 90.784314%, var(--gpoint-opacity)));
-  --gp-03: light-dark(hsla(207.272727, 30%, 18.823529%, var(--gpoint-opacity)), hsla(212.727273, 0%, 90.196078%, var(--gpoint-opacity)));
-  --gp-04: light-dark(hsla(208.421053, 30%, 19.019608%, var(--gpoint-opacity)), hsla(211.578947, 0%, 90%, var(--gpoint-opacity)));
-  --gp-05: light-dark(hsla(208.695652, 30%, 19.803922%, var(--gpoint-opacity)), hsla(211.304348, 0%, 89.215686%, var(--gpoint-opacity)));
-  --gp-06: light-dark(hsla(208.800000, 30%, 20.588235%, var(--gpoint-opacity)), hsla(211.2, 0%, 88.431373%, var(--gpoint-opacity)));
-  --gp-07: light-dark(hsla(205.714286, 30%, 20.588235%, var(--gpoint-opacity)), hsla(214.285714, 0%, 88.431373%, var(--gpoint-opacity)));
-  --gp-08: light-dark(hsla(210.000000, 30%, 21.960784%, var(--gpoint-opacity)), hsla(210, 0%, 87.058824%, var(--gpoint-opacity)));
-  --gp-09: light-dark(hsla(207.272727, 30%, 23.921569%, var(--gpoint-opacity)), hsla(212.727273, 0%, 85.098039%, var(--gpoint-opacity)));
-  --gp-10: light-dark(hsla(208.571429, 30%, 27.254902%, var(--gpoint-opacity)), hsla(211.428571, 0%, 81.764706%, var(--gpoint-opacity)));
-  --gp-11: light-dark(hsla(208.571429, 30%, 31.176471%, var(--gpoint-opacity)), hsla(211.428571, 0%, 77.843137%, var(--gpoint-opacity)));
-  --gp-12: light-dark(hsla(208.421053, 30%, 44.901961%, var(--gpoint-opacity)), hsla(211.578947, 0%, 64.117647%, var(--gpoint-opacity)));
+  --gazelle-outline: light-dark(hsl(0 0% 70.588235%), hsl(0 0% 86.27451%));
+  --gazelle-fill-color: light-dark(hsl(0 0% 98.039216%), hsl(0 0% 31.372549%));
   --backdrop: hsl(0 0% 0% / 0.65);
   --greeter-card-brand-logos: light-dark(hsl(0 0% 78.431373%), hsl(0 0% 70.588235%));
   --federation-tile-border: light-dark(hsl(0 0% 78.431373%), hsl(0 0% 39.215686%));

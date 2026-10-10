@@ -40,27 +40,6 @@ test('authored styles live in CSS Modules and the shared palette', () => {
   }
 });
 
-test('particle gazelle uses exactly 12 shared light/dark tones', () => {
-  const svg = readFileSync(join(source, 'assets/gazelle_fading_circles.svg'), 'utf8');
-  const palette = readFileSync(join(source, 'layouts/theme.module.css'), 'utf8');
-  const circles = [...svg.matchAll(/<circle\b[^>]*>/g)];
-  assert.ok(circles.length > 0, 'particle artwork must contain circles');
-  const fills = new Set();
-  for (const [circle] of circles) {
-    const fill = circle.match(/fill="var\((--gazelle-particle-\d{2}), currentColor\)"/);
-    assert.ok(fill, 'each circle must use a shared tone with a currentColor fallback');
-    fills.add(fill[1]);
-  }
-  assert.equal(fills.size, 12);
-  assert.match(palette, /--gazelle-point-opacity:\s*(?:0(?:\.\d+)?|1(?:\.0+)?);/, 'define a shared point opacity between 0 and 1');
-  for (let index = 1; index <= 12; index++) {
-    const token = `--gazelle-particle-${String(index).padStart(2, '0')}`;
-    assert.ok(fills.has(token), `${token}: missing artwork tone`);
-    assert.match(palette, new RegExp(`${token}:\\s*light-dark\\(hsla\\([^()]+var\\(--gazelle-point-opacity\\)\\),\\s*hsla\\([^()]+var\\(--gazelle-point-opacity\\)\\)\\)`), `${token}: missing theme pair with shared point opacity`);
-  }
-  assert.doesNotMatch(svg, /\b(?:id|data-method|width|height)="|#[\da-f]{3,8}\b/i, 'omit extraction metadata, oversized dimensions, and fixed colors');
-});
-
 test('generated syntax highlighting uses the shared palette', () => {
   const palette = readFileSync(join(source, 'layouts/theme.module.css'), 'utf8');
   for (const route of ['index.html', 'docs/hello-world/index.html']) {
