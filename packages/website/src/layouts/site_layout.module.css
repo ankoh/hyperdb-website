@@ -44,6 +44,14 @@
   border-bottom: 1px solid var(--border);
 }
 
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--header-bg);
+  backdrop-filter: blur(12px);
+}
+
 .header_actions {
   display: flex;
   align-items: center;
