@@ -2,35 +2,52 @@
 import styles from './theme_preference.module.css';
 ---
 
-<div class={styles.preference}>
-  <label for="theme-preference">Theme</label>
-  <select id="theme-preference" name="theme" data-theme-preference disabled>
-    <option value="system">System</option>
-    <option value="light">Light</option>
-    <option value="dark">Dark</option>
-  </select>
-</div>
+<button
+  class={styles.toggle}
+  type="button"
+  aria-label="Dark theme"
+  aria-pressed="false"
+  title="Switch to dark theme"
+  data-theme-preference
+  disabled
+>
+  <svg class={styles.sun} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+  </svg>
+  <svg class={styles.moon} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <path d="M20.9 13a9 9 0 0 1-9.9-9.9A9 9 0 1 0 20.9 13Z" />
+  </svg>
+</button>
 
 <script>
-  const select = document.querySelector<HTMLSelectElement>('[data-theme-preference]');
-  if (select) {
+  const toggle = document.querySelector<HTMLButtonElement>('[data-theme-preference]');
+  if (toggle) {
     const root = document.documentElement;
-    select.value = root.dataset.theme ?? 'system';
-    select.disabled = false;
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const syncToggle = () => {
+      const dark = root.dataset.theme === 'dark' || (root.dataset.theme !== 'light' && systemTheme.matches);
+      toggle.setAttribute('aria-pressed', String(dark));
+      toggle.title = `Switch to ${dark ? 'light' : 'dark'} theme`;
+    };
+    syncToggle();
+    toggle.disabled = false;
 
-    select.addEventListener('change', () => {
-      root.dataset.theme = select.value;
+    toggle.addEventListener('click', () => {
+      const preference = toggle.getAttribute('aria-pressed') === 'true' ? 'light' : 'dark';
+      root.dataset.theme = preference;
+      syncToggle();
       try {
-        if (select.value === 'system') localStorage.removeItem('theme');
-        else localStorage.setItem('theme', select.value);
+        localStorage.setItem('theme', preference);
       } catch {}
     });
 
+    systemTheme.addEventListener('change', syncToggle);
     window.addEventListener('storage', (event) => {
       if (event.storageArea !== localStorage || (event.key !== 'theme' && event.key !== null)) return;
       const preference = event.key === 'theme' ? event.newValue : null;
       root.dataset.theme = preference === 'light' || preference === 'dark' ? preference : 'system';
-      select.value = root.dataset.theme;
+      syncToggle();
     });
   }
 </script>

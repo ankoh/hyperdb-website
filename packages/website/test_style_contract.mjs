@@ -67,3 +67,18 @@ test('static pages link their CSS Module stylesheets', () => {
     assert.ok(css.trim().length > 0, `${route}: empty stylesheets`);
   }
 });
+
+test('landing and docs headers offer an accessible theme toggle instead of a dropdown', () => {
+  for (const route of ['index.html', 'docs/hello-world/index.html']) {
+    const html = readFileSync(join(source, '../pages', route), 'utf8');
+    const header = html.match(/<header\b[^]*?<\/header>/)?.[0];
+    assert.ok(header, `${route}: missing header`);
+    const toggle = header.match(/<button\b[^>]*data-theme-preference[^>]*>[^]*?<\/button>/)?.[0];
+    assert.ok(toggle, `${route}: missing theme toggle`);
+    assert.match(toggle, /type="button"/);
+    assert.match(toggle, /aria-label="Dark theme"/);
+    assert.match(toggle, /aria-pressed="false"/);
+    assert.equal([...toggle.matchAll(/<svg\b[^>]*aria-hidden="true"[^>]*>/g)].length, 2);
+    assert.doesNotMatch(header, /<select\b/);
+  }
+});
