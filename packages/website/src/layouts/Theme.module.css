@@ -13,8 +13,8 @@
   --control-border: light-dark(hsl(0 0% 46.27451%), hsl(0 0% 57.254902%));
   --action-bg: light-dark(hsl(218 39% 38%), hsl(0 0% 94.901961%));
   --action-text: light-dark(hsl(0 0% 100%), hsl(0 0% 9.019608%));
-  --primary-action-bg: #00a1e0;
-  --primary-action-text: light-dark(#ffffff, #171717);
+  --primary-action-bg: light-dark(black, white);
+  --primary-action-text: light-dark(white, black);
   --focus: light-dark(hsl(218 67.567568% 43.529412%), hsl(216.724138 100% 77.254902%));
   --operator-join: light-dark(#8750b5, #c5a0ec);
   --operator-join-bg: light-dark(#f0e8f8, #35283f);

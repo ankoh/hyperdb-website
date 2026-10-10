@@ -33,7 +33,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={faviconUrl} type="image/svg+xml" />
     <slot name="head" />
-    <title>{title} | HyperDB</title>
+    <title>HyperDB</title>
   </head>
   <body class={styles.body}>
     <header class={styles.header}>
@@ -43,7 +43,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         </svg>
       </a>
       <div class={styles.header_actions}>
-        <nav aria-label="Main navigation"><a href="/docs/hello-world/">Docs</a></nav>
+        <!-- <nav aria-label="Main navigation"><a href="/docs/hello-world/">Docs</a></nav> -->
         <ThemePreference />
       </div>
     </header>
