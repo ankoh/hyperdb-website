@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 60px 1rem;
+  padding: 3.5rem 1rem;
 }
 
 .intro {
@@ -43,10 +43,10 @@
   align-items: center;
   justify-content: center;
   padding: 0.6rem 1rem;
-  border: 1px solid var(--action-bg);
+  border: 1px solid var(--primary-action-bg);
   border-radius: 24px;
-  background: var(--action-bg);
-  color: var(--action-text);
+  background: var(--primary-action-bg);
+  color: var(--primary-action-text);
   text-decoration: none;
 }
 
@@ -95,7 +95,7 @@
   display: flex;
   min-width: 0;
   padding: 1.25rem;
-  border: 1px solid var(--surface-border);
+  border: 1px solid var(--card-border);
   border-radius: 0.875rem;
   background: var(--subtle-bg);
 }
@@ -130,7 +130,7 @@
   align-items: flex-start;
   gap: 0.5rem;
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 1.125rem;
   font-weight: 600;
   letter-spacing: -0.025em;
   line-height: 1.3;
@@ -156,12 +156,12 @@
 
 .card_copy p {
   margin: 0.5rem 0 1rem;
-  font-size: 0.9rem;
+  font-size: 0.9375rem;
   line-height: 1.5;
 }
 
 .card_copy .text_link {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
 }
 
 .text_link {
@@ -209,7 +209,7 @@
   justify-content: center;
   border-width: 1px;
   border-style: solid;
-  border-color: var(--federation-tile-border);
+  border-color: var(--card-border);
   border-radius: 0.4rem;
   background: var(--subtle-bg);
 }
@@ -271,33 +271,10 @@
   height: auto;
 }
 
-.brand_monochrome {
-  display: none;
-}
-
-:global(:root[data-theme='dark']) .brand_original {
-  display: none;
-}
-
-:global(:root[data-theme='dark']) .brand_monochrome {
-  display: inline;
-}
-
-@media (prefers-color-scheme: dark) {
-  :global(:root:not([data-theme='light'])) .brand_original {
-    display: none;
-  }
-
-  :global(:root:not([data-theme='light'])) .brand_monochrome {
-    display: inline;
-  }
-}
-
 .brand_salesforce {
   display: block;
   width: 68px;
   height: auto;
-  color: var(--greeter-card-brand-logos);
 }
 
 .feature_section {
@@ -305,21 +282,31 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
   align-items: center;
   gap: clamp(2.5rem, 6vw, 6rem);
-  padding-block: clamp(3.5rem, 7vw, 6rem);
+  padding-block: 5rem;
   scroll-margin-top: 2rem;
+}
+
+.properties + .feature_section {
+  padding-block-start: 10rem;
 }
 
 .section_copy h2 {
   margin: 0 0 1.25rem;
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  font-weight: 550;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
+  font-size: clamp(1.875rem, 3vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
 }
 
 .section_copy > p {
   margin: 0 0 1.5rem;
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
+}
+
+.federation_panel {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 0;
 }
 
 .stack_groups {
@@ -357,72 +344,9 @@
   min-width: 0;
   min-height: 24rem;
   padding: 2.5rem;
-  border: 1px solid var(--surface-border);
+  border: 1px solid var(--card-border);
   border-radius: 1.25rem;
   background: var(--subtle-bg);
-}
-
-.query_window, .result_window {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 24rem;
-  border: 1px solid var(--surface-border);
-  border-radius: 0.75rem;
-  background: var(--surface-bg);
-}
-
-.window_heading {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--surface-border);
-  color: var(--text-muted);
-  font-size: 0.75rem;
-}
-
-.query_window pre {
-  margin: 0;
-  padding: 1.25rem;
-  font-size: clamp(0.65rem, 1.1vw, 0.85rem);
-  line-height: 1.8;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-
-.sql_keyword {
-  color: var(--syntax-keyword);
-}
-
-.sql_function {
-  color: var(--syntax-function);
-}
-
-.query_connector {
-  width: 1px;
-  height: 1.75rem;
-  background: var(--border);
-}
-
-.result_window {
-  max-width: 20rem;
-  padding: 0.5rem 1rem;
-  font-family: 'Geist Mono', monospace;
-  font-size: 0.75rem;
-}
-
-.result_row {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.6rem 0;
-}
-
-.result_row:first-child {
-  color: var(--text-muted);
-}
-
-.result_row + .result_row {
-  border-top: 1px solid var(--surface-border);
 }
 
 .io_graphic {
@@ -439,7 +363,7 @@
 
 .io_sources span {
   padding: 0.85rem 0.5rem;
-  border: 1px solid var(--surface-border);
+  border: 1px solid var(--card-border);
   border-radius: 0.5rem;
   background: var(--surface-bg);
   color: var(--text-muted);
@@ -461,7 +385,7 @@
   gap: 0.5rem;
   width: 5rem;
   padding: 1rem 0.25rem;
-  border: 1px solid var(--control-border);
+  border: 1px solid var(--card-border);
   border-radius: 0.75rem;
   background: var(--surface-bg);
   font-weight: 500;
@@ -479,7 +403,7 @@
 
 .install_panel {
   min-width: 0;
-  border: 1px solid var(--surface-border);
+  border: 1px solid var(--card-border);
   border-radius: 1rem;
   background: var(--subtle-bg);
 }
@@ -489,7 +413,7 @@
   margin: 0;
   padding: 1.25rem 1.5rem;
   border: 0;
-  border-bottom: 1px solid var(--surface-border);
+  border-bottom: 1px solid var(--card-border);
 }
 
 .install_options legend {
@@ -564,7 +488,7 @@
   max-width: 100%;
   margin: 0 0 1.5rem;
   padding: 1rem;
-  border: 1px solid var(--surface-border);
+  border: 1px solid var(--card-border);
   border-radius: 0.5rem;
   font-size: 0.8rem;
   line-height: 1.8;
@@ -634,8 +558,8 @@
     min-height: 22rem;
   }
 
-  .query_window pre {
-    font-size: 0.85rem;
+  .federation_panel {
+    justify-content: flex-start;
   }
 }
 

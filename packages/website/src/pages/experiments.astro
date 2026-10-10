@@ -1,0 +1,25 @@
+---
+import SiteLayout from '../layouts/site_layout.astro';
+import FederationAnimation from '../components/federation_animation.astro';
+import styles from './experiments.module.css';
+---
+
+<SiteLayout title="Animation experiments" description="A playground for Hyper's animated graphics.">
+  <meta slot="head" name="robots" content="noindex, nofollow" />
+  <div class={styles.gallery}>
+    <header class={styles.intro}>
+      <p class={styles.eyebrow}>Hyper / Experiments</p>
+      <h1>Ideas in motion.</h1>
+      <p>A working space for animated graphics. Nothing here is final.</p>
+    </header>
+    <section id="federation" class={styles.experiment} aria-labelledby="federation-heading">
+      <header class={styles.experiment_heading}>
+        <div>
+          <p class={styles.eyebrow}>Experiment 01</p>
+          <h2 id="federation-heading">Federation</h2>
+        </div>
+      </header>
+      <FederationAnimation />
+    </section>
+  </div>
+</SiteLayout>

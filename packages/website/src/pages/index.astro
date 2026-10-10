@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../layouts/site_layout.astro';
 import LandingUsecaseCarousel from '../components/landing_usecase_carousel.astro';
+import FederationAnimation from '../components/federation_animation.astro';
 import styles from './index.module.css';
 import symbolAtlasUrl from 'hyperdb-symbol-atlas';
 import { Code } from 'astro:components';
@@ -37,8 +38,7 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                     <a class={styles.text_link} href="#qualities">Meet the engine<span aria-hidden="true">&rarr;</span></a>
                 </div>
                 <svg class={styles.brand_salesforce} viewBox="0 0 273 191" aria-hidden="true" focusable="false">
-                    <use class={styles.brand_original} href={`${symbolAtlasUrl}#salesforce`} />
-                    <use class={styles.brand_monochrome} href={`${symbolAtlasUrl}#salesforce_monochrome`} />
+                    <use href={`${symbolAtlasUrl}#salesforce`} />
                 </svg>
             </article>
 
@@ -82,7 +82,7 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                         Embracing Zero-Copy
                     </h2>
                     <p>Process data where it lives with aligned semantics. Hyper pushes complex subqueries to Snowflake, Google BigQuery, Databricks and many more.</p>
-                    <a class={styles.text_link} href="#io">Explore integrations<span aria-hidden="true">&rarr;</span></a>
+                    <a class={styles.text_link} href="#qualities">Explore zero-copy<span aria-hidden="true">&rarr;</span></a>
                 </div>
                 <div class:list={[styles.card_graphic, styles.federation_graphic]} data-graphic="federation" aria-hidden="true">
                     <span class={styles.federation_tile}>
@@ -122,27 +122,14 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
         </div>
     </section>
 
-    <section class={styles.feature_section} id="qualities" aria-labelledby="qualities-heading">
+    <section class={styles.feature_section} id="qualities" aria-labelledby="zero-copy-heading">
         <div class={styles.section_copy}>
-            <h2 id="qualities-heading">More than a query engine</h2>
-            <p>Hyper includes an analytical SQL database, native client APIs, and a portable database file format.</p>
-            <p>An analytical SQL database that runs locally alongside your application. Simple, fast, and portable.</p>
-            <a class={styles.text_link} href={documentation}>Explore Hyper<span aria-hidden="true">&rarr;</span></a>
+            <h2 id="zero-copy-heading">Embracing Zero-Copy</h2>
+            <p>Query data where it lives, without moving it into another database.</p>
+            <p>Hyper pushes complex SQL subqueries to Snowflake, Databricks, Google BigQuery, and more, and reads open formats like Apache Iceberg. Combine sources in a single query with aligned semantics.</p>
         </div>
-        <div class={styles.graphic_panel} data-graphic="queries" aria-hidden="true">
-            <div class={styles.query_window}>
-                <div class={styles.window_heading}><span>SQL</span><span>HyperDB</span></div>
-                <pre><code><span class={styles.sql_keyword}>SELECT</span> region, <span class={styles.sql_function}>SUM</span>(revenue)
-<span class={styles.sql_keyword}>FROM</span> sales
-<span class={styles.sql_keyword}>GROUP BY</span> region;</code></pre>
-            </div>
-            <div class={styles.query_connector}></div>
-            <div class={styles.result_window}>
-                <div class={styles.result_row}><span>region</span><span>revenue</span></div>
-                <div class={styles.result_row}><span>Europe</span><span>42,000</span></div>
-                <div class={styles.result_row}><span>Americas</span><span>38,500</span></div>
-                <div class={styles.result_row}><span>Asia Pacific</span><span>31,200</span></div>
-            </div>
+        <div class={styles.federation_panel}>
+            <FederationAnimation />
         </div>
     </section>
 

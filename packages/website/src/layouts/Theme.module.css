@@ -9,19 +9,22 @@
   --text: light-dark(hsl(0 0% 14.117647%), hsl(0 0% 94.901961%));
   --text-muted: light-dark(hsl(0 0% 39.607843%), hsl(0 0% 72.156863%));
   --border: light-dark(hsl(0 0% 77.647059%), hsl(0 0% 39.607843%));
-  --surface-border: light-dark(hsl(0 0% 89.803922%), hsl(0 0% 23.921569%));
+  --card-border: light-dark(hsl(0 0% 89.803922%), hsl(0 0% 23.921569%));
   --control-border: light-dark(hsl(0 0% 46.27451%), hsl(0 0% 57.254902%));
   --action-bg: light-dark(hsl(218 39% 38%), hsl(0 0% 94.901961%));
   --action-text: light-dark(hsl(0 0% 100%), hsl(0 0% 9.019608%));
+  --primary-action-bg: #00a1e0;
+  --primary-action-text: light-dark(#ffffff, #171717);
   --focus: light-dark(hsl(218 67.567568% 43.529412%), hsl(216.724138 100% 77.254902%));
 
   --gazelle-outline: light-dark(hsl(0 0% 70.588235%), hsl(0 0% 86.27451%));
   --gazelle-fill-color: light-dark(hsl(0 0% 98.039216%), hsl(0 0% 31.372549%));
   --backdrop: hsl(0 0% 0% / 0.65);
   --greeter-card-brand-logos: light-dark(hsl(0 0% 78.431373%), hsl(0 0% 70.588235%));
-  --federation-tile-border: light-dark(hsl(0 0% 78.431373%), hsl(0 0% 39.215686%));
 
   --brand-bg: hsl(0 0% 100%);
+  --snowflake-logo: light-dark(#29b5e8, var(--text));
+  --databricks-logo: light-dark(#ff3621, var(--text));
   --syntax-keyword: light-dark(hsl(323.595506 42.180095% 41.372549%), hsl(325.833333 61.016949% 76.862745%));
   --syntax-string: light-dark(hsl(123.829787 31.972789% 28.823529%), hsl(121.2 37.878788% 74.117647%));
   --syntax-constant: light-dark(hsl(218 67.567568% 43.529412%), hsl(216.724138 100% 77.254902%));

@@ -1,0 +1,228 @@
+.experiment {
+  --cycle: 6s;
+  width: 100%;
+  min-width: 0;
+  max-width: 460px;
+}
+
+.figure {
+  position: relative;
+  margin: 0;
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+  background: var(--subtle-bg);
+  overflow: hidden;
+}
+
+.viewport {
+  overflow-x: auto;
+  padding: 0.5rem 0 1.25rem;
+}
+
+.viewport:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -4px;
+}
+
+.diagram {
+  display: block;
+  width: 100%;
+  min-width: 360px;
+  color: var(--text);
+}
+
+.edges {
+  fill: none;
+  stroke: var(--control-border);
+  stroke-width: 1;
+}
+
+.node > rect {
+  fill: var(--surface-bg);
+  stroke: var(--card-border);
+}
+
+.node > text {
+  fill: var(--text);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.snowflake_node > svg {
+  color: var(--snowflake-logo);
+}
+
+.databricks_node > svg {
+  color: var(--databricks-logo);
+}
+
+.brand_monochrome {
+  display: none;
+}
+
+:global(:root[data-theme='dark']) .brand_original {
+  display: none;
+}
+
+:global(:root[data-theme='dark']) .brand_monochrome {
+  display: inline;
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme='light'])) .brand_original { display: none; }
+  :global(:root:not([data-theme='light'])) .brand_monochrome { display: inline; }
+}
+
+.user_icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.packet, .transfer_label {
+  opacity: 0;
+  animation-duration: var(--cycle);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.packet {
+  fill: var(--primary-action-bg);
+  offset-rotate: 0deg;
+}
+
+.transfer_label {
+  fill: var(--text);
+  stroke: var(--subtle-bg);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  paint-order: stroke fill;
+  font: 11px 'Geist Mono', monospace;
+  text-anchor: middle;
+}
+
+.transfer_label.query {
+  text-anchor: start;
+  animation-name: query_label;
+}
+
+.transfer_label:not(.query, .result) {
+  text-anchor: start;
+}
+
+.transfer_label:is(.subquery, .databricks_query, .read_request) {
+  animation-name: dispatch_label;
+}
+
+.packet.query, .packet.result {
+  offset-path: path('M64 122H182');
+}
+
+.packet.subquery, .packet.snowflake_data {
+  offset-path: path('M230 122H354');
+}
+
+.packet.databricks_query, .packet.databricks_data {
+  offset-path: path('M230 122C290 122 294 202 354 202');
+}
+
+.packet.read_request, .packet.salesforce_data {
+  offset-path: path('M230 122C290 122 294 42 354 42');
+}
+
+.query { animation-name: query; }
+.subquery, .databricks_query, .read_request { animation-name: dispatch; }
+.snowflake_data, .databricks_data, .salesforce_data { animation-name: collect; }
+.result { animation-name: result; }
+
+.hyper_node > rect {
+  animation: hyper_activity var(--cycle) linear infinite;
+}
+
+.snowflake_node > rect, .databricks_node > rect, .salesforce_node > rect {
+  animation: source_activity var(--cycle) linear infinite;
+}
+
+.caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.experiment:is(:hover, :focus-within) * {
+  animation-play-state: paused;
+}
+
+.experiment:is(:hover, :focus-within) .transfer_label {
+  /* Override the timeline's opacity without restarting it on pointer leave. */
+  opacity: 1 !important;
+}
+
+.experiment:is(:hover, :focus-within) .response_label {
+  opacity: 0 !important;
+}
+
+.experiment:is(:hover, :focus-within) .packet {
+  visibility: hidden;
+}
+
+@keyframes query {
+  0%, 4% { opacity: 0; offset-distance: 0%; }
+  6% { opacity: 1; }
+  18% { opacity: 1; offset-distance: 100%; }
+  20%, 100% { opacity: 0; offset-distance: 100%; }
+}
+
+@keyframes query_label {
+  0%, 4% { opacity: 0; }
+  6%, 76% { opacity: 1; }
+  78%, 100% { opacity: 0; }
+}
+
+@keyframes dispatch {
+  0%, 26% { opacity: 0; offset-distance: 0%; }
+  28% { opacity: 1; }
+  44% { opacity: 1; offset-distance: 100%; }
+  46%, 100% { opacity: 0; offset-distance: 100%; }
+}
+
+@keyframes dispatch_label {
+  0%, 26% { opacity: 0; }
+  28%, 50% { opacity: 1; }
+  52%, 100% { opacity: 0; }
+}
+
+@keyframes collect {
+  0%, 52% { opacity: 0; offset-distance: 100%; }
+  54% { opacity: 1; }
+  70% { opacity: 1; offset-distance: 0%; }
+  72%, 100% { opacity: 0; offset-distance: 0%; }
+}
+
+@keyframes result {
+  0%, 78% { opacity: 0; offset-distance: 100%; }
+  80% { opacity: 1; }
+  92% { opacity: 1; offset-distance: 0%; }
+  94%, 100% { opacity: 0; offset-distance: 0%; }
+}
+
+@keyframes hyper_activity {
+  0%, 18%, 26%, 70%, 78%, 100% { stroke: var(--card-border); stroke-width: 1; }
+  20%, 24%, 72%, 76% { stroke: var(--primary-action-bg); stroke-width: 1.5; }
+}
+
+@keyframes source_activity {
+  0%, 44%, 54%, 100% { stroke: var(--card-border); stroke-width: 1; }
+  46%, 52% { stroke: var(--primary-action-bg); stroke-width: 1.5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experiment .diagram * { animation: none; }
+  .packet { display: none; }
+  .transfer_label { opacity: 1; }
+}

@@ -1,0 +1,88 @@
+---
+import styles from './federation_animation.module.css';
+import hyperUrl from '../assets/hyper.svg?url';
+import symbolAtlasUrl from 'hyperdb-symbol-atlas';
+---
+
+<div class={styles.experiment} data-federation-animation>
+  <figure class={styles.figure}>
+    <div class={styles.viewport} tabindex="0" role="region" aria-label="Federation diagram; hover or focus to show request labels. Scroll horizontally on small screens.">
+      <svg class={styles.diagram} viewBox="0 0 430 246" role="img" aria-label="A user queries Hyper, which sends SQL subqueries to Snowflake and Databricks and reads Iceberg data from Salesforce. All three return data to Hyper, which combines it and returns results to the user.">
+        <g class={styles.edges}>
+          <path d="M64 122H182" />
+          <path d="M230 122C290 122 294 42 354 42" />
+          <path d="M230 122H354" />
+          <path d="M230 122C290 122 294 202 354 202" />
+        </g>
+
+        <g aria-hidden="true">
+          <circle class:list={[styles.packet, styles.query]} r="3" />
+          <circle class:list={[styles.packet, styles.subquery]} r="3" />
+          <circle class:list={[styles.packet, styles.databricks_query]} r="3" />
+          <circle class:list={[styles.packet, styles.read_request]} r="3" />
+          <circle class:list={[styles.packet, styles.snowflake_data]} r="3" />
+          <circle class:list={[styles.packet, styles.databricks_data]} r="3" />
+          <circle class:list={[styles.packet, styles.salesforce_data]} r="3" />
+          <circle class:list={[styles.packet, styles.result]} r="3" />
+          <text class:list={[styles.transfer_label, styles.query]} x="70" y="40">
+            <tspan x="70">select * from</tspan>
+            <tspan x="78" dy="15">salesforce_table,</tspan>
+            <tspan x="78" dy="16">snowflake_table,</tspan>
+            <tspan x="78" dy="17">databricks_table</tspan>
+            <tspan x="70" dy="18">where</tspan><tspan dx="10">...</tspan>
+          </text>
+          <text class:list={[styles.transfer_label, styles.read_request]} x="260" y="70">Read Iceberg</text>
+          <text class:list={[styles.transfer_label, styles.subquery]} x="260" y="125">SQL subquery</text>
+          <text class:list={[styles.transfer_label, styles.databricks_query]} x="260" y="180">SQL subquery</text>
+          <text class:list={[styles.transfer_label, styles.salesforce_data, styles.response_label]} x="290" y="70">Data</text>
+          <text class:list={[styles.transfer_label, styles.snowflake_data, styles.response_label]} x="290" y="125">Data</text>
+          <text class:list={[styles.transfer_label, styles.databricks_data, styles.response_label]} x="290" y="180">Data</text>
+          <text class:list={[styles.transfer_label, styles.result, styles.response_label]} x="123" y="105">Results</text>
+        </g>
+
+        <g class={styles.node}>
+          <rect x="20" y="100" width="44" height="44" rx="10" />
+          <g class={styles.user_icon}>
+            <circle cx="42" cy="117" r="5" />
+            <path d="M32 133v-2a10 10 0 0 1 20 0v2" />
+          </g>
+          <text x="42" y="162" text-anchor="middle">User</text>
+        </g>
+        <g class:list={[styles.node, styles.hyper_node]}>
+          <rect x="182" y="98" width="48" height="48" rx="12" />
+          <svg x="195" y="108" width="22" height="28" viewBox="0 0 137.6113 169.39944" aria-hidden="true">
+            <use class={styles.brand_original} href={`${hyperUrl}#hyper`} />
+            <use class={styles.brand_monochrome} href={`${symbolAtlasUrl}#hyper_monochrome`} />
+          </svg>
+          <text x="206" y="164" text-anchor="middle">Hyper</text>
+        </g>
+        <g class:list={[styles.node, styles.salesforce_node]}>
+          <rect x="354" y="20" width="44" height="44" rx="10" />
+          <svg x="363" y="33" width="26" height="18" viewBox="0 0 273 191" aria-hidden="true">
+            <use class={styles.brand_original} href={`${symbolAtlasUrl}#salesforce_cloud`} />
+            <use class={styles.brand_monochrome} href={`${symbolAtlasUrl}#salesforce_cloud_monochrome`} />
+          </svg>
+          <text x="376" y="82" text-anchor="middle">Salesforce</text>
+        </g>
+        <g class:list={[styles.node, styles.snowflake_node]}>
+          <rect x="354" y="100" width="44" height="44" rx="10" />
+          <svg x="365" y="111" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+            <use href={`${symbolAtlasUrl}#snowflake`} />
+          </svg>
+          <text x="376" y="162" text-anchor="middle">Snowflake</text>
+        </g>
+        <g class:list={[styles.node, styles.databricks_node]}>
+          <rect x="354" y="180" width="44" height="44" rx="10" />
+          <svg x="365" y="191" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+            <use href={`${symbolAtlasUrl}#databricks`} />
+          </svg>
+          <text x="376" y="242" text-anchor="middle">Databricks</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption class={styles.caption}>
+      Hyper pushes SQL subqueries to Snowflake and Databricks and reads Iceberg data from Salesforce in parallel.
+      All three sources return data; Hyper combines it into one result for the user.
+    </figcaption>
+  </figure>
+</div>
