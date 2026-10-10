@@ -3,6 +3,7 @@ import SiteLayout from '../layouts/site_layout.astro';
 import LandingUsecaseCarousel from '../components/landing_usecase_carousel.astro';
 import FederationAnimation from '../components/federation_animation.astro';
 import JitAnimation from '../components/jit_animation.astro';
+import PaperReference from '../components/paper_reference.astro';
 import styles from './index.module.css';
 import symbolAtlasUrl from 'hyperdb-symbol-atlas';
 import { Code } from 'astro:components';
@@ -69,7 +70,7 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                 <div class={styles.card_copy}>
                     <h2 class={styles.card_title}>
                         <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16" /></svg>
-                        Performance
+                        Unmatched Efficiency
                     </h2>
                     <p>Hyper pairs a code-generating query engine with one of the best query optimizers in the world.</p>
                     <a class={styles.text_link} href="#performance">Explore the engine<span aria-hidden="true">&rarr;</span></a>
@@ -125,22 +126,108 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
 
     <section class={styles.feature_section} id="performance" aria-labelledby="processing-heading">
         <div class={styles.section_copy}>
-            <h2 id="processing-heading">Unmatched Performance</h2>
-            <p>Hyper optimizes query plans and compiles them just-in-time into native machine code. Analytical queries are expensive and Hyper runs them with unmatched performance.</p>
+            <h2 id="processing-heading">Unmatched Efficiency</h2>
+            <p>Hyper optimizes query plans and compiles them just-in-time into native machine code. Analytical queries are expensive and getting down to low-level hardware details pays off immediately.</p>
+            <div class={styles.papers}>
+                <h3>Selected papers of our team:</h3>
+                <ul>
+                    <li>
+                        <PaperReference
+                            href="https://www.vldb.org/pvldb/vol4/p539-neumann.pdf"
+                            title="Efficiently Compiling Efficient Query Plans for Modern Hardware"
+                            venue="VLDB 2011"
+                        />
+                    </li>
+                    <li>
+                        <PaperReference
+                            href="https://db.in.tum.de/~leis/papers/morsels.pdf"
+                            title="Morsel-Driven Parallelism: A NUMA-Aware Query Evaluation Framework for the Many-Core Age"
+                            venue="SIGMOD 2014"
+                        />
+                    </li>
+                    <li>
+                        <PaperReference
+                            href="https://db.in.tum.de/downloads/publications/datablocks.pdf"
+                            title="Data Blocks: Hybrid OLTP and OLAP on Compressed Storage using both Vectorization and Compilation"
+                            venue="SIGMOD 2016"
+                        />
+                    </li>
+                    <li>
+                        <PaperReference
+                            href="https://db.in.tum.de/~leis/papers/adaptiveexecution.pdf"
+                            title="Adaptive Execution of Compiled Queries"
+                            venue="ICDE 2018"
+                        />
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <figure class={styles.animation_panel}>
+            <JitAnimation />
+            <figcaption class={styles.animation_caption}>A query plan is translated to relational algebra, optimized and adaptively lowered to machine code with very low latency.</figcaption>
+        </figure>
+    </section>
+
+    <section class={styles.feature_section} id="performance" aria-labelledby="processing-heading">
+        <div class={styles.section_copy}>
+            <h2 id="processing-heading">Powerful Query Planner</h2>
+            <p>Query Optimization is a complex field and Hyper has a very strong theoretical foundation, adopted by many of our competitors. A good query planner often weighs more than an efficient execution engine. Hyper gives you both.</p>
+            <div class={styles.papers}>
+                <h3>Selected papers of our team:</h3>
+                <ul>
+                    <li>
+                        <PaperReference
+                            href="https://15721.courses.cs.cmu.edu/spring2020/papers/20-optimizer2/p539-moerkotte.pdf"
+                            title="Dynamic Programming Strikes Back"
+                            venue="SIGMOD 2008"
+                        />
+                    </li>
+                    <li>
+                        <PaperReference
+                            href="https://www.btw-2015.de/res/proceedings/Hauptband/Wiss/Neumann-Unnesting_Arbitrary_Querie.pdf"
+                            title="Unnesting Arbitrary Queries"
+                            venue="BTW 2015"
+                        />
+                    </li>
+                    <li>
+                        <PaperReference
+                            href="https://db.in.tum.de/~radke/papers/hugejoins.pdf"
+                            title="Adaptive Optimization of Very Large Join Queries"
+                            venue="SIGMOD 2018"
+                        />
+                    </li>
+                    <li>
+                        <PaperReference
+                            href="https://db.in.tum.de/~radke/papers/lindp++.pdf"
+                            title="LinDP++: Generalizing Linearized DP to Crossproducts and Non-Inner Joins"
+                            venue="BTW 2019"
+                        />
+                    </li>
+                    <li>
+                        <PaperReference
+                            href="https://www.vldb.org/pvldb/vol16/p3018-fent.pdf"
+                            title="Asymptotically Better Query Optimization Using Indexed Algebra"
+                            venue="SIGMOD 2023"
+                        />
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class={styles.animation_panel}>
             <JitAnimation />
         </div>
     </section>
 
+
     <section class={styles.feature_section} id="federation" aria-labelledby="zero-copy-heading">
         <div class={styles.section_copy}>
-            <h2 id="zero-copy-heading">Powerful Federation</h2>
-            <p>Query Federation is hard as database behavior differs in subtle details. Aligning semantics is crucial for zero-copy correctness. Hyper pushes complex SQL subqueries to Snowflake, Databricks, Google BigQuery and many more.</p>
+            <h2 id="zero-copy-heading">Embracing Zero-Copy</h2>
+            <p>Database behavior differs in subtle details and aligning semantics is crucial for correct query federation. Hyper pushes complex subqueries to Snowflake, Databricks, Google BigQuery and many more.</p>
         </div>
-        <div class={styles.animation_panel}>
+        <figure class={styles.animation_panel}>
             <FederationAnimation />
-        </div>
+            <figcaption class={styles.animation_caption}>Hyper respects data localities during optimization and identifies subqueries that can be executed remotely.</figcaption>
+        </figure>
     </section>
 
     <section class={styles.feature_section} id="io" aria-labelledby="io-heading">
@@ -203,26 +290,20 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                 </div>
             </fieldset>
             <div class:list={[styles.install_content, styles.python_install]}>
-                <p class={styles.install_label}>Install the Python package</p>
                 <Code code="pip install tableauhyperapi" lang="bash" theme="css-variables" />
+                <a class={styles.text_link} href={`${documentation}/installation/?client-language=python#language-specific-requirements`} target="_blank" rel="noopener noreferrer">Python setup instructions<span aria-hidden="true">&rarr;</span></a>
             </div>
             <div class:list={[styles.install_content, styles.cpp_install]}>
-                <p class={styles.install_label}>Hyper API for C++</p>
-                <p>Download the C++ package for your platform.</p>
-                <a class={styles.primary_button} href={`${documentation}/releases#download`}>Download the C++ package</a>
-                <a class={styles.text_link} href={`${documentation}/installation`}>C++ setup instructions<span aria-hidden="true">&rarr;</span></a>
+                <a class={styles.text_link} href={`${documentation}/releases#download`} target="_blank" rel="noopener noreferrer">Download the C++ package<span aria-hidden="true">&rarr;</span></a>
+                <a class={styles.text_link} href={`${documentation}/installation/?client-language=cxx#language-specific-requirements`} target="_blank" rel="noopener noreferrer">C++ setup instructions<span aria-hidden="true">&rarr;</span></a>
             </div>
             <div class:list={[styles.install_content, styles.java_install]}>
-                <p class={styles.install_label}>Hyper API for Java</p>
-                <p>Download the Java package for your platform.</p>
-                <a class={styles.primary_button} href={`${documentation}/releases#download`}>Download the Java package</a>
-                <a class={styles.text_link} href={`${documentation}/installation`}>Java setup instructions<span aria-hidden="true">&rarr;</span></a>
+                <a class={styles.text_link} href={`${documentation}/releases#download`} target="_blank" rel="noopener noreferrer">Download the Java package<span aria-hidden="true">&rarr;</span></a>
+                <a class={styles.text_link} href={`${documentation}/installation/?client-language=java#language-specific-requirements`} target="_blank" rel="noopener noreferrer">Java setup instructions<span aria-hidden="true">&rarr;</span></a>
             </div>
             <div class:list={[styles.install_content, styles.browser_install]}>
-                <p class={styles.install_label}>No installation needed</p>
-                <p>Run SQL queries directly in your browser.</p>
-                <a class={styles.primary_button} href="https://hyperdb.sh/">Open the web shell</a>
-                <a class={styles.text_link} href="/docs/hello-world/">Try the SQL playground<span aria-hidden="true">&rarr;</span></a>
+                <Code code="pnpm install hyperdb-wasm" lang="bash" theme="css-variables" />
+                <a class={styles.text_link} href={`https://hyperdb.sh`} target="_blank" rel="noopener noreferrer">Try it in the browser<span aria-hidden="true">&rarr;</span></a>
             </div>
         </div>
     </section>

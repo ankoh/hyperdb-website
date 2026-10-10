@@ -1,0 +1,53 @@
+.reference {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.document {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 28px;
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  background: var(--surface-bg);
+}
+
+.document svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.copy {
+  min-width: 0;
+}
+
+.venue {
+  display: block;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.reference:hover .title {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.reference:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
