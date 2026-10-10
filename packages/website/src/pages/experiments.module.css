@@ -32,6 +32,10 @@
   padding-top: 1.75rem;
 }
 
+.experiment + .experiment {
+  margin-top: 3rem;
+}
+
 .experiment_heading {
   display: flex;
   align-items: end;

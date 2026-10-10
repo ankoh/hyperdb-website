@@ -1,0 +1,188 @@
+.experiment {
+  --cycle: 5s;
+  width: 100%;
+  min-width: 0;
+  max-width: 460px;
+}
+
+.figure {
+  position: relative;
+  margin: 0;
+  border: 1px solid var(--card-border);
+  border-radius: 0.75rem;
+  background: var(--subtle-bg);
+  overflow: hidden;
+}
+
+.viewport {
+  overflow-x: auto;
+  padding: 0.5rem 0;
+}
+
+.viewport:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -4px;
+}
+
+.diagram {
+  display: block;
+  width: 100%;
+  min-width: 400px;
+  color: var(--text);
+}
+
+.code {
+  fill: var(--text);
+  font: 10px 'Geist Mono', monospace;
+}
+
+.keyword {
+  fill: var(--syntax-keyword);
+}
+
+.assembly {
+  font-size: 9px;
+}
+
+[data-plan-operator='join'], [data-code-operator='join'] {
+  --operator-color: var(--operator-join);
+  --operator-bg: var(--operator-join-bg);
+}
+
+[data-plan-operator='orders'], [data-code-operator='orders'] {
+  --operator-color: var(--operator-orders);
+  --operator-bg: var(--operator-orders-bg);
+}
+
+.operator_outline, .line_background {
+  animation: highlight_code var(--cycle) linear infinite;
+  stroke: var(--operator-color);
+  stroke-linecap: round;
+}
+
+.operator > .operator_outline {
+  fill: none;
+  stroke: var(--operator-color);
+  stroke-width: 1.5;
+}
+
+.line_background {
+  fill: var(--operator-bg);
+  stroke-width: 0.5;
+}
+
+.operator > rect {
+  fill: var(--surface-bg);
+  stroke: var(--card-border);
+}
+
+.operator > text {
+  fill: var(--text);
+  font: 9px 'Geist Mono', monospace;
+}
+
+.edges {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.edges > path {
+  vector-effect: non-scaling-stroke;
+}
+
+.step_arrow {
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.plan {
+  animation: reveal_plan var(--cycle) linear infinite;
+}
+
+.native_code {
+  animation: reveal_code var(--cycle) linear infinite;
+}
+
+.orders {
+  transform: translate(56px, 0);
+  animation: swap_orders var(--cycle) ease-in-out infinite;
+}
+
+.customers {
+  transform: translate(-56px, 0);
+  animation: swap_customers var(--cycle) ease-in-out infinite;
+}
+
+.orders_edge, .customers_edge {
+  /* Mirror each branch around the fixed join port, following its moving input. */
+  transform-box: view-box;
+  transform-origin: 218px 64px;
+  transform: scaleX(-1);
+}
+
+.orders_edge {
+  animation: swap_orders_edge var(--cycle) ease-in-out infinite;
+}
+
+.customers_edge {
+  animation: swap_customers_edge var(--cycle) ease-in-out infinite;
+}
+
+.caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.experiment:is(:hover, :focus-within) * {
+  animation: none;
+}
+
+@keyframes reveal_plan {
+  0%, 16%, 100% { opacity: 0; }
+  20.8%, 96% { opacity: 1; }
+}
+
+@keyframes reveal_code {
+  0%, 52.8%, 100% { opacity: 0; }
+  59.2%, 96% { opacity: 1; }
+}
+
+@keyframes highlight_code {
+  0%, 66.4%, 100% { opacity: 0; }
+  69.6%, 96% { opacity: 1; }
+}
+
+@keyframes swap_orders {
+  0%, 35.2%, 100% { transform: translate(0, 0); }
+  48%, 99% { transform: translate(56px, 0); }
+}
+
+@keyframes swap_customers {
+  0%, 35.2%, 100% { transform: translate(0, 0); }
+  48%, 99% { transform: translate(-56px, 0); }
+}
+
+@keyframes swap_orders_edge {
+  0%, 35.2%, 100% { transform: scaleX(1); }
+  48%, 99% { transform: scaleX(-1); }
+}
+
+@keyframes swap_customers_edge {
+  0%, 35.2%, 100% { transform: scaleX(1); }
+  48%, 99% { transform: scaleX(-1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experiment .diagram * { animation: none; }
+}

@@ -1,6 +1,7 @@
 ---
 import SiteLayout from '../layouts/site_layout.astro';
 import FederationAnimation from '../components/federation_animation.astro';
+import JitAnimation from '../components/jit_animation.astro';
 import styles from './experiments.module.css';
 ---
 
@@ -20,6 +21,15 @@ import styles from './experiments.module.css';
         </div>
       </header>
       <FederationAnimation />
+    </section>
+    <section id="jit" class={styles.experiment} aria-labelledby="jit-heading">
+      <header class={styles.experiment_heading}>
+        <div>
+          <p class={styles.eyebrow}>Experiment 02</p>
+          <h2 id="jit-heading">Just-in-time code generation</h2>
+        </div>
+      </header>
+      <JitAnimation />
     </section>
   </div>
 </SiteLayout>

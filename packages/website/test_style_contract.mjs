@@ -152,6 +152,36 @@ test('experiments are unlisted and ship a compact, accessible federation graphic
   }
 });
 
+test('the JIT experiment ships a compact, accessible plan and native code graphic', () => {
+  const html = readFileSync(join(source, '../pages/experiments/index.html'), 'utf8');
+  const graphic = html.match(/<div\b[^>]*data-jit-animation[^]*?<\/figure>/)?.[0];
+  assert.ok(graphic, 'missing JIT experiment');
+  assert.match(graphic, /viewBox="0 0 430 160"[^>]*role="img"[^>]*aria-label="[^"]+"/);
+  assert.doesNotMatch(graphic, /step_label|initial_label|optimized_label/);
+  assert.match(graphic, /tabindex="0"[^>]*role="region"[^>]*aria-label="[^"]*hover or focus to show the final highlighted stage/);
+  assert.deepEqual([...graphic.matchAll(/data-plan-operator="([^"]+)"/g)].map((match) => match[1]), ['join', 'orders', 'customers']);
+  assert.equal([...graphic.matchAll(/#relalg_join"/g)].length, 1);
+  assert.equal([...graphic.matchAll(/#relalg_scan"/g)].length, 2);
+  assert.equal([...graphic.matchAll(/data-code-operator="[^"]+"/g)].length, 12);
+  assert.equal([...graphic.matchAll(/class="[^"]*line_background[^\"]*"/g)].length, 12);
+  assert.equal([...graphic.matchAll(/class="[^"]*operator_outline[^\"]*"/g)].length, 2);
+  assert.doesNotMatch(graphic, /data-code-operator="customers"/);
+  assert.match(graphic, />cmp<\/tspan> rdi, r10/);
+  assert.match(graphic, />jb<\/tspan> \.probe/);
+  assert.match(graphic, /rcx, \[rsi\+rax\*8\]/);
+  assert.match(graphic, /data-code-operator="join"[^]*?<\/tspan> rcx, \[rsi\+rax\*8\]/);
+  assert.doesNotMatch(readFileSync(join(source, 'components/jit_animation.module.css'), 'utf8'), /stroke-dasharray|operator-pattern/);
+  assert.doesNotMatch(graphic, />jnz<\/tspan>/);
+  assert.deepEqual([...graphic.matchAll(/data-step-arrow="([^"]+)"/g)].map((match) => match[1]), ['sql-to-plan', 'plan-to-code']);
+  assert.doesNotMatch(graphic, /<script\b|<button\b/);
+  const atlasUrl = graphic.match(/href="([^"]+)#relalg_join"/)[1];
+  const atlas = readFileSync(join(source, '../pages', atlasUrl), 'utf8');
+  assert.match(atlas, /<symbol\b[^>]*id="relalg_join"/);
+  assert.match(atlas, /<symbol\b[^>]*id="relalg_scan"/);
+  assert.match(atlas, /d="M3 13 13 3V13L3 3Z"/);
+  assert.match(atlas, /d="M3 4h10M3 8h10M3 12h10"/);
+});
+
 test('the landing page embeds the accessible federation animation', () => {
   const html = readFileSync(join(source, '../pages/index.html'), 'utf8');
   assert.equal([...html.matchAll(/data-federation-animation\b/g)].length, 1);
