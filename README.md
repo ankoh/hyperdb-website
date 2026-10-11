@@ -1,59 +1,29 @@
-# HyperDB website
+<p align="center">
+  <img src="packages/website/src/assets/hyper_banner.svg" width="300" alt="HyperDB">
+</p>
 
-An Astro/TypeScript static website for [hyperdb.de](https://hyperdb.de), presenting Hyper as a fast database for analytical queries. React islands and CSS Modules support optional interactive examples in the documentation.
+## Building
 
-## Styling and themes
+Requires Bazel 9.3.0, selected by `.bazelversion`.
 
-The Snowflake, Google BigQuery, Databricks, and Apache Spark logo paths are from [Simple Icons 16.34.0](https://github.com/simple-icons/simple-icons/tree/16.34.0), distributed under CC0-1.0, and use `currentColor` in the SVG atlas.
+```sh
+# Start the local development server
+bazel run //packages/website:dev
 
-The federation animation renders Snowflake and Databricks in their brand colors in light mode and monochrome in dark mode, using shared theme tokens without duplicating their SVG artwork.
+# Run checks
+bazel test //packages/website:check //packages/website:style_contract_test
 
-PostgreSQL is also from Simple Icons 16.34.0, and Amazon Redshift is from Simple Icons 11.15.0 (CC0-1.0). Amazon Aurora uses the [AWS Aurora service icon](https://github.com/gilbarbara/logos/blob/main/logos/aws-aurora.svg), with its gradient background removed. All three use `currentColor` in the atlas.
+# Build the static site
+bazel build //packages/website:pages_deploy
+```
 
-The Iceberg icon uses the supplied official 200px artwork, based on [Apache Iceberg's official logo](https://github.com/apache/iceberg/blob/main/site/docs/assets/images/Iceberg-logo.svg), with the wordmark omitted. `iceberg.svg` preserves its colors and `iceberg_monochrome.svg` uses `currentColor` with facet opacities. Both remain available in the symbol atlas. Apache Iceberg and its logo are trademarks of the Apache Software Foundation.
+The deployable site is written to `bazel-bin/packages/website/pages_deploy/`.
+Deploy it to Cloudflare Pages with:
 
-`salesforce_cloud.svg` and `salesforce_cloud_monochrome.svg` reuse the cloud silhouette from the Salesforce logo without its lettering. The federation graphic uses the blue variant in light mode and the `currentColor` variant in dark mode; the original full Salesforce logos are unchanged.
+```sh
+wrangler pages deploy bazel-bin/packages/website/pages_deploy \
+  --project-name=hyperdb --branch=main
+```
 
-Use lowercase `snake_case` filenames for authored components, layouts, stylesheets, and assets, while keeping component identifiers PascalCase. Leave framework-required filenames, public routes, and vendored font filenames unchanged. The style contract test enforces UI and SVG filenames.
-
-Author styles in CSS Modules. `src/layouts/theme.module.css` owns the shared semantic color tokens; component modules consume them with `var(...)`. Use `--card-border` for cards, graphic panels, diagram nodes, code blocks, and dialog surfaces. Keep `--control-border` for interactive controls and `--border` for separators and connectors. Light/dark values use `light-dark()` and the root `color-scheme`, so System mode follows OS changes without JavaScript or React state. This requires browsers supporting `light-dark()` (Chrome 123+, Firefox 120+, Safari 17.5+).
-
-The sticky header offers an iOS-style theme switch with an indigo track in light mode, a monochrome track in dark mode, and a sliding white thumb containing sun/moon icons. Its accessible name is Dark mode. It exposes its checked state to assistive technology, supports keyboard activation, and disables sliding transitions for reduced motion. The theme follows the OS until a choice is made. A small head script restores an explicit preference before first paint; the control persists it in `localStorage` and syncs other tabs. With JavaScript or storage unavailable, the CSS system theme still works. Theme scripts never set style properties or contain palettes. Markdown highlighting uses Shiki's CSS-variable theme, with colors supplied by the same theme module. Keep brand artwork on its intentional light surface rather than inverting it.
-
-`bazel test //packages/website:style_contract_test` checks filename conventions, CSS Module/palette boundaries, generated syntax-highlighting colors, stylesheet delivery, accessible names, and the experiments indexing policy. It discovers built pages rather than maintaining a route list. Keep these tests limited to durable contracts: do not assert page copy, SVG artwork or coordinates, node or code-line counts, animation timing, or component placement. When changing the carousel word count, update its CSS Module keyframes together.
-
-The landing page's property content lives in `src/pages/index.astro`, with the responsive card grid and feature sections in `index.module.css`. Sections consistently place text on the left and graphics on the right, stacking text first on narrow screens. Frontier Engine reuses `jit_animation.astro` above Embracing Zero-Copy, which reuses `federation_animation.astro`; both retain their accessible descriptions, keyboard focus, and reduced-motion handling. Decorative `data-graphic` containers mark the places for future animated artwork; keep their dimensions responsive and respect reduced-motion preferences when adding animations. The installation selector uses native radio controls and CSS `:has()`, so it also works without JavaScript. Astro `Code` components must explicitly use `theme="css-variables"` to share the site's syntax palette.
-
-## Development
-
-Install dependencies with `pnpm install`, then run `bazel run //packages/website:dev`. The dev target generates a local Astro config from the same template used by the Bazel build. The SQL playground downloads `hyperdb-wasm` only after clicking **Run query**; it requires a cross-origin-isolated browser with WebAssembly memory64 and OPFS support.
-
-## Animation experiments
-
-Open `/experiments/` directly for the animation playground. It is intentionally unlinked from public pages and marked `noindex, nofollow`, but is not access-controlled. Add new experiment sections in `src/pages/experiments.astro`, keeping each graphic in its own component and CSS Module so it can later be reused on the landing page.
-
-Both graphics use the shared six-second cycle in `src/components/animation_timing.module.css`. The JIT plan appears early and holds before a quick join-input swap during federation dispatch and source processing. The optimized plan holds before native code fades in during data collection. Code stays unhighlighted briefly, then highlighted code holds through result return. Federation dots travel briskly, with the remaining time used for processing and readable labels rather than shortening the shared cycle. Hover and focus override the visible state without pausing or restarting the underlying CSS timelines, so the graphics stay synchronized after inspection.
-
-The first experiment, `src/components/federation_animation.astro`, uses the original `src/assets/hyper.svg` logo in light mode and a `currentColor` variant, `hyper_monochrome.svg`, from the symbol atlas in dark mode. CSS follows system or saved theme preferences without animation JavaScript. The timeline sends SQL to Hyper, dispatches Snowflake and Databricks subqueries and a Salesforce Iceberg read in parallel, collects all three responses, and returns results. The graphic is capped at 460px wide, with small nodes, traveling dots, and no controls or footer. Left-aligned source request labels persist through dispatch and source processing, then give way to Data labels during collection; a background-colored text halo separates labels from the edges. Hovering or keyboard focus hides the dots and activity highlights and shows only request labels. The left-aligned SQL snippet appears when the user sends the query and stays visible through dispatch and collection. Results briefly replace it on the return to the user; transfer labels are hidden at the start of each loop. Reduced motion hides the dots and shows all labels without animation unless hovered or focused. The graphic works without JavaScript and includes a screen-reader description; narrow screens can scroll it without overflowing the page.
-
-The second experiment, `src/components/jit_animation.astro`, illustrates just-in-time code generation: SQL appears on the left, a two-relation join plan appears in the middle, its inputs exchange positions directly, and illustrative x86 assembly appears on the right. It shares the federation graphic's 460px cap, with a shorter 430-by-160 canvas and centered arrows between steps. There are no step captions; relation names distinguish the swapping inputs. The join symbol is copied from DashQL's relational-algebra icons, while scans use three horizontal bars; rounded operator cards and connectors borrow its plan geometry while using the website's shared theme. After an unhighlighted code hold, shared light/dark tokens match line backgrounds to solid operator borders: blue for the orders scan and loop, and purple for join hashing, hash-table lookup, comparison, branching, and output. The customers node remains unhighlighted. The highlighted final step holds through federation result return. The accessible description explains the correspondence. The probe-loop excerpt uses its hash result for lookup and explicitly compares the input pointer with an end pointer; register setup, empty-input checks, and collision handling are omitted. Hover or keyboard focus immediately shows the complete optimized plan and highlighted code; leaving or blurring reveals the current shared timeline phase. Reduced motion shows the same final stage without animation.
-
-The fourth experiment, `src/components/governance_animation.astro`, illustrates Reliable Governance and is reused in the landing page's governance section. A user sits on the left, with submitted SQL above an arrow and left-aligned context tags below it. The same query over `individuals` initially appears on the right. Highlighting `database lakehouse` introduces `with individuals_governed as secure (...)` with `from individuals i anti join gdpr_opted_out g on i.id = g.id`, switching the original query to the governed source. Highlighting `dataspace` then adds `where i.dataspace = 'business_unit_1'`; highlighting `tenant-id` adds `and i.classification != 'top_secret'`. Each tag and its injected clause share a highlight. Code changes appear immediately, without fades or a bounding box, while retaining the original query's conditions and vertical centering. It uses the shared six-second CSS cycle and theme tokens. Hover, keyboard focus, and reduced motion show all three clauses; narrow screens scroll within the graphic.
-
-## Build and deploy
-
-`bazel build //packages/website:pages_deploy` produces `bazel-bin/packages/website/pages_deploy/`. Deploy that directory to the **hyperdb** Cloudflare Pages project (custom domain `hyperdb.de`) with `wrangler pages deploy bazel-bin/packages/website/pages_deploy --project-name=hyperdb --branch=main`. The build is static: no Cloudflare Worker or Astro server adapter is required. The `public/_headers` file configures cross-origin isolation and the compressed WASM asset for the SQL example.
-
-The GitHub workflow checks and builds on pull requests, then deploys the prebuilt output on `main`. Create the Pages project and attach the custom domain first; configure `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` as repository secrets. CI does not install the app with pnpm: Bazel resolves its packages from `pnpm-lock.yaml`.
-
-Keep referenced images and fonts in `packages/website/src/assets`. Import image URLs with `?url` and use relative asset URLs in CSS so Vite emits content-hashed files under `/_astro/`, covered by the immutable cache policy. Files in `public/` are copied without hashing; reserve it for stable-path files such as `robots.txt`, `_headers`, and licenses.
-
-Themeable SVGs use an external symbol atlas generated by `//packages/website:svg_symbols` (requires `python3`). The generator wraps each input SVG in a symbol named after its filename, preserving its viewBox and artwork. Import `hyperdb-symbol-atlas` and render `<svg><use href={`${symbolAtlasUrl}#gazelle`} /></svg>` to inherit `currentColor` while keeping the atlas content-hashed and separately cached. The build and dev targets depend on the atlas; after editing its inputs during development, run `bazel build //packages/website:svg_symbols` to regenerate it.
-
-The filled Gazelle uses `#gazelle_fill` with `viewBox="0 0 480 700"`. Set `--gazelle-outline` on the containing SVG through a CSS Module for the outline; set `--gazelle-fill` for an independent body color, using shared theme tokens. Both default to `currentColor` when their custom property is unset. The original `#gazelle` remains available for outline-only artwork. Keep decorative SVGs `aria-hidden="true"` and `focusable="false"`.
-
-`--gazelle-accent` controls the dark interiors of the horns, hooves, and tail, preserving the original outline details. It falls back to the body fill when unset.
-
-The hero uses the separate themeable `hyper_hero.svg` asset through `#hyper_hero` in the atlas. The federation animation retains the fixed brand-color `hyper.svg#hyper` asset and its existing dark-mode monochrome variant.
-
-The hero artwork inherits its colors from `src/layouts/theme.module.css`: `--gazelle-outline` and `--gazelle-fill-color` control the Gazelle, while `--hyper-disk-top`, `--hyper-disk-middle`, `--hyper-disk-bottom`, and `--hyper-cap` independently control the Hyper logo. Each token uses `light-dark(light_value, dark_value)`. The disk tokens preserve the original Hyper brand colors in light mode and use neutral grays with subtle contrast between platters in dark mode; the SVG falls back to its original brand colors when rendered outside the themed site.
+GitHub Actions deploys `main` automatically. Configure the repository secrets
+`CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` for deployment.
