@@ -1,0 +1,249 @@
+.figure {
+  width: 100%;
+  max-width: 460px;
+  margin: 0;
+  border: 1px solid var(--card-border);
+  border-radius: 0.375rem;
+  background: var(--subtle-bg);
+  overflow: hidden;
+}
+
+.viewport { overflow-x: auto; }
+.viewport:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -3px;
+}
+
+.diagram {
+  display: block;
+  width: 100%;
+  min-width: 440px;
+  color: var(--text);
+}
+
+.edges {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.edges path { vector-effect: non-scaling-stroke; }
+.correlation_edge, .domain_edge, .domain_feed {
+  stroke: var(--operator-join);
+  stroke-dasharray: 1;
+}
+.domain_edge, .domain_feed { stroke-dashoffset: 1; }
+
+.operator > rect {
+  fill: var(--surface-bg);
+  stroke: var(--card-border);
+}
+.domain_projection > rect { stroke-dasharray: 2 2; }
+.operator > text {
+  fill: var(--text);
+  font: 11px 'Geist Mono', monospace;
+}
+.operator > .symbol { font-size: 14px; }
+.stage_labels > text {
+  fill: var(--text-muted);
+  font: 10px 'Geist Mono', monospace;
+}
+.dependency_mark {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.dependency_fill { fill: currentColor; }
+
+.filter { transform: translate(258px, 24px); }
+.root_join { transform: translate(258px, 66px); }
+.outer_join { transform: translate(90px, 140px); }
+.aggregate { transform: translate(346px, 120px); }
+.domain_selection { transform: translate(346px, 94px) scale(0); }
+.subquery_join { transform: translate(346px, 164px); }
+.domain_projection { transform: translate(280px, 214px) scale(0); }
+.student_scan { transform: translate(32px, 214px); }
+.outer_exam_scan { transform: translate(148px, 214px); }
+.inner_exam_scan { transform: translate(346px, 214px); }
+.domain_label, .final_label, .domain_step, .final_step { visibility: hidden; }
+
+/* All geometry shares one clock: connectors meet moving nodes at every frame. */
+.diagram :is(.aggregate, .inner_exam_scan, .subquery_join, .domain_projection, .domain_selection,
+  .right_branch, .aggregate_edge, .scan_edge, .correlation_edge, .domain_edge, .domain_feed,
+  .initial_label, .domain_label, .final_label, .dependent_label,
+  .input_step, .domain_step, .final_step),
+.diagram :is(.student_scan, .outer_join, .subquery_join, .domain_projection) > rect {
+  animation-duration: var(--cycle);
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.aggregate { animation-name: aggregate_node; }
+.inner_exam_scan { animation-name: inner_scan; }
+.subquery_join { animation-name: subquery_node; }
+.domain_projection { animation-name: domain_node; }
+.domain_selection { animation-name: domain_selection; }
+.right_branch { animation-name: right_branch; }
+.aggregate_edge { animation-name: aggregate_edge; }
+.scan_edge { animation-name: scan_edge; }
+.correlation_edge { animation-name: correlation_edge; }
+.domain_edge { animation-name: domain_edge; }
+.domain_feed { animation-name: domain_feed; }
+.initial_label { animation-name: initial_label; }
+.domain_label { animation-name: domain_label; }
+.final_label { animation-name: final_label; }
+.dependent_label { animation-name: dependent_label; }
+.input_step { animation-name: input_step; }
+.domain_step { animation-name: domain_step; }
+.final_step { animation-name: final_step; }
+.student_scan > rect { animation-name: correlation_node_color; }
+.outer_join > rect, .domain_projection > rect { animation-name: domain_node_color; }
+.subquery_join > rect { animation-name: subquery_node_color; }
+.diagram :is(.initial_label, .domain_label, .final_label, .dependent_label,
+  .input_step, .domain_step, .final_step) { animation-timing-function: steps(1, end); }
+
+.figure:is(:hover, :focus-within) .diagram * { animation-play-state: paused; }
+
+@keyframes aggregate_node {
+  0%, 18%, 100% { transform: translate(346px, 120px); }
+  30%, 49% { transform: translate(346px, 160px); }
+  62%, 82% { transform: translate(346px, 140px); }
+}
+
+@keyframes inner_scan {
+  0%, 18%, 62%, 82%, 100% { transform: translate(346px, 214px); }
+  30%, 49% { transform: translate(396px, 248px); }
+}
+
+@keyframes subquery_node {
+  0%, 18%, 100% { transform: translate(346px, 164px) scale(1); }
+  30%, 49% { transform: translate(346px, 204px) scale(1); }
+  62%, 82% { transform: translate(346px, 152px) scale(0); }
+}
+
+@keyframes domain_node {
+  0%, 18%, 100% { transform: translate(102px, 140px) scale(0); }
+  30%, 49% { transform: translate(280px, 248px) scale(1); }
+  62%, 82% { transform: translate(346px, 140px) scale(0); }
+  94% { transform: translate(102px, 140px) scale(0); }
+}
+
+@keyframes aggregate_edge {
+  0%, 18%, 100% { d: path('M346 132L346 152'); }
+  30%, 49% { d: path('M346 172L346 192'); }
+  62%, 82% { d: path('M346 152L346 152'); }
+}
+
+@keyframes scan_edge {
+  0%, 18%, 100% { d: path('M346 176L346 190Q346 190 346 190L346 190Q346 190 346 190L346 202'); }
+  30%, 49% { d: path('M346 216L346 222Q346 226 350 226L392 226Q396 226 396 230L396 236'); }
+  62%, 82% { d: path('M346 152L346 177Q346 177 346 177L346 177Q346 177 346 177L346 202'); }
+}
+
+@keyframes correlation_edge {
+  0%, 18%, 100% { stroke-dashoffset: 0; }
+  30%, 82% { stroke-dashoffset: 1; }
+}
+
+@keyframes correlation_node_color {
+  0%, 18%, 100% { stroke: var(--operator-join); }
+  30%, 82% { stroke: var(--card-border); }
+}
+
+@keyframes domain_node_color {
+  0%, 18%, 62%, 82%, 94%, 100% { stroke: var(--card-border); }
+  30%, 49% { stroke: var(--operator-join); }
+}
+
+@keyframes subquery_node_color {
+  0%, 18%, 30%, 49%, 100% { stroke: var(--operator-join); }
+  62%, 82% { stroke: var(--card-border); }
+}
+
+@keyframes domain_edge {
+  0%, 18%, 100% {
+    d: path('M346 176L346 186Q346 190 342 190L106 190Q102 190 102 186L102 140');
+    stroke-dashoffset: 1;
+  }
+  30%, 49% {
+    d: path('M346 216L346 222Q346 226 342 226L284 226Q280 226 280 230L280 236');
+    stroke-dashoffset: 0;
+  }
+  62%, 82% {
+    d: path('M346 152L346 152Q346 152 346 152L346 152Q346 152 346 152L346 140');
+    stroke-dashoffset: 1;
+  }
+  94% {
+    d: path('M346 176L346 186Q346 190 342 190L106 190Q102 190 102 186L102 140');
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes domain_feed {
+  0%, 18%, 94%, 100% {
+    d: path('M102 140L102 140Q102 140 102 140L102 140Q102 140 102 140L102 140Q102 140 102 140L102 140');
+    stroke-dashoffset: 1;
+  }
+  30%, 49% {
+    d: path('M102 140L236 140Q240 140 240 144L240 222Q240 226 244 226L276 226Q280 226 280 230L280 236');
+    stroke-dashoffset: 0;
+  }
+  62%, 82% {
+    d: path('M102 140L240 140Q240 140 240 140L240 140Q240 140 240 140L346 140Q346 140 346 140L346 140');
+    stroke-dashoffset: 1;
+  }
+}
+
+/* Replace operators just before their nodes and connectors start moving. */
+@keyframes initial_label {
+  0%, 80%, 100% { visibility: visible; }
+  16% { visibility: hidden; }
+}
+@keyframes domain_selection {
+  0%, 18%, 62%, 82%, 100% { transform: translate(346px, 94px) scale(0); }
+  30%, 49% { transform: translate(346px, 116px) scale(1); }
+  94% { transform: translate(346px, 94px) scale(0); }
+}
+@keyframes right_branch {
+  0%, 18%, 100% { d: path('M258 78L258 90Q258 94 262 94L342 94Q346 94 346 98L346 108'); }
+  30%, 49% { d: path('M258 78L258 90Q258 94 262 94L342 94Q346 94 346 98L346 148'); }
+  62%, 82% { d: path('M258 78L258 90Q258 94 262 94L342 94Q346 94 346 98L346 128'); }
+}
+@keyframes dependent_label {
+  0%, 80%, 100% { visibility: visible; }
+  47% { visibility: hidden; }
+}
+@keyframes domain_label {
+  0%, 47%, 100% { visibility: hidden; }
+  16% { visibility: visible; }
+}
+@keyframes final_label {
+  0%, 80%, 100% { visibility: hidden; }
+  47% { visibility: visible; }
+}
+
+@keyframes input_step {
+  0%, 80%, 100% { visibility: visible; }
+  16% { visibility: hidden; }
+}
+@keyframes domain_step {
+  0%, 47%, 100% { visibility: hidden; }
+  16% { visibility: visible; }
+}
+@keyframes final_step {
+  0%, 80%, 100% { visibility: hidden; }
+  47% { visibility: visible; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diagram * { animation: none !important; }
+  .aggregate { transform: translate(346px, 140px); }
+  .correlation_edge, .domain_edge, .domain_feed, .aggregate_edge,
+  .subquery_join, .domain_projection, .domain_selection,
+  .initial_label, .domain_label, .dependent_label, .input_step, .domain_step { display: none; }
+  .final_label, .final_step { visibility: visible; }
+  .right_branch { d: path('M258 78L258 90Q258 94 262 94L342 94Q346 94 346 98L346 128'); }
+  .scan_edge { d: path('M346 152L346 177Q346 177 346 177L346 177Q346 177 346 177L346 202'); }
+}

@@ -38,6 +38,7 @@ genrule(
         "src/assets/iceberg.svg",
         "src/assets/iceberg_monochrome.svg",
         "src/assets/postgresql.svg",
+        "src/assets/relalg_group.svg",
         "src/assets/relalg_join.svg",
         "src/assets/relalg_scan.svg",
         "src/assets/salesforce.svg",

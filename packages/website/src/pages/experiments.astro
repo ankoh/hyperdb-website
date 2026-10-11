@@ -2,7 +2,7 @@
 import SiteLayout from '../layouts/site_layout.astro';
 import FederationAnimation from '../components/federation_animation.astro';
 import JitAnimation from '../components/jit_animation.astro';
-import JoinReorderingAnimation from '../components/join_reordering_animation.astro';
+import QueryUnnestingAnimation from '../components/query_unnesting_animation.astro';
 import styles from './experiments.module.css';
 ---
 
@@ -32,14 +32,14 @@ import styles from './experiments.module.css';
       </header>
       <JitAnimation />
     </section>
-    <section id="join-reordering" class={styles.experiment} aria-labelledby="join-reordering-heading">
+    <section id="query-unnesting" class={styles.experiment} aria-labelledby="query-unnesting-heading">
       <header class={styles.experiment_heading}>
         <div>
           <p class={styles.eyebrow}>Experiment 03</p>
-          <h2 id="join-reordering-heading">Join reordering</h2>
+          <h2 id="query-unnesting-heading">Query unnesting</h2>
         </div>
       </header>
-      <JoinReorderingAnimation />
+      <QueryUnnestingAnimation />
     </section>
   </div>
 </SiteLayout>

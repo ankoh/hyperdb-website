@@ -3,6 +3,7 @@ import SiteLayout from '../layouts/site_layout.astro';
 import LandingUsecaseCarousel from '../components/landing_usecase_carousel.astro';
 import FederationAnimation from '../components/federation_animation.astro';
 import JitAnimation from '../components/jit_animation.astro';
+import QueryUnnestingAnimation from '../components/query_unnesting_animation.astro';
 import PaperReference from '../components/paper_reference.astro';
 import BlogReference from '../components/blog_reference.astro';
 import styles from './index.module.css';
@@ -163,7 +164,7 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
     <section class={styles.feature_section} id="query-planner" aria-labelledby="planner-heading">
         <div class={styles.section_copy}>
             <h2 id="planner-heading">Powerful Query Planner</h2>
-            <p>Query Optimization is a complex field and the Hyper team has built a very strong theoretical foundation, that has been adopted by many of our competitors.</p>
+            <p>Query Optimization is a complex field and the Hyper team has built a very strong theoretical foundation, that we shared with the industry on database conferences like SIGMOD and VLDB.</p>
             <div class={styles.papers}>
                 <h3>Selected papers from our team:</h3>
                 <ul>
@@ -199,7 +200,8 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
             </div>
         </div>
         <div class={styles.animation_panel}>
-            <JitAnimation />
+            <QueryUnnestingAnimation />
+            <figcaption class={styles.animation_caption}>Hyper implements advanced query optimization techniques like this unnesting of arbitrary queries to eliminate dependent joins.</figcaption>
         </div>
     </section>
 
