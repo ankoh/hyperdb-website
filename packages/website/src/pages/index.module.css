@@ -195,13 +195,18 @@
   pointer-events: none;
 }
 
+.federation_card {
+  justify-content: space-between;
+}
+
 .federation_graphic {
+  position: relative;
+  inset: auto;
   display: block;
-  top: 50%;
-  bottom: auto;
-  height: 12rem;
-  max-height: calc(100% - 3rem);
-  transform: translateY(-50%);
+  flex: none;
+  align-self: center;
+  width: 32%;
+  aspect-ratio: 3 / 2;
   color: color-mix(in srgb, var(--text-muted) 35%, var(--subtle-bg));
   mask-image: linear-gradient(to bottom, currentColor 45%, transparent 100%);
 }
@@ -220,57 +225,57 @@
 
 .federation_tile {
   position: absolute;
-  width: 36%;
+  width: 32%;
   aspect-ratio: 1;
 }
 
 .federation_tile:nth-child(1) {
   top: 0;
-  right: 10%;
+  right: 26%;
   z-index: 4;
-  width: 48%;
-  color: color-mix(in srgb, var(--text-muted) 55%, var(--subtle-bg));
+  width: 38%;
+  color: color-mix(in srgb, var(--text-muted) 45%, var(--subtle-bg));
 }
 
 .federation_tile:nth-child(2) {
-  top: 27%;
-  left: 8%;
+  top: 28%;
+  left: 0;
   z-index: 3;
 }
 
 .federation_tile:nth-child(3) {
-  top: 32%;
-  right: 0;
+  top: 25%;
+  right: 7%;
   z-index: 3;
 }
 
 .federation_tile:nth-child(4) {
-  bottom: 9%;
-  left: 0;
+  top: 50%;
+  left: 6%;
   z-index: 2;
 }
 
 .federation_tile:nth-child(5) {
-  top: 2%;
-  left: 0;
+  top: 6%;
+  left: 6%;
   z-index: 1;
 }
 
 .federation_tile:nth-child(6) {
-  top: 52%;
-  left: 31%;
+  top: 30%;
+  left: 30%;
   z-index: 2;
 }
 
 .federation_tile:nth-child(7) {
-  bottom: 0;
-  right: 0;
+  top: 52%;
+  right: 12%;
   z-index: 1;
 }
 
 .federation_graphic svg {
   display: block;
-  width: 60%;
+  width: 68%;
   max-width: 100%;
   height: auto;
 }
@@ -314,6 +319,15 @@
   align-items: flex-end;
   min-width: 0;
   margin: 0;
+}
+
+.animation_panel :global(figure) {
+  border: 0;
+  border-radius: 0;
+  background: radial-gradient(ellipse closest-side, var(--soft-surface-end) 25%, transparent 100%);
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .animation_caption {
@@ -510,7 +524,7 @@
     right: auto;
     align-self: flex-end;
     width: 100%;
-    max-width: 11rem;
+    max-width: 12.5rem;
     max-height: none;
     transform: none;
   }

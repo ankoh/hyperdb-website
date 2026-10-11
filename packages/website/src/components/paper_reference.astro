@@ -10,7 +10,7 @@ interface Props {
 const { href, title, venue } = Astro.props;
 ---
 
-<a class={styles.reference} href={href}>
+<a class={styles.reference} href={href} target="_blank" rel="noopener noreferrer">
   <span class={styles.document} aria-hidden="true">
     <svg viewBox="0 0 16 16" focusable="false">
       <path d="M4 2h5l3 3v9H4V2Zm5 0v4h3M6 8h4M6 11h4" />
