@@ -381,6 +381,8 @@
 }
 
 @media (max-width: 54rem) {
+  .production_card { margin-top: 2rem; }
+
   .feature_section {
     grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
@@ -392,7 +394,7 @@
 }
 
 @media (max-width: 36rem) {
-  .properties, .feature_section {
+  .feature_section {
     width: calc(100% - 2rem);
   }
 
@@ -408,6 +410,11 @@
 }
 
 @media (max-width: 54rem) {
+  .properties {
+    width: 100%;
+    padding-inline: 1.5rem;
+  }
+
   .property_grid {
     display: flex;
     gap: 0.75rem;
@@ -415,8 +422,9 @@
     scroll-snap-type: x proximity;
     scroll-behavior: smooth;
     scrollbar-width: none;
-    padding: 0.25rem;
-    margin-inline: -0.25rem;
+    padding: 0.25rem 1.5rem;
+    margin-inline: -1.5rem;
+    scroll-padding-inline: 1.5rem;
   }
 
   .property_grid::-webkit-scrollbar { display: none; }
@@ -442,6 +450,15 @@
     display: none;
   }
 
+}
+
+@media (max-width: 36rem) {
+  .properties { padding-inline: 1rem; }
+  .property_grid {
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+    scroll-padding-inline: 1rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

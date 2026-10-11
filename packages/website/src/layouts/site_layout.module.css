@@ -67,6 +67,7 @@
 .navigation {
   display: flex;
   align-items: center;
+  font-size: 1rem;
   margin-left: 1rem;
   margin-right: auto;
 }
@@ -78,7 +79,7 @@
   padding-inline: 0.75rem;
   border-radius: 6px;
   line-height: 1;
-  color: var(--text-muted);
+  color: color-mix(in srgb, var(--text) 80%, var(--text-muted));
   text-decoration: none;
 }
 .navigation a:is(:hover, [aria-current='page']) {
