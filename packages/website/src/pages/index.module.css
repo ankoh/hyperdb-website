@@ -95,9 +95,12 @@
   display: flex;
   min-width: 0;
   padding: 1.25rem;
-  border: 1px solid var(--card-border);
+  border: 1px solid var(--soft-surface-border);
   border-radius: 0.875rem;
-  background: var(--subtle-bg);
+  background: linear-gradient(135deg, var(--soft-surface-start), var(--soft-surface-end));
+  box-shadow: 0 0 32px var(--soft-surface-shadow), inset 0 1px 0 var(--soft-surface-highlight);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 .wide_card {
@@ -347,9 +350,12 @@
 
 .install_panel {
   min-width: 0;
-  border: 1px solid var(--card-border);
+  border: 1px solid var(--soft-surface-border);
   border-radius: 1rem;
-  background: var(--subtle-bg);
+  background: linear-gradient(135deg, var(--soft-surface-start), var(--soft-surface-end));
+  box-shadow: 0 0 32px var(--soft-surface-shadow), inset 0 1px 0 var(--soft-surface-highlight);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 .install_options {
@@ -357,7 +363,7 @@
   margin: 0;
   padding: 1.25rem 1.5rem;
   border: 0;
-  border-bottom: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--soft-surface-border);
 }
 
 .install_options legend {

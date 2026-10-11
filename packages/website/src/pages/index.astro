@@ -5,6 +5,7 @@ import FederationAnimation from '../components/federation_animation.astro';
 import JitAnimation from '../components/jit_animation.astro';
 import PaperReference from '../components/paper_reference.astro';
 import styles from './index.module.css';
+import GazelleArtwork from '../assets/gazelle_fill.svg';
 import symbolAtlasUrl from 'hyperdb-symbol-atlas';
 import { Code } from 'astro:components';
 
@@ -24,7 +25,7 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
             </div>
             <svg class={styles.hero_artwork} viewBox="0 0 660 680" aria-hidden="true" focusable="false">
                 <use href={`${symbolAtlasUrl}#hyper_hero`} x="280" y="0" width="320" />
-                <use href={`${symbolAtlasUrl}#gazelle_fill`} x="0" y="20" width="400" />
+                <GazelleArtwork x="0" y="20" width="400" height="660" />
             </svg>
         </div>
     </section>

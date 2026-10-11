@@ -3,9 +3,12 @@
   width: 100%;
   max-width: 600px;
   margin: 0;
-  border: 1px solid var(--card-border);
+  border: 1px solid var(--soft-surface-border);
   border-radius: 0.75rem;
-  background: var(--subtle-bg);
+  background: linear-gradient(135deg, var(--soft-surface-start), var(--soft-surface-end));
+  box-shadow: 0 0 32px var(--soft-surface-shadow), inset 0 1px 0 var(--soft-surface-highlight);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
   overflow: hidden;
 }
 
