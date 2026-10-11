@@ -61,7 +61,7 @@ test('generated syntax highlighting uses the shared palette', () => {
 
 test('hero SVG fills reference shared theme tokens', () => {
   const palette = readFileSync(join(source, 'layouts/theme.module.css'), 'utf8');
-  const hyper = readFileSync(join(source, 'assets/hyper.svg'), 'utf8');
+  const hyper = readFileSync(join(source, 'assets/hyper_hero.svg'), 'utf8');
   const gazelle = readFileSync(join(source, 'assets/gazelle_fill.svg'), 'utf8');
   const heroStyles = readFileSync(join(source, 'pages/index.module.css'), 'utf8');
   for (const token of ['--hyper-disk-top', '--hyper-disk-middle', '--hyper-disk-bottom', '--hyper-cap', '--gazelle-outline', '--gazelle-accent']) {
@@ -71,6 +71,12 @@ test('hero SVG fills reference shared theme tokens', () => {
   assert.ok(palette.includes('--gazelle-fill-color: light-dark('));
   assert.match(heroStyles, /--gazelle-fill:\s*var\(--gazelle-fill-color\)/);
   assert.ok(gazelle.includes('var(--gazelle-fill,'));
+});
+
+test('federation brand logo retains its external SVG symbol', () => {
+  const hyper = readFileSync(join(source, 'assets/hyper.svg'), 'utf8');
+  assert.match(hyper, /<symbol\b[^>]*id="hyper"[^>]*viewBox="[^"]+"/);
+  assert.doesNotMatch(hyper, /var\(--hyper-/);
 });
 
 test('static pages link their CSS Module stylesheets', () => {

@@ -52,4 +52,6 @@ The filled Gazelle uses `#gazelle_fill` with `viewBox="0 0 480 700"`. Set `--gaz
 
 `--gazelle-accent` controls the dark interiors of the horns, hooves, and tail, preserving the original outline details. It falls back to the body fill when unset.
 
+The hero uses the separate themeable `hyper_hero.svg` asset through `#hyper_hero` in the atlas. The federation animation retains the fixed brand-color `hyper.svg#hyper` asset and its existing dark-mode monochrome variant.
+
 The hero artwork inherits its colors from `src/layouts/theme.module.css`: `--gazelle-outline` and `--gazelle-fill-color` control the Gazelle, while `--hyper-disk-top`, `--hyper-disk-middle`, `--hyper-disk-bottom`, and `--hyper-cap` independently control the Hyper logo. Each token uses `light-dark(light_value, dark_value)`. The disk tokens preserve the original Hyper brand colors in light mode and use neutral grays with subtle contrast between platters in dark mode; the SVG falls back to its original brand colors when rendered outside the themed site.
