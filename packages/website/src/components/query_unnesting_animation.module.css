@@ -42,6 +42,28 @@
   animation-timing-function: steps(1, end), linear;
 }
 .final_edge { animation-name: final_edges; }
+.domain_draw_edge {
+  visibility: hidden;
+  stroke: var(--operator-join);
+  stroke-dasharray: 1;
+  animation: domain_extension var(--cycle) linear infinite;
+}
+.domain_hold_edge {
+  visibility: hidden;
+  stroke: var(--operator-join);
+  animation: domain_hold var(--cycle) steps(1, end) infinite;
+}
+.aggregate_transition {
+  visibility: hidden;
+  transform-box: view-box;
+  animation: aggregate_transition var(--cycle) cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.scan_transition {
+  visibility: hidden;
+  transform-box: view-box;
+  transform-origin: 346px 216px;
+  animation: scan_transition var(--cycle) cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
 
 .operator > rect {
   fill: var(--surface-bg);
@@ -139,14 +161,40 @@
 }
 
 @keyframes domain_edges {
-  0%, 17%, 62%, 100% { visibility: hidden; }
-  18%, 61% { visibility: visible; }
+  0%, 29%, 50%, 100% { visibility: hidden; }
+  30%, 49% { visibility: visible; }
 }
 
 @keyframes draw_domain_edges {
   0%, 18% { stroke-dashoffset: 1; }
   30%, 49% { stroke-dashoffset: 0; }
   62%, 100% { stroke-dashoffset: 1; }
+}
+
+@keyframes domain_extension {
+  0%, 17%, 62%, 100% { visibility: hidden; stroke-dashoffset: 1; }
+  18%, 29%, 50%, 61% { visibility: visible; stroke-dashoffset: 1; }
+  30%, 49% { visibility: visible; stroke-dashoffset: 0; }
+}
+
+@keyframes domain_hold {
+  0%, 29%, 50%, 100% { visibility: hidden; }
+  30%, 49% { visibility: visible; }
+}
+
+@keyframes aggregate_transition {
+  0%, 17%, 62%, 100% { visibility: hidden; transform: translateY(0); }
+  18% { visibility: visible; transform: translateY(0); }
+  29% { visibility: visible; transform: translateY(39.8px); }
+  30%, 49% { visibility: hidden; transform: translateY(40px); }
+  50%, 61% { visibility: visible; transform: translateY(40px); }
+}
+
+@keyframes scan_transition {
+  0%, 17%, 30%, 100% { visibility: hidden; transform: translateY(-40px) scaleX(0) scaleY(1.3); }
+  18% { visibility: visible; transform: translateY(-40px) scaleX(0) scaleY(1.3); }
+  29% { visibility: visible; transform: translateY(-0.2px) scaleX(0.996) scaleY(1.003); }
+  30%, 100% { visibility: hidden; transform: translateY(0) scale(1); }
 }
 
 @keyframes final_edges {

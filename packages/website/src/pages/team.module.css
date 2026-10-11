@@ -113,6 +113,7 @@
 .timeline li {
   display: grid;
   grid-template-columns: 5rem minmax(0, 1fr);
+  align-items: baseline;
   gap: 1.5rem;
   padding-block: 0.625rem;
 }

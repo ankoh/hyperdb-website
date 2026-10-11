@@ -20,19 +20,21 @@ import symbolAtlasUrl from 'hyperdb-symbol-atlas';
         <path d="M258 36V54" />
         <path d="M258 78V90Q258 94 254 94H94Q90 94 90 98V128" />
         <path class={`${styles.initial_edge} ${styles.initial_right_branch}`} d="M258 78L258 90Q258 94 262 94L342 94Q346 94 346 98L346 108" />
+        <path class={`${styles.domain_draw_edge} ${styles.domain_right_extension}`} pathLength="1" d="M346 108V148" />
         <path class={`${styles.domain_edge_stage} ${styles.domain_right_branch}`} d="M258 78L258 90Q258 94 262 94L342 94Q346 94 346 98L346 148" />
         <path class={`${styles.final_edge} ${styles.final_right_branch}`} d="M258 78L258 90Q258 94 262 94L342 94Q346 94 346 98L346 128" />
         <path d="M90 152V176Q90 180 86 180H36Q32 180 32 184V202" />
         <path d="M90 152V176Q90 180 94 180H144Q148 180 148 184V202" />
         <path class={`${styles.initial_edge} ${styles.initial_aggregate_edge}`} d="M346 132L346 152" />
-        <path class={`${styles.domain_edge_stage} ${styles.domain_aggregate_edge}`} d="M346 172L346 192" />
-        <path class={`${styles.final_edge} ${styles.final_aggregate_edge}`} d="M346 152L346 152" />
+        <path class={`${styles.aggregate_transition} ${styles.aggregate_transition_in}`} d="M346 132L346 152" />
+        <path class={`${styles.domain_hold_edge} ${styles.domain_aggregate_edge}`} d="M346 172L346 192" />
         <path class={`${styles.initial_edge} ${styles.initial_scan_edge}`} d="M346 176L346 202" />
-        <path class={`${styles.domain_edge_stage} ${styles.domain_scan_edge}`} d="M346 216L346 222Q346 226 350 226L392 226Q396 226 396 230L396 236" />
+        <path class={styles.scan_transition} d="M346 216L346 222Q346 226 350 226L392 226Q396 226 396 230L396 236" />
+        <path class={`${styles.domain_hold_edge} ${styles.domain_scan_edge}`} d="M346 216L346 222Q346 226 350 226L392 226Q396 226 396 230L396 236" />
         <path class={`${styles.final_edge} ${styles.final_scan_edge}`} d="M346 152L346 202" />
         <path class={styles.correlation_edge} pathLength="1" d="M32 226V236Q32 240 36 240H256Q260 240 260 236V168Q260 164 264 164H334" />
-        <path class={`${styles.domain_edge_stage} ${styles.domain_join_edge}`} pathLength="1" d="M346 216L346 222Q346 226 342 226L284 226Q280 226 280 230L280 236" />
-        <path class={`${styles.domain_edge_stage} ${styles.domain_feed_edge}`} pathLength="1" d="M102 140L236 140Q240 140 240 144L240 222Q240 226 244 226L276 226Q280 226 280 230L280 236" />
+        <path class={`${styles.domain_draw_edge} ${styles.domain_join_edge}`} pathLength="1" d="M346 216L346 222Q346 226 342 226L284 226Q280 226 280 230L280 236" />
+        <path class={`${styles.domain_draw_edge} ${styles.domain_feed_edge}`} pathLength="1" d="M102 140L236 140Q240 140 240 144L240 222Q240 226 244 226L276 226Q280 226 280 230L280 236" />
       </g>
 
       <g class={styles.nodes} aria-hidden="true">
