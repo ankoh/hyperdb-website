@@ -36,8 +36,8 @@
   --hyper-disk-middle: light-dark(hsl(19.899497 81.22449% 51.960784%), hsl(0 0% 32%));
   --hyper-disk-bottom: light-dark(hsl(92.25 44.444444% 35.294118%), hsl(0 0% 28%));
   --hyper-cap: light-dark(hsl(0 0% 18.823529%), hsl(0 0% 28%));
-  --hyper-shade: light-dark(hsl(0 0% 0% / 0.14), hsl(0 0% 0% / 0.09));
-  --hyper-highlight: light-dark(hsl(0 0% 100% / 0.06), hsl(0 0% 100% / 0.04));
+  --hyper-shade: light-dark(hsl(0 0% 0% / 0.10), hsl(0 0% 0% / 0.09));
+  --hyper-highlight: light-dark(hsl(0 0% 100% / 0.08), hsl(0 0% 100% / 0.04));
 
   --backdrop: hsl(0 0% 0% / 0.65);
   --greeter-card-brand-logos: light-dark(hsl(0 0% 78.431373%), hsl(0 0% 70.588235%));
