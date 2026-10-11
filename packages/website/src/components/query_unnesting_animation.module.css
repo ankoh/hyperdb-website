@@ -26,11 +26,22 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.correlation_edge, .domain_edge, .domain_feed {
+.correlation_edge, .domain_join_edge, .domain_feed_edge {
   stroke: var(--operator-join);
   stroke-dasharray: 1;
 }
-.domain_edge, .domain_feed { stroke-dashoffset: 1; }
+.initial_edge, .domain_edge_stage, .final_edge {
+  visibility: hidden;
+  animation-duration: var(--cycle);
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(1, end);
+}
+.initial_edge { animation-name: initial_edges; }
+.domain_edge_stage {
+  animation-name: domain_edges, draw_domain_edges;
+  animation-timing-function: steps(1, end), linear;
+}
+.final_edge { animation-name: final_edges; }
 
 .operator > rect {
   fill: var(--surface-bg);
@@ -67,9 +78,9 @@
 .inner_exam_scan { transform: translate(346px, 214px); }
 .domain_label, .final_label, .domain_step, .final_step { visibility: hidden; }
 
-/* All geometry shares one clock: connectors meet moving nodes at every frame. */
+/* Fixed stage paths avoid SVG path morphing differences across browsers. */
 .diagram :is(.aggregate, .inner_exam_scan, .subquery_join, .domain_projection, .domain_selection,
-  .right_branch, .aggregate_edge, .scan_edge, .correlation_edge, .domain_edge, .domain_feed,
+  .correlation_edge,
   .initial_label, .domain_label, .final_label, .dependent_label,
   .input_step, .domain_step, .final_step),
 .diagram :is(.student_scan, .outer_join, .subquery_join, .domain_projection) > rect {
@@ -82,12 +93,7 @@
 .subquery_join { animation-name: subquery_node; }
 .domain_projection { animation-name: domain_node; }
 .domain_selection { animation-name: domain_selection; }
-.right_branch { animation-name: right_branch; }
-.aggregate_edge { animation-name: aggregate_edge; }
-.scan_edge { animation-name: scan_edge; }
 .correlation_edge { animation-name: correlation_edge; }
-.domain_edge { animation-name: domain_edge; }
-.domain_feed { animation-name: domain_feed; }
 .initial_label { animation-name: initial_label; }
 .domain_label { animation-name: domain_label; }
 .final_label { animation-name: final_label; }
@@ -127,16 +133,25 @@
   94% { transform: translate(102px, 140px) scale(0); }
 }
 
-@keyframes aggregate_edge {
-  0%, 18%, 100% { d: path('M346 132L346 152'); }
-  30%, 49% { d: path('M346 172L346 192'); }
-  62%, 82% { d: path('M346 152L346 152'); }
+@keyframes initial_edges {
+  0%, 18%, 100% { visibility: visible; }
+  19%, 99% { visibility: hidden; }
 }
 
-@keyframes scan_edge {
-  0%, 18%, 100% { d: path('M346 176L346 190Q346 190 346 190L346 190Q346 190 346 190L346 202'); }
-  30%, 49% { d: path('M346 216L346 222Q346 226 350 226L392 226Q396 226 396 230L396 236'); }
-  62%, 82% { d: path('M346 152L346 177Q346 177 346 177L346 177Q346 177 346 177L346 202'); }
+@keyframes domain_edges {
+  0%, 17%, 62%, 100% { visibility: hidden; }
+  18%, 61% { visibility: visible; }
+}
+
+@keyframes draw_domain_edges {
+  0%, 18% { stroke-dashoffset: 1; }
+  30%, 49% { stroke-dashoffset: 0; }
+  62%, 100% { stroke-dashoffset: 1; }
+}
+
+@keyframes final_edges {
+  0%, 61%, 83%, 100% { visibility: hidden; }
+  62%, 82% { visibility: visible; }
 }
 
 @keyframes correlation_edge {
@@ -159,40 +174,6 @@
   62%, 82% { stroke: var(--card-border); }
 }
 
-@keyframes domain_edge {
-  0%, 18%, 100% {
-    d: path('M346 176L346 186Q346 190 342 190L106 190Q102 190 102 186L102 140');
-    stroke-dashoffset: 1;
-  }
-  30%, 49% {
-    d: path('M346 216L346 222Q346 226 342 226L284 226Q280 226 280 230L280 236');
-    stroke-dashoffset: 0;
-  }
-  62%, 82% {
-    d: path('M346 152L346 152Q346 152 346 152L346 152Q346 152 346 152L346 140');
-    stroke-dashoffset: 1;
-  }
-  94% {
-    d: path('M346 176L346 186Q346 190 342 190L106 190Q102 190 102 186L102 140');
-    stroke-dashoffset: 1;
-  }
-}
-
-@keyframes domain_feed {
-  0%, 18%, 94%, 100% {
-    d: path('M102 140L102 140Q102 140 102 140L102 140Q102 140 102 140L102 140Q102 140 102 140L102 140');
-    stroke-dashoffset: 1;
-  }
-  30%, 49% {
-    d: path('M102 140L236 140Q240 140 240 144L240 222Q240 226 244 226L276 226Q280 226 280 230L280 236');
-    stroke-dashoffset: 0;
-  }
-  62%, 82% {
-    d: path('M102 140L240 140Q240 140 240 140L240 140Q240 140 240 140L346 140Q346 140 346 140L346 140');
-    stroke-dashoffset: 1;
-  }
-}
-
 /* Replace operators just before their nodes and connectors start moving. */
 @keyframes initial_label {
   0%, 80%, 100% { visibility: visible; }
@@ -202,11 +183,6 @@
   0%, 18%, 62%, 82%, 100% { transform: translate(346px, 94px) scale(0); }
   30%, 49% { transform: translate(346px, 116px) scale(1); }
   94% { transform: translate(346px, 94px) scale(0); }
-}
-@keyframes right_branch {
-  0%, 18%, 100% { d: path('M258 78L258 90Q258 94 262 94L342 94Q346 94 346 98L346 108'); }
-  30%, 49% { d: path('M258 78L258 90Q258 94 262 94L342 94Q346 94 346 98L346 148'); }
-  62%, 82% { d: path('M258 78L258 90Q258 94 262 94L342 94Q346 94 346 98L346 128'); }
 }
 @keyframes dependent_label {
   0%, 80%, 100% { visibility: visible; }
@@ -237,10 +213,10 @@
 @media (prefers-reduced-motion: reduce) {
   .diagram * { animation: none !important; }
   .aggregate { transform: translate(346px, 140px); }
-  .correlation_edge, .domain_edge, .domain_feed, .aggregate_edge,
+  .initial_edge, .domain_edge_stage, .correlation_edge,
   .subquery_join, .domain_projection, .domain_selection,
   .initial_label, .domain_label, .dependent_label, .input_step, .domain_step { display: none; }
+  .final_edge { visibility: visible; }
+  .final_aggregate_edge { display: none; }
   .final_label, .final_step { visibility: visible; }
-  .right_branch { d: path('M258 78L258 90Q258 94 262 94L342 94Q346 94 346 98L346 128'); }
-  .scan_edge { d: path('M346 152L346 177Q346 177 346 177L346 177Q346 177 346 177L346 202'); }
 }
