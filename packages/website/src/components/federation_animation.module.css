@@ -1,3 +1,9 @@
+@property --federation-activity {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
 .experiment {
   width: 100%;
   min-width: 0;
@@ -40,7 +46,8 @@
 
 .node > rect {
   fill: var(--surface-bg);
-  stroke: var(--card-border);
+  /* Resolve theme colors outside keyframes so scheme changes update immediately. */
+  stroke: color-mix(in srgb, var(--active-border) calc(var(--federation-activity) * 100%), var(--card-border));
 }
 
 .node > text {
@@ -238,13 +245,13 @@
 }
 
 @keyframes hyper_activity {
-  0%, 14%, 26%, 66%, 78%, 100% { stroke: var(--card-border); stroke-width: 1; }
-  16%, 24%, 68%, 76% { stroke: var(--active-border); stroke-width: 2; }
+  0%, 14%, 26%, 66%, 78%, 100% { --federation-activity: 0; stroke-width: 1; }
+  16%, 24%, 68%, 76% { --federation-activity: 1; stroke-width: 2; }
 }
 
 @keyframes source_activity {
-  0%, 40%, 54%, 100% { stroke: var(--card-border); stroke-width: 1; }
-  42%, 52% { stroke: var(--active-border); stroke-width: 2; }
+  0%, 40%, 54%, 100% { --federation-activity: 0; stroke-width: 1; }
+  42%, 52% { --federation-activity: 1; stroke-width: 2; }
 }
 
 @media (prefers-reduced-motion: reduce) {
