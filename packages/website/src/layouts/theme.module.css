@@ -31,7 +31,7 @@
   --gazelle-outline: light-dark(hsl(0 0% 70%), hsl(0 0% 10%));
   --gazelle-fill-color: light-dark(hsl(0 0% 98%), hsl(0 0% 45%));
   --gazelle-fill-shade: light-dark(hsl(0 0% 90%), hsl(0 0% 34%));
-  --gazelle-accent: light-dark(hsl(0 0% 85%), hsl(0 0% 50%));
+  --gazelle-accent: light-dark(hsl(0 0% 38%), hsl(0 0% 60%));
   --hyper-disk-top: light-dark(hsl(223.146067 53.939394% 32.352941%), hsl(0 0% 38%));
   --hyper-disk-middle: light-dark(hsl(19.899497 81.22449% 51.960784%), hsl(0 0% 32%));
   --hyper-disk-bottom: light-dark(hsl(92.25 44.444444% 35.294118%), hsl(0 0% 28%));
