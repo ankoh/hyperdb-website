@@ -26,7 +26,6 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.edges path { vector-effect: non-scaling-stroke; }
 .correlation_edge, .domain_edge, .domain_feed {
   stroke: var(--operator-join);
   stroke-dasharray: 1;
