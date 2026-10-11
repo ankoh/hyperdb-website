@@ -115,8 +115,7 @@
   gap: 1.25rem;
   margin: 6rem auto 0;
   padding: 1rem 1.5rem;
-  background: linear-gradient(135deg, var(--production-surface-start), var(--production-surface-end));
-  scroll-margin-top: 7rem;
+  scroll-margin-top: 10rem;
 }
 
 .production_card p {

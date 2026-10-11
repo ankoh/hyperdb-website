@@ -12,8 +12,6 @@
   --card-border: light-dark(hsl(0 0% 89.803922%), hsl(0 0% 23.921569%));
   --soft-surface-start: light-dark(hsl(0 0% 98.823529% / 0.8), hsl(0 0% 13.72549% / 0.8));
   --soft-surface-end: light-dark(hsl(0 0% 98.039216% / 0.8), hsl(0 0% 12.941176% / 0.8));
-  --production-surface-start: light-dark(hsl(0 0% 96%), hsl(0 0% 16%));
-  --production-surface-end: light-dark(hsl(0 0% 95%), hsl(0 0% 15%));
   --soft-surface-border: light-dark(hsl(0 0% 0% / 0.08), hsl(0 0% 100% / 0.08));
   --soft-surface-shadow: light-dark(hsl(0 0% 0% / 0.035), hsl(0 0% 0% / 0.16));
   --soft-surface-highlight: light-dark(hsl(0 0% 100% / 0.8), hsl(0 0% 100% / 0.035));
