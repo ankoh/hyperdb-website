@@ -350,8 +350,9 @@
   max-width: 510px;
 }
 
+.animation_panel :global([data-federation-animation]),
 :global([data-federation-animation]) + .animation_caption {
-  max-width: 480px;
+  max-width: 450px;
 }
 
 .papers h3 {
