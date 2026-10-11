@@ -4,6 +4,7 @@ import LandingUsecaseCarousel from '../components/landing_usecase_carousel.astro
 import FederationAnimation from '../components/federation_animation.astro';
 import JitAnimation from '../components/jit_animation.astro';
 import PaperReference from '../components/paper_reference.astro';
+import BlogReference from '../components/blog_reference.astro';
 import styles from './index.module.css';
 import GazelleArtwork from '../assets/gazelle_fill.svg';
 import HyperArtwork from '../assets/hyper_hero.svg';
@@ -207,6 +208,39 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
         <div class={styles.section_copy}>
             <h2 id="zero-copy-heading">Zero-Copy at Scale</h2>
             <p>Database behavior differs in subtle details and aligning semantics is crucial for correct query federation. Hyper pushes complex subqueries to Snowflake, Databricks, Google BigQuery and many more.</p>
+            <div class={styles.papers}>
+                <h3>Selected blog posts:</h3>
+                <ul>
+                    <li>
+                        <BlogReference
+                            href="https://www.linkedin.com/pulse/zero-copy-practice-decisions-determine-whether-works-krishnamoorthy-hhxhc/"
+                            title="Zero Copy in Practice: The Decisions That Determine Whether It Works for You"
+                            source="LinkedIn"
+                        />
+                    </li>
+                    <li>
+                        <BlogReference
+                            href="https://www.salesforceblogger.com/2025/11/10/unlocking-peak-performance-in-zero-copy-federation-a-guide-to-data-locality/"
+                            title="Unlocking Peak Performance in Zero-Copy Federation: A Guide to Data Locality"
+                            source="Salesforce Blogger"
+                        />
+                    </li>
+                    <li>
+                        <BlogReference
+                            href="https://developer.salesforce.com/blogs/2024/10/bring-your-google-bigquery-data-lake-to-data-cloud-part-1-data-in"
+                            title="Bring Your Google BigQuery Data Lake to Data Cloud"
+                            source="Salesforce Developers"
+                        />
+                    </li>
+                    <li>
+                        <BlogReference
+                            href="https://www.salesforce.com/data/connectivity/zero-copy/"
+                            title="Why Data 360’s Zero Copy Makes Business and Technical Sense"
+                            source="Salesforce"
+                        />
+                    </li>
+                </ul>
+            </div>
         </div>
         <figure class={styles.animation_panel}>
             <FederationAnimation />
