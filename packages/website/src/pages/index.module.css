@@ -102,9 +102,9 @@
   max-width: 100%;
   align-items: center;
   gap: 1.25rem;
-  margin: 6rem auto 0;
+  margin: 8rem auto 0;
   padding: 1rem 1.5rem;
-  scroll-margin-top: 10rem;
+  scroll-margin-top: 8rem;
 }
 
 .production_card p {
