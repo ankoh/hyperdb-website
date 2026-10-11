@@ -32,6 +32,7 @@ genrule(
         "src/assets/gazelle.svg",
         "src/assets/gazelle_fill.svg",
         "src/assets/google_bigquery.svg",
+        "src/assets/hyper.svg",
         "src/assets/hyper_banner.svg",
         "src/assets/hyper_monochrome.svg",
         "src/assets/iceberg.svg",
