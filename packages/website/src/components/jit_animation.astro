@@ -21,7 +21,7 @@ const assembly = [
 
 <div class:list={[styles.experiment, timing.cycle]} data-jit-animation>
   <figure class={styles.figure}>
-    <div class={styles.viewport} tabindex="0" role="region" aria-label="Just-in-time compilation diagram; hover or focus to show the final highlighted stage. Scroll horizontally on small screens.">
+    <div class={styles.viewport} tabindex="0" role="region" aria-label="Just-in-time compilation diagram; hover or focus to show the final highlighted stage.">
       <svg class={styles.diagram} viewBox="0 0 430 160" role="img" aria-label="Hyper compiles a SQL query in four steps: SQL appears on the left; a query plan with orders and customers feeding a join appears in the middle. The thicker orders edge indicates more tuples than the thinner customers edge. The inputs swap to build the hash table from fewer customers and probe it with more orders; then native x86 code appears on the right. Finally, matching colors connect code to operators: blue for the orders scan and loop, and purple for join hashing, hash-table lookup, key comparison, branching, and output. Both operator borders are solid. The customers node remains unhighlighted.">
         <g transform="translate(8.6 3.2) scale(0.96)" aria-hidden="true">
           <text class={styles.code} x="12" y="60">

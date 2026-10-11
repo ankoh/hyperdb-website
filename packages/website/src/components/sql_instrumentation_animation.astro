@@ -4,7 +4,7 @@ import timing from './animation_timing.module.css';
 ---
 
 <figure class:list={[styles.figure, timing.cycle]}>
-  <div class={styles.viewport} tabindex="0" role="region" aria-label="SQL instrumentation animation. Hover or focus to inspect all seven EXPLAIN variants. Scroll horizontally on small screens.">
+  <div class={styles.viewport} tabindex="0" role="region" aria-label="SQL instrumentation animation. Hover or focus to inspect all seven EXPLAIN variants.">
     <svg class={styles.diagram} viewBox="0 0 760 516" role="img" aria-label="Hyper helps Salesforce teams instrument one central SQL query: select agent, avg(response_time) as t from agents group by agent. Seven small cards surround it, appearing from the inner cards outward: explain (format json), explain (format sql, sql_dialect internal_spark), explain (format sql, preaggregation), explain (format schema, postaggregation), explain (format schema), explain (format referenced_tables), and explain (format sql, change_data_feed).">
       <g aria-hidden="true">
         <g class:list={[styles.branch, styles.schema]}>

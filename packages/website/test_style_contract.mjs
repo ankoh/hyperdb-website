@@ -114,6 +114,17 @@ test('informative SVG diagrams have accessible descriptions', () => {
   }
 });
 
+test('animation figures scale without horizontal scrolling', () => {
+  for (const file of files.filter((file) => file.endsWith('_animation.module.css'))) {
+    const content = readFileSync(file, 'utf8');
+    assert.doesNotMatch(content, /overflow-x\s*:\s*(?:auto|scroll)/, `${file}: figures must not scroll horizontally`);
+    const diagram = content.match(/\.diagram\s*\{([^}]+)\}/)?.[1];
+    assert.ok(diagram, `${file}: missing diagram styles`);
+    assert.match(diagram, /width:\s*100%/);
+    assert.doesNotMatch(diagram, /min-width:\s*[1-9]/, `${file}: diagrams must fit narrow screens`);
+  }
+});
+
 test('experiments opt out of indexing', () => {
   const html = readFileSync(join(pages, 'experiments/index.html'), 'utf8');
   const robots = html.match(/<meta\b[^>]*name="robots"[^>]*>/)?.[0];

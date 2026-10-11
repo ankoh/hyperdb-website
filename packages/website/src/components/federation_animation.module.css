@@ -23,7 +23,7 @@
 }
 
 .viewport {
-  overflow-x: auto;
+  overflow: clip;
 }
 
 .viewport:focus-visible {
@@ -34,7 +34,7 @@
 .diagram {
   display: block;
   width: 100%;
-  min-width: 360px;
+  height: auto;
   color: var(--text);
 }
 

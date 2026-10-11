@@ -4,7 +4,7 @@ import timing from './animation_timing.module.css';
 ---
 
 <figure class:list={[styles.figure, timing.cycle]}>
-  <div class={styles.viewport} tabindex="0" role="region" aria-label="Reliable governance animation. Hover or focus to inspect the governed query. Scroll horizontally on small screens.">
+  <div class={styles.viewport} tabindex="0" role="region" aria-label="Reliable governance animation. Hover or focus to inspect the governed query.">
     <svg class={styles.diagram} viewBox="0 0 660 245" role="img" aria-label="A user submits a query over individuals. Below the arrow are database lakehouse, dataspace business_unit_1, and tenant-id 42 tags. The same SQL initially appears on the right. First, database lakehouse is highlighted and a secure individuals_governed common table expression excludes opted-out individuals with an anti join to gdpr_opted_out on i.id = g.id. Next, dataspace is highlighted and i.dataspace = 'business_unit_1' is added. Finally, tenant-id is highlighted and i.classification != 'top_secret' is added. Each injected clause is highlighted with its tag. The original query reads from individuals_governed and retains its own conditions.">
       <g aria-hidden="true">
         <g class:list={[styles.context, styles.gdpr]}>

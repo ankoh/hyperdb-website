@@ -6,7 +6,7 @@
   overflow: hidden;
 }
 
-.viewport { overflow-x: auto; }
+.viewport { overflow: clip; }
 .viewport:focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: -3px;
@@ -15,7 +15,7 @@
 .diagram {
   display: block;
   width: 100%;
-  min-width: 440px;
+  height: auto;
   color: var(--text);
 }
 
