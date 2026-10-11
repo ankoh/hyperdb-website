@@ -9,14 +9,17 @@ import timing from './animation_timing.module.css';
       <g aria-hidden="true">
         <g class:list={[styles.context, styles.gdpr]}>
           <rect x="90" y="143" width="140" height="24" rx="5" />
+          <rect class={styles.gdpr_highlight} x="90" y="143" width="140" height="24" rx="5" />
           <text x="100" y="159">database <tspan class={styles.value}>lakehouse</tspan></text>
         </g>
         <g class:list={[styles.context, styles.dataspace]}>
           <rect x="90" y="173" width="184" height="24" rx="5" />
+          <rect class={styles.dataspace_highlight} x="90" y="173" width="184" height="24" rx="5" />
           <text x="100" y="189">dataspace <tspan class={styles.value}>business_unit_1</tspan></text>
         </g>
         <g class:list={[styles.context, styles.tenant]}>
           <rect x="90" y="203" width="112" height="24" rx="5" />
+          <rect class={styles.tenant_highlight} x="90" y="203" width="112" height="24" rx="5" />
           <text x="100" y="219">tenant-id <tspan class={styles.constant}>42</tspan></text>
         </g>
 
