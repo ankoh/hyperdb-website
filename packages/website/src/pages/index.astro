@@ -333,15 +333,9 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
         </div>
     </section>
 
-    <section class:list={[styles.feature_section, styles.install_section]} id="install" aria-labelledby="install-heading">
-        <div class={styles.section_copy}>
-            <h2 id="install-heading">Install Hyper</h2>
-            <p>Start using Hyper in your environment.</p>
-            <a class={styles.text_link} href={`${documentation}/installation`}>More clients and versions<span aria-hidden="true">&rarr;</span></a>
-        </div>
+    <section class:list={[styles.feature_section, styles.install_section]} id="install" aria-label="Install Hyper">
         <div class={styles.install_panel}>
-            <fieldset class={styles.install_options}>
-                <legend>Choose your environment</legend>
+            <fieldset class={styles.install_options} aria-label="Choose your environment">
                 <div class={styles.environment_choices}>
                     <label><input type="radio" name="environment" value="python" checked /><span>Python</span></label>
                     <label><input type="radio" name="environment" value="cpp" /><span>C++</span></label>

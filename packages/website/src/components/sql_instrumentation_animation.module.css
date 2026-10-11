@@ -24,15 +24,8 @@
 .connector {
   fill: none;
   stroke: var(--border);
-  stroke-linejoin: round;
-}
-.connector { stroke-width: 1.5; }
-.arrowhead {
-  fill: none;
-  stroke: var(--border);
   stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  stroke-dasharray: 1;
 }
 .code, .query {
   fill: var(--text);
@@ -53,42 +46,44 @@
 .json { animation-name: reveal_json; }
 
 @keyframes reveal {
-  0%, 48%, 100% { opacity: 0; }
-  56%, 90% { opacity: 1; }
+  0%, 48%, 100% { opacity: 0; stroke-dashoffset: 1; }
+  56%, 90% { opacity: 1; stroke-dashoffset: 0; }
 }
 @keyframes reveal_tables {
-  0%, 58%, 100% { opacity: 0; }
-  66%, 90% { opacity: 1; }
+  0%, 58%, 100% { opacity: 0; stroke-dashoffset: 1; }
+  66%, 90% { opacity: 1; stroke-dashoffset: 0; }
 }
 @keyframes reveal_spark {
-  0%, 18%, 100% { opacity: 0; }
-  26%, 90% { opacity: 1; }
+  0%, 18%, 100% { opacity: 0; stroke-dashoffset: 1; }
+  26%, 90% { opacity: 1; stroke-dashoffset: 0; }
 }
 @keyframes reveal_preaggregation {
-  0%, 28%, 100% { opacity: 0; }
-  36%, 90% { opacity: 1; }
+  0%, 28%, 100% { opacity: 0; stroke-dashoffset: 1; }
+  36%, 90% { opacity: 1; stroke-dashoffset: 0; }
 }
 @keyframes reveal_postaggregation {
-  0%, 38%, 100% { opacity: 0; }
-  46%, 90% { opacity: 1; }
+  0%, 38%, 100% { opacity: 0; stroke-dashoffset: 1; }
+  46%, 90% { opacity: 1; stroke-dashoffset: 0; }
 }
 @keyframes reveal_change_data_feed {
-  0%, 68%, 100% { opacity: 0; }
-  76%, 90% { opacity: 1; }
+  0%, 68%, 100% { opacity: 0; stroke-dashoffset: 1; }
+  76%, 90% { opacity: 1; stroke-dashoffset: 0; }
 }
 @keyframes reveal_json {
-  0%, 8%, 100% { opacity: 0; }
-  16%, 90% { opacity: 1; }
+  0%, 8%, 100% { opacity: 0; stroke-dashoffset: 1; }
+  16%, 90% { opacity: 1; stroke-dashoffset: 0; }
 }
 
 .figure:is(:hover, :focus-within) .branch {
   animation: none;
   opacity: 1;
+  stroke-dashoffset: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .branch {
     animation: none;
     opacity: 1;
+    stroke-dashoffset: 0;
   }
 }

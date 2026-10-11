@@ -380,12 +380,16 @@
 }
 
 .install_section {
+  display: flex;
+  justify-content: center;
   padding-bottom: 7rem;
 }
 
 .install_panel {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  max-width: 560px;
   min-width: 0;
   border: 1px solid var(--soft-surface-border);
   border-radius: 1rem;

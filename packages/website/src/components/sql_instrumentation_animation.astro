@@ -1,49 +1,55 @@
 ---
 import styles from './sql_instrumentation_animation.module.css';
 import timing from './animation_timing.module.css';
-
-const arrowId = `sql_arrow_${crypto.randomUUID()}`;
 ---
 
 <figure class:list={[styles.figure, timing.cycle]}>
   <div class={styles.viewport} tabindex="0" role="region" aria-label="SQL instrumentation animation. Hover or focus to inspect all seven EXPLAIN variants. Scroll horizontally on small screens.">
     <svg class={styles.diagram} viewBox="0 0 760 516" role="img" aria-label="Hyper helps Salesforce teams instrument one central SQL query: select agent, avg(response_time) as t from agents group by agent. Seven small cards surround it, appearing from the inner cards outward: explain (format json), explain (format sql, sql_dialect internal_spark), explain (format sql, preaggregation), explain (format schema, postaggregation), explain (format schema), explain (format referenced_tables), and explain (format sql, change_data_feed).">
-      <defs>
-        <marker id={arrowId} viewBox="0 0 8 8" refX="8" refY="4" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
-          <path class={styles.arrowhead} d="M1 1L7 4L1 7" />
-        </marker>
-      </defs>
-      <g aria-hidden="true" marker-end={`url(#${arrowId})`}>
+      <g aria-hidden="true">
         <g class:list={[styles.branch, styles.schema]}>
-          <path class={styles.connector} d="M323 246L162 124" />
+          <path class={styles.connector} pathLength="1" d="M323 246L162 124" />
+        </g>
+        <g class:list={[styles.branch, styles.tables]}>
+          <path class={styles.connector} pathLength="1" d="M406 246L480 124" />
+        </g>
+        <g class:list={[styles.branch, styles.spark]}>
+          <path class={styles.connector} pathLength="1" d="M473 246L567 208" />
+        </g>
+        <g class:list={[styles.branch, styles.preaggregation]}>
+          <path class={styles.connector} pathLength="1" d="M468 325L580 370" />
+        </g>
+        <g class:list={[styles.branch, styles.postaggregation]}>
+          <path class={styles.connector} pathLength="1" d="M303 325L205 370" />
+        </g>
+        <g class:list={[styles.branch, styles.change_data_feed]}>
+          <path class={styles.connector} pathLength="1" d="M380 325L380 460" />
+        </g>
+        <g class:list={[styles.branch, styles.json]}>
+          <path class={styles.connector} pathLength="1" d="M270 246L150 208" />
+        </g>
+
+        <g class:list={[styles.branch, styles.schema]}>
           <rect class={styles.card} x="44" y="80" width="236" height="44" rx="8" />
           <text class={styles.code} x="60" y="106"><tspan class={styles.keyword}>explain</tspan> (<tspan class={styles.keyword}>format</tspan> <tspan class={styles.variant}>schema</tspan>)</text>
         </g>
 
         <g class:list={[styles.branch, styles.tables]}>
-          <path class={styles.connector} d="M406 246L480 124" />
           <rect class={styles.card} x="320" y="80" width="320" height="44" rx="8" />
           <text class={styles.code} x="336" y="106"><tspan class={styles.keyword}>explain</tspan> (<tspan class={styles.keyword}>format</tspan> <tspan class={styles.variant}>referenced_tables</tspan>)</text>
         </g>
 
         <g class:list={[styles.branch, styles.spark]}>
-          <path class={styles.connector} d="M473 246L567 208" />
           <rect class={styles.card} x="310" y="164" width="438" height="44" rx="8" />
           <text class={styles.code} x="326" y="190"><tspan class={styles.keyword}>explain</tspan> (<tspan class={styles.keyword}>format</tspan> <tspan class={styles.variant}>sql</tspan>, <tspan class={styles.keyword}>sql_dialect</tspan> <tspan class={styles.variant}>internal_spark</tspan>)</text>
         </g>
 
         <g class:list={[styles.branch, styles.preaggregation]}>
-          <path class={styles.connector} d="M468 325L580 370" />
           <rect class={styles.card} x="412" y="370" width="336" height="44" rx="8" />
           <text class={styles.code} x="428" y="396"><tspan class={styles.keyword}>explain</tspan> (<tspan class={styles.keyword}>format</tspan> <tspan class={styles.variant}>sql</tspan>, <tspan class={styles.keyword}>preaggregation</tspan>)</text>
         </g>
 
-        <g class:list={[styles.branch, styles.change_data_feed]}>
-          <path class={styles.connector} d="M380 325L380 460" />
-        </g>
-
         <g class:list={[styles.branch, styles.postaggregation]}>
-          <path class={styles.connector} d="M303 325L205 370" />
           <rect class={styles.card} x="19" y="370" width="372" height="44" rx="8" />
           <text class={styles.code} x="35" y="396"><tspan class={styles.keyword}>explain</tspan> (<tspan class={styles.keyword}>format</tspan> <tspan class={styles.variant}>schema</tspan>, <tspan class={styles.keyword}>postaggregation</tspan>)</text>
         </g>
@@ -54,7 +60,6 @@ const arrowId = `sql_arrow_${crypto.randomUUID()}`;
         </g>
 
         <g class:list={[styles.branch, styles.json]}>
-          <path class={styles.connector} d="M270 246L150 208" />
           <rect class={styles.card} x="32" y="164" width="236" height="44" rx="8" />
           <text class={styles.code} x="48" y="190"><tspan class={styles.keyword}>explain</tspan> (<tspan class={styles.keyword}>format</tspan> <tspan class={styles.variant}>json</tspan>)</text>
         </g>
