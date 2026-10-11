@@ -1,5 +1,74 @@
 ---
 import SiteLayout from '../layouts/site_layout.astro';
+import PaperReference from '../components/paper_reference.astro';
+import skylineUrl from '../assets/muc_skyline_2k.png?url';
+import teamPhotoUrl from '../assets/tech_summit_2026_august.png?url';
+import TumLogo from '../assets/tum_logo.svg';
+import styles from './team.module.css';
 ---
 
-<SiteLayout title="Team" description="The Hyper team." />
+<SiteLayout title="Team" description="The Hyper team." fullWidth underHeader>
+  <div class={styles.content}>
+    <img class={styles.skyline} src={skylineUrl} width="7952" height="2050" alt="Munich skyline with the Frauenkirche and New Town Hall." fetchpriority="high" />
+    <section class={styles.introduction} aria-labelledby="team-heading">
+      <div>
+        <p class={styles.eyebrow}>Munich / Salesforce</p>
+        <h1 id="team-heading">The team behind Hyper.</h1>
+        <p class={styles.lead}>Database research, built for the real world.</p>
+        <p>We build the analytical database engine behind Tableau and Salesforce Data 360. Our work brings together query optimization, SQL semantics and low-level systems engineering to make interactive analytics fast and reliable.</p>
+      </div>
+      <figure class={styles.team_figure}>
+        <img class={styles.team_photo} src={teamPhotoUrl} width="2000" height="715" alt="The Hyper team at our August 2026 QSM Tech Summit." loading="lazy" />
+        <figcaption><em>The Hyper team at our August 2026 QSM Tech Summit.</em></figcaption>
+      </figure>
+    </section>
+
+    <section class={styles.research} aria-labelledby="research-heading">
+      <header class={styles.research_header}>
+        <div>
+          <p class={styles.eyebrow}>Our research roots</p>
+          <h2 id="research-heading">Born at TUM.</h2>
+        </div>
+        <a class={styles.tum_brand} href="https://www.tum.de/en/" aria-label="Technical University of Munich">
+          <TumLogo class={styles.tum_logo} aria-hidden="true" focusable="false" />
+          <span>Technical University<br />of Munich</span>
+        </a>
+      </header>
+      <div>
+        <p>Hyper began in 2008 at the Technical University of Munich under professors Alfons Kemper and Thomas Neumann. Originally named HyPer, short for Hybrid High Performance, it explored how modern hardware could change database design.</p>
+        <p>That research established the foundations of Hyper's compiling query engine. More than 50 peer-reviewed publications followed, sharing ideas with the wider database community.</p>
+        <p>Two foundational papers were recognized in 2021 with the IEEE ICDE 10-year influential paper award and the VLDB Test of Time Award.</p>
+        <div class={styles.papers}>
+          <ul>
+            <li>
+              <PaperReference
+                href="https://ieeexplore.ieee.org/document/5767867?arnumber=5767867"
+                title="HyPer: A Hybrid OLTP&OLAP Main Memory Database System Based on Virtual Memory Snapshots"
+                venue="ICDE 2011 · 2021 10-Year Influential Paper Award"
+              />
+            </li>
+            <li>
+              <PaperReference
+                href="https://www.vldb.org/pvldb/vol4/p539-neumann.pdf"
+                title="Efficiently Compiling Efficient Query Plans for Modern Hardware"
+                venue="VLDB 2011"
+              />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class={styles.journey} aria-labelledby="journey-heading">
+      <p class={styles.eyebrow}>From research to production</p>
+      <h2 id="journey-heading">A database with a history.</h2>
+      <ol class={styles.timeline}>
+        <li><span class={styles.year}>2008</span><div><h3>A research project</h3><p>HyPer starts at TUM, exploring hybrid transactional and analytical processing on modern hardware.</p></div></li>
+        <li><span class={styles.year}>2015</span><div><h3>From lab to startup</h3><p>Six co-founders launch the Hyper spinoff to bring their database research into industry.</p></div></li>
+        <li><span class={styles.year}>2016</span><div><h3>Joining Tableau</h3><p>Tableau acquires Hyper in March 2016. In January 2018, Tableau 10.5 ships with Hyper as its new data engine.</p></div></li>
+        <li><span class={styles.year}>2019</span><div><h3>Opening up SQL</h3><p>The Hyper API gives customers and partners direct access to Hyper's SQL capabilities and Tableau extracts.</p></div></li>
+        <li><span class={styles.year}>2021-Today</span><div><h3>Hyper at Salesforce</h3><p>The research project has become an industry-hardened database powering interactive analytics across Tableau and Salesforce Data 360.</p></div></li>
+      </ol>
+    </section>
+  </div>
+</SiteLayout>

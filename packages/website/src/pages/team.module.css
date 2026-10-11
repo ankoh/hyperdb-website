@@ -1,0 +1,138 @@
+.content {
+  width: min(100% - 3rem, var(--content-width));
+  margin-inline: auto;
+}
+
+.skyline {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: calc(var(--content-width) * 2050 / 7952);
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid var(--soft-surface-border);
+  border-radius: 0 0 0.875rem 0.875rem;
+  box-shadow: 0 0 32px var(--soft-surface-shadow), inset 0 1px 0 var(--soft-surface-highlight);
+}
+
+.team_photo {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--soft-surface-border);
+  border-radius: 0.875rem;
+  box-shadow: 0 0 32px var(--soft-surface-shadow), inset 0 1px 0 var(--soft-surface-highlight);
+}
+
+.introduction {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding-block: 3rem 4rem;
+}
+.introduction > div { position: relative; z-index: 1; }
+.content h1, .content h2, .content h3 { color: var(--text); }
+.content h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.875rem, 3vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+.content h2 {
+  margin: 0 0 1rem;
+  font-size: 1.875rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.content p {
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.content .eyebrow {
+  margin: 0 0 0.75rem;
+  font: 0.75rem 'Geist Mono', monospace;
+}
+.content .lead {
+  color: var(--text);
+  font-size: 1.125rem;
+}
+.team_figure { min-width: 0; margin: 2rem 0 0; }
+.team_figure figcaption {
+  margin-top: 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+.research {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 1rem;
+  padding-block: 2.5rem;
+  border-block: 1px solid var(--soft-surface-border);
+}
+.research_header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.research_header h2 { margin: 0; }
+.research_header .eyebrow { margin-bottom: 0.5rem; }
+.tum_brand {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  width: fit-content;
+  padding: 0 0 0.25rem;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.tum_brand:hover span { text-decoration: underline; }
+.tum_logo { display: block; width: 64px; height: auto; }
+.papers ul {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+.content a { text-underline-offset: 0.25em; }
+.journey { max-width: 760px; padding-block: 3rem; }
+.timeline {
+  list-style: none;
+  margin: 1.25rem 0;
+  padding: 0;
+}
+.timeline li {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding-block: 0.625rem;
+}
+.year { color: var(--text-muted); font: 0.875rem/1.5 'Geist Mono', monospace; }
+.timeline h3 { margin: 0; font-size: 1rem; font-weight: 600; }
+.timeline p { margin: 0.25rem 0 0; }
+
+@media (max-width: 54rem) {
+  .introduction, .research { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .introduction { padding-top: 2rem; }
+  .team_figure { margin-top: 0; }
+  .team_figure { max-width: 760px; }
+}
+
+@media (max-width: 36rem) {
+  .content { width: calc(100% - 2rem); }
+  .skyline {
+    height: 18rem;
+  }
+  .research_header { align-items: center; gap: 0.5rem; }
+  .research_header h2 { font-size: 1.5rem; white-space: nowrap; }
+  .tum_brand { gap: 0.5rem; font-size: 0.6875rem; }
+  .tum_logo { width: 42px; }
+  .timeline li { grid-template-columns: 3.5rem minmax(0, 1fr); gap: 1rem; }
+}

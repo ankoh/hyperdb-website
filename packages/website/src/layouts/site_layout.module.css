@@ -60,6 +60,16 @@
   gap: 1.5rem;
 }
 
+.under_header { display: grid; }
+.under_header .header {
+  grid-area: 1 / 1;
+  align-self: start;
+}
+.under_header .main {
+  grid-area: 1 / 1;
+  width: 100%;
+}
+
 .header > a {
   display: inline-flex;
   align-items: center;
