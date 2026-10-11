@@ -8,7 +8,8 @@
     "astro": "^7.3.7",
     "hyperdb-wasm": "0.0.26845-dev.wasm.g5b622080",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",

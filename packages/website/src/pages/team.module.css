@@ -7,7 +7,7 @@
   box-sizing: border-box;
   display: block;
   width: 100%;
-  height: calc(var(--content-width) * 2050 / 7952);
+  height: calc(var(--content-width) * 515 / 2000);
   object-fit: cover;
   object-position: center;
   border: 1px solid var(--soft-surface-border);

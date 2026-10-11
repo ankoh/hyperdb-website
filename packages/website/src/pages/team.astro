@@ -1,15 +1,25 @@
 ---
 import SiteLayout from '../layouts/site_layout.astro';
 import PaperReference from '../components/paper_reference.astro';
-import skylineUrl from '../assets/muc_skyline_2k.png?url';
-import teamPhotoUrl from '../assets/tech_summit_2026_august.png?url';
+import { Image } from 'astro:assets';
+import skylineImage from '../assets/muc_skyline_2k.png';
+import teamPhoto from '../assets/tech_summit_2026_august.png';
 import TumLogo from '../assets/tum_logo.svg';
 import styles from './team.module.css';
 ---
 
 <SiteLayout title="Team" description="The Hyper team." fullWidth underHeader>
   <div class={styles.content}>
-    <img class={styles.skyline} src={skylineUrl} width="7952" height="2050" alt="Munich skyline with the Frauenkirche and New Town Hall." fetchpriority="high" />
+    <Image
+      class={styles.skyline}
+      src={skylineImage}
+      widths={[640, 960, 1200, 1600, 2000]}
+      sizes="(max-width: 36rem) calc(100vw - 2rem), (max-width: 1198px) calc(100vw - 3rem), 1150px"
+      format="webp"
+      quality={82}
+      alt="Munich skyline with the Frauenkirche and New Town Hall."
+      priority
+    />
     <section class={styles.introduction} aria-labelledby="team-heading">
       <div>
         <p class={styles.eyebrow}>Munich / Salesforce</p>
@@ -18,7 +28,16 @@ import styles from './team.module.css';
         <p>We build the analytical database engine behind Tableau and Salesforce Data 360. Our work brings together query optimization, SQL semantics and low-level systems engineering to make interactive analytics fast and reliable.</p>
       </div>
       <figure class={styles.team_figure}>
-        <img class={styles.team_photo} src={teamPhotoUrl} width="2000" height="715" alt="The Hyper team at our August 2026 QSM Tech Summit." loading="lazy" />
+        <Image
+          class={styles.team_photo}
+          src={teamPhoto}
+          widths={[320, 480, 640, 800, 1200, 1600]}
+          sizes="(max-width: 36rem) calc(100vw - 2rem), (max-width: 54rem) min(760px, calc(100vw - 3rem)), (max-width: 1214px) 53vw, 638px"
+          format="webp"
+          quality={82}
+          alt="The Hyper team at our August 2026 QSM Tech Summit."
+          loading="lazy"
+        />
         <figcaption><em>The Hyper team at our August 2026 QSM Tech Summit.</em></figcaption>
       </figure>
     </section>
