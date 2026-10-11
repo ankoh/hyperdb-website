@@ -29,13 +29,13 @@
   --operator-orders: light-dark(hsl(203.809524 61.165049% 40.392157%), hsl(204.356436 75.93985% 73.921569%));
   --operator-orders-bg: light-dark(hsl(205.714286 67.741935% 93.921569%), hsl(208 29.411765% 20%));
 
-  --gazelle-outline: light-dark(hsl(0 0% 70%), hsl(0 0% 10%));
+  --gazelle-outline: light-dark(hsl(0 0% 60%), hsl(0 0% 10%));
   --gazelle-fill-color: light-dark(hsl(0 0% 98%), hsl(0 0% 45%));
-  --gazelle-fill-shade: light-dark(hsl(0 0% 90%), hsl(0 0% 34%));
-  --gazelle-accent: light-dark(hsl(0 0% 38%), hsl(0 0% 60%));
+  --gazelle-fill-shade: light-dark(hsl(0 0% 80%), hsl(0 0% 28%));
+  --gazelle-accent: light-dark(hsl(0 0% 98%), hsl(0 0% 60%));
   --hyper-disk-top: light-dark(hsl(223.146067 53.939394% 32.352941%), hsl(0 0% 58%));
-  --hyper-disk-middle: light-dark(hsl(19.899497 81.22449% 51.960784%), hsl(0 0% 52%));
-  --hyper-disk-bottom: light-dark(hsl(92.25 44.444444% 35.294118%), hsl(0 0% 48%));
+  --hyper-disk-middle: light-dark(hsl(19.899497 81.22449% 51.960784%), hsl(0 0% 48%));
+  --hyper-disk-bottom: light-dark(hsl(92.25 44.444444% 35.294118%), hsl(0 0% 38%));
   --hyper-cap: light-dark(hsl(0 0% 18.823529%), hsl(0 0% 34%));
   --hyper-shade: light-dark(hsl(0 0% 0% / 0.10), hsl(0 0% 0% / 0.09));
   --hyper-highlight: light-dark(hsl(0 0% 100% / 0.08), hsl(0 0% 100% / 0.04));
