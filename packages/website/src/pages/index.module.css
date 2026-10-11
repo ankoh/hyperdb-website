@@ -350,6 +350,15 @@
   max-width: 510px;
 }
 
+.governance_panel {
+  padding-block: 2rem;
+  background: radial-gradient(ellipse closest-side, var(--soft-surface-end) 25%, transparent 100%);
+}
+
+.governance_panel :global(figure) {
+  background: none;
+}
+
 .animation_panel :global([data-federation-animation]),
 :global([data-federation-animation]) + .animation_caption {
   max-width: 450px;

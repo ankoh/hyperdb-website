@@ -4,6 +4,7 @@ import LandingUsecaseCarousel from '../components/landing_usecase_carousel.astro
 import FederationAnimation from '../components/federation_animation.astro';
 import JitAnimation from '../components/jit_animation.astro';
 import QueryUnnestingAnimation from '../components/query_unnesting_animation.astro';
+import GovernanceAnimation from '../components/governance_animation.astro';
 import PaperReference from '../components/paper_reference.astro';
 import BlogReference from '../components/blog_reference.astro';
 import VideoReference from '../components/video_reference.astro';
@@ -286,6 +287,9 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                     </li>
                 </ul>
             </div>
+        </div>
+        <div class:list={[styles.animation_panel, styles.governance_panel]}>
+            <GovernanceAnimation />
         </div>
     </section>
 
