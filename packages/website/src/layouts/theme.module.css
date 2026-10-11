@@ -10,6 +10,7 @@
   --text-muted: light-dark(hsl(0 0% 39.607843%), hsl(0 0% 72.156863%));
   --border: light-dark(hsl(0 0% 77.647059%), hsl(0 0% 39.607843%));
   --card-border: light-dark(hsl(0 0% 89.803922%), hsl(0 0% 23.921569%));
+  --active-border: light-dark(var(--action-bg), hsl(0 0% 100%));
   --soft-surface-start: light-dark(hsl(0 0% 98.823529% / 0.8), hsl(0 0% 13.72549% / 0.8));
   --soft-surface-end: light-dark(hsl(0 0% 98.039216% / 0.8), hsl(0 0% 12.941176% / 0.8));
   --soft-surface-border: light-dark(hsl(0 0% 0% / 0.08), hsl(0 0% 100% / 0.08));

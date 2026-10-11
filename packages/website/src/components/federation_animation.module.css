@@ -239,12 +239,12 @@
 
 @keyframes hyper_activity {
   0%, 14%, 26%, 66%, 78%, 100% { stroke: var(--card-border); stroke-width: 1; }
-  16%, 24%, 68%, 76% { stroke: var(--text); stroke-width: 1.5; }
+  16%, 24%, 68%, 76% { stroke: var(--active-border); stroke-width: 2; }
 }
 
 @keyframes source_activity {
   0%, 40%, 54%, 100% { stroke: var(--card-border); stroke-width: 1; }
-  42%, 52% { stroke: var(--text); stroke-width: 1.5; }
+  42%, 52% { stroke: var(--active-border); stroke-width: 2; }
 }
 
 @media (prefers-reduced-motion: reduce) {
