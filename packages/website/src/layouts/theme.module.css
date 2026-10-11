@@ -18,11 +18,12 @@
   --soft-surface-shadow: light-dark(hsl(0 0% 0% / 0.035), hsl(0 0% 0% / 0.16));
   --soft-surface-highlight: light-dark(hsl(0 0% 100% / 0.8), hsl(0 0% 100% / 0.035));
   --control-border: light-dark(hsl(0 0% 46.27451%), hsl(0 0% 57.254902%));
-  --action-bg: light-dark(hsl(218 39% 38%), hsl(0 0% 94.901961%));
+  --action-bg: light-dark(hsl(223.146067 53.939394% 32.352941%), hsl(223.146067 70% 78%));
   --action-text: light-dark(hsl(0 0% 100%), hsl(0 0% 9.019608%));
-  --primary-action-bg: light-dark(hsl(0 0% 0%), hsl(0 0% 100%));
-  --primary-action-text: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));
-  --focus: light-dark(hsl(218 67.567568% 43.529412%), hsl(216.724138 100% 77.254902%));
+  --primary-action-bg: var(--action-bg);
+  --primary-action-text: var(--action-text);
+  --link: var(--action-bg);
+  --focus: var(--action-bg);
   --operator-join: light-dark(hsl(272.673267 40.562249% 51.176471%), hsl(269.210526 66.666667% 77.647059%));
   --operator-join-bg: light-dark(hsl(270 53.333333% 94.117647%), hsl(273.913043 22.330097% 20.196078%));
   --operator-orders: light-dark(hsl(203.809524 61.165049% 40.392157%), hsl(204.356436 75.93985% 73.921569%));

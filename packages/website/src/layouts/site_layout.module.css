@@ -26,7 +26,7 @@
 }
 
 :where(.body a) {
-  color: inherit;
+  color: var(--link);
 }
 
 .body :where(a, button, select, textarea):focus-visible {
@@ -60,6 +60,7 @@
 
 .header_logo {
   display: block;
+  color: var(--text);
   max-width: 100%;
   width: auto;
   height: 24px;

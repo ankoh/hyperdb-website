@@ -32,7 +32,7 @@ export default function TrySQL({ sql }: { sql: string }) {
 
   return (
     <div className={styles.control}>
-      <button type="button" onClick={() => dialog.current?.showModal()}>Try in playground</button>
+      <button className={styles.primary_button} type="button" onClick={() => dialog.current?.showModal()}>Try in playground</button>
       <dialog ref={dialog} className={styles.dialog} aria-label="SQL playground">
         <div className={styles.heading}>
           <h2>Try SQL</h2>
@@ -40,7 +40,7 @@ export default function TrySQL({ sql }: { sql: string }) {
         </div>
         <label htmlFor={queryId}>SQL query</label>
         <textarea id={queryId} value={query} onChange={(event) => setQuery(event.target.value)} rows={6} spellCheck={false} />
-        <button type="button" onClick={run} disabled={running || !query.trim()}>Run query</button>
+        <button className={styles.primary_button} type="button" onClick={run} disabled={running || !query.trim()}>Run query</button>
         <p role="status">{status}</p>
         {result && <div className={styles.results}>
           <table>

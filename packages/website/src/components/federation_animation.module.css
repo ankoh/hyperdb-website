@@ -89,7 +89,7 @@
 }
 
 .packet {
-  fill: var(--primary-action-bg);
+  fill: var(--text);
   offset-rotate: 0deg;
 }
 
@@ -239,12 +239,12 @@
 
 @keyframes hyper_activity {
   0%, 14%, 26%, 66%, 78%, 100% { stroke: var(--card-border); stroke-width: 1; }
-  16%, 24%, 68%, 76% { stroke: var(--primary-action-bg); stroke-width: 1.5; }
+  16%, 24%, 68%, 76% { stroke: var(--text); stroke-width: 1.5; }
 }
 
 @keyframes source_activity {
   0%, 40%, 54%, 100% { stroke: var(--card-border); stroke-width: 1; }
-  42%, 52% { stroke: var(--primary-action-bg); stroke-width: 1.5; }
+  42%, 52% { stroke: var(--text); stroke-width: 1.5; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,6 +1,8 @@
 .control { padding: 0.9rem 1.25rem; }
 .control button, .dialog button { cursor: pointer; padding: 0.6rem 0.9rem; border: 1px solid var(--control-border); border-radius: 4px; color: var(--text); background: var(--surface-bg); font: inherit; }
 .control button:hover, .dialog button:enabled:hover { background: var(--subtle-bg); }
+.control .primary_button, .dialog .primary_button:enabled { border-color: var(--action-bg); color: var(--action-text); background: var(--action-bg); }
+.primary_button:enabled:hover { text-decoration: underline; text-underline-offset: 0.2em; }
 .dialog button:disabled { cursor: not-allowed; color: var(--text-muted); }
 .dialog { box-sizing: border-box; width: min(42rem, calc(100% - 2rem)); max-height: calc(100% - 2rem); border: 1px solid var(--card-border); border-radius: 12px; padding: 1.5rem; color: var(--text); background: var(--surface-bg); }
 .dialog::backdrop { background: var(--backdrop); }
