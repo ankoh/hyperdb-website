@@ -124,15 +124,17 @@
 .orders_edge, .customers_edge {
   /* Mirror each branch around the fixed join port, following its moving input. */
   transform-box: view-box;
-  transform-origin: 218px 64px;
+  transform-origin: 218px 62px;
   transform: scaleX(-1);
 }
 
 .orders_edge {
+  stroke-width: 5;
   animation: swap_orders_edge var(--cycle) ease-in-out infinite;
 }
 
 .customers_edge {
+  stroke-width: 1.5;
   animation: swap_customers_edge var(--cycle) ease-in-out infinite;
 }
 
