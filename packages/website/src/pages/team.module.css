@@ -50,6 +50,8 @@
 .content p {
   color: var(--text-muted);
   line-height: 1.7;
+  text-align: justify;
+  hyphens: auto;
 }
 .content .eyebrow {
   margin: 0 0 0.75rem;

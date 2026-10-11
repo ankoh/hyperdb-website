@@ -317,6 +317,8 @@
 .section_copy > p {
   margin: 0 0 1.5rem;
   font-size: 1.0625rem;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .animation_panel {
