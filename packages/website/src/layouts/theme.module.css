@@ -1,4 +1,5 @@
 .root {
+  scrollbar-gutter: stable;
   color-scheme: light dark;
   --content-width: 1150px;
   --header-bg: light-dark(hsl(0 0% 100% / 0.9), hsl(0 0% 9.019608% / 0.9));
