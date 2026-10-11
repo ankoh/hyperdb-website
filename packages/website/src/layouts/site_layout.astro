@@ -34,7 +34,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={faviconUrl} type="image/svg+xml" />
     <slot name="head" />
-    <title>HyperDB</title>
+    <title>{title}</title>
   </head>
   <body class:list={[styles.body, { [styles.under_header]: underHeader }]}>
     <header class={styles.header}>
