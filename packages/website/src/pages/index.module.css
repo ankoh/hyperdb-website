@@ -366,6 +366,8 @@
 }
 
 .install_panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   min-width: 0;
   border: 1px solid var(--soft-surface-border);
   border-radius: 1rem;
@@ -431,7 +433,9 @@
 }
 
 .install_content {
-  display: none;
+  /* Inactive panes still size the shared row, preventing tab-switch layout shifts. */
+  grid-area: 2 / 1;
+  visibility: hidden;
   box-sizing: border-box;
   min-height: 9rem;
   padding: 1.5rem;
@@ -441,7 +445,7 @@
 .install_panel:has(input[value='cpp']:checked) .cpp_install,
 .install_panel:has(input[value='java']:checked) .java_install,
 .install_panel:has(input[value='browser']:checked) .browser_install {
-  display: block;
+  visibility: visible;
 }
 
 .install_label {
