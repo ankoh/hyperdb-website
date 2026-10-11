@@ -1,0 +1,22 @@
+---
+import styles from './paper_reference.module.css';
+
+interface Props {
+  href: string;
+  title: string;
+}
+
+const { href, title } = Astro.props;
+---
+
+<a class={styles.reference} href={href} target="_blank" rel="noopener noreferrer">
+  <span class={styles.document} aria-hidden="true">
+    <svg viewBox="0 0 16 16" focusable="false">
+      <path d="M3 2h10v12H3V2Zm3 3 5 3-5 3V5Z" />
+    </svg>
+  </span>
+  <span class={styles.copy}>
+    <span class={styles.title}>{title}</span>
+    <span class={styles.venue}>Video</span>
+  </span>
+</a>
