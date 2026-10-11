@@ -1,0 +1,36 @@
+.impress {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2rem 0 4rem;
+  padding-inline: max(1.5rem, calc((100% - var(--content-width)) / 2));
+  line-height: 1.7;
+  font-size: 0.9375rem;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 36rem) {
+  .impress { padding-inline: 1rem; }
+}
+
+.impress h1 {
+  margin: 0 0 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.impress section { margin-block: 1.5rem; }
+.impress h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.impress address { font-style: normal; }
+.impress p { margin: 0; }
+.home_link {
+  display: inline-block;
+  margin-top: 1rem;
+  text-underline-offset: 0.2em;
+}

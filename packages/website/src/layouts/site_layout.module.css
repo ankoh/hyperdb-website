@@ -67,9 +67,20 @@
 }
 
 .footer {
-  border-top: 1px solid var(--border);
+  justify-content: flex-end;
+  padding-block: 2rem;
   border-bottom: 0;
-  font-size: 0.85rem;
+  font-size: 1rem;
+}
+
+.footer a {
+  color: color-mix(in srgb, var(--text-muted) 90%, var(--page-bg));
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: var(--text);
+  text-decoration: underline;
 }
 
 .main {

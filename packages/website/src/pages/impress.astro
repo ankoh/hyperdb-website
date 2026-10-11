@@ -1,0 +1,47 @@
+---
+import SiteLayout from '../layouts/site_layout.astro';
+import styles from './impress.module.css';
+---
+
+<SiteLayout title="Impressum" description="Impressum und Kontaktinformationen der salesforce.com Germany GmbH." fullWidth>
+  <article class={styles.impress} lang="de">
+    <h1>Impressum und Kontakt</h1>
+
+    <section aria-labelledby="operator-heading">
+      <h2 id="operator-heading">salesforce.com Germany GmbH</h2>
+      <address>
+        Erika-Mann-Str. 31-37<br />
+        80636 M&uuml;nchen<br />
+        Deutschland
+      </address>
+    </section>
+
+    <section aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Kontakt</h2>
+      <p>Email: <a href="mailto:info-de@salesforce.com">info-de@salesforce.com</a></p>
+    </section>
+
+    <section aria-labelledby="directors-heading">
+      <h2 id="directors-heading">Gesch&auml;ftsf&uuml;hrer</h2>
+      <p>Rebecca Costelloe<br />St&eacute;phane Jacottet<br />Bradley Vollmer</p>
+    </section>
+
+    <section aria-labelledby="supervisory-heading">
+      <h2 id="supervisory-heading">Vorsitzende des Aufsichtsrats</h2>
+      <p>Nina Keim</p>
+    </section>
+
+    <section aria-labelledby="registration-heading">
+      <h2 id="registration-heading">Sitz der Gesellschaft</h2>
+      <p>M&uuml;nchen, Registergericht M&uuml;nchen HRB 158525</p>
+    </section>
+
+    <section aria-labelledby="vat-heading">
+      <h2 id="vat-heading">Umsatzsteuer-Identifikationsnummer</h2>
+      <p>DE 245335078</p>
+    </section>
+
+    <p><a href="https://www.salesforce.com/de/company/impressum/">Salesforce Impressum und Kontakt</a></p>
+    <a class={styles.home_link} href="/">Zur Startseite</a>
+  </article>
+</SiteLayout>

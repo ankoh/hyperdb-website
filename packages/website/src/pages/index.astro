@@ -13,9 +13,6 @@ import styles from './index.module.css';
 import GazelleArtwork from '../assets/gazelle_fill.svg';
 import HyperArtwork from '../assets/hyper_hero.svg';
 import symbolAtlasUrl from 'hyperdb-symbol-atlas';
-import { Code } from 'astro:components';
-
-const documentation = 'https://tableau.github.io/hyper-db/docs';
 ---
 
 <SiteLayout description="Hyper is a fast database for analytical queries." fullWidth>
@@ -333,31 +330,4 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
         </div>
     </section>
 
-    <section class:list={[styles.feature_section, styles.install_section]} id="install" aria-label="Install Hyper">
-        <div class={styles.install_panel}>
-            <fieldset class={styles.install_options} aria-label="Choose your environment">
-                <div class={styles.environment_choices}>
-                    <label><input type="radio" name="environment" value="python" checked /><span>Python</span></label>
-                    <label><input type="radio" name="environment" value="cpp" /><span>C++</span></label>
-                    <label><input type="radio" name="environment" value="java" /><span>Java</span></label>
-                    <label><input type="radio" name="environment" value="browser" /><span>Browser</span></label>
-                </div>
-            </fieldset>
-            <div class:list={[styles.install_content, styles.python_install]}>
-                <Code code="pip install tableauhyperapi" lang="bash" theme="css-variables" />
-                <a class={styles.text_link} href={`${documentation}/installation/?client-language=python#language-specific-requirements`} target="_blank" rel="noopener noreferrer">Python setup instructions<span aria-hidden="true">&rarr;</span></a>
-            </div>
-            <div class:list={[styles.install_content, styles.cpp_install]}>
-                <a class={styles.text_link} href={`${documentation}/releases#download`} target="_blank" rel="noopener noreferrer">Download the C++ package<span aria-hidden="true">&rarr;</span></a>
-                <a class={styles.text_link} href={`${documentation}/installation/?client-language=cxx#language-specific-requirements`} target="_blank" rel="noopener noreferrer">C++ setup instructions<span aria-hidden="true">&rarr;</span></a>
-            </div>
-            <div class:list={[styles.install_content, styles.java_install]}>
-                <a class={styles.text_link} href={`${documentation}/releases#download`} target="_blank" rel="noopener noreferrer">Download the Java package<span aria-hidden="true">&rarr;</span></a>
-                <a class={styles.text_link} href={`${documentation}/installation/?client-language=java#language-specific-requirements`} target="_blank" rel="noopener noreferrer">Java setup instructions<span aria-hidden="true">&rarr;</span></a>
-            </div>
-            <div class:list={[styles.install_content, styles.browser_install]}>
-                <a class={styles.text_link} href={`https://hyperdb.sh`} target="_blank" rel="noopener noreferrer">Try it in the browser<span aria-hidden="true">&rarr;</span></a>
-            </div>
-        </div>
-    </section>
 </SiteLayout>
