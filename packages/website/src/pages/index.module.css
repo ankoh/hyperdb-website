@@ -207,6 +207,7 @@
   align-self: center;
   width: 32%;
   aspect-ratio: 3 / 2;
+  transform: translateX(7%);
   color: color-mix(in srgb, var(--text-muted) 35%, var(--subtle-bg));
   mask-image: linear-gradient(to bottom, currentColor 45%, transparent 100%);
 }
@@ -526,7 +527,6 @@
     width: 100%;
     max-width: 12.5rem;
     max-height: none;
-    transform: none;
   }
 
   .install_options, .install_content {
