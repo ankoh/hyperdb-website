@@ -5,19 +5,24 @@ import styles from './theme_preference.module.css';
 <button
   class={styles.toggle}
   type="button"
-  aria-label="Dark theme"
-  aria-pressed="false"
+  role="switch"
+  aria-label="Dark mode"
+  aria-checked="false"
   title="Switch to dark theme"
   data-theme-preference
   disabled
 >
-  <svg class={styles.sun} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false">
-    <circle cx="12" cy="12" r="4" />
-    <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
-  </svg>
-  <svg class={styles.moon} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-    <path d="M20.9 13a9 9 0 0 1-9.9-9.9A9 9 0 1 0 20.9 13Z" />
-  </svg>
+  <span class={styles.track} aria-hidden="true">
+    <span class={styles.thumb}>
+      <svg class={styles.sun} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" focusable="false">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+      </svg>
+      <svg class={styles.moon} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+        <path d="M20.9 13a9 9 0 0 1-9.9-9.9A9 9 0 1 0 20.9 13Z" />
+      </svg>
+    </span>
+  </span>
 </button>
 
 <script>
@@ -27,14 +32,14 @@ import styles from './theme_preference.module.css';
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
     const syncToggle = () => {
       const dark = root.dataset.theme === 'dark' || (root.dataset.theme !== 'light' && systemTheme.matches);
-      toggle.setAttribute('aria-pressed', String(dark));
+      toggle.setAttribute('aria-checked', String(dark));
       toggle.title = `Switch to ${dark ? 'light' : 'dark'} theme`;
     };
     syncToggle();
     toggle.disabled = false;
 
     toggle.addEventListener('click', () => {
-      const preference = toggle.getAttribute('aria-pressed') === 'true' ? 'light' : 'dark';
+      const preference = toggle.getAttribute('aria-checked') === 'true' ? 'light' : 'dark';
       root.dataset.theme = preference;
       syncToggle();
       try {

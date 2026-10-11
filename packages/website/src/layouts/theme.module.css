@@ -24,6 +24,8 @@
   --primary-action-text: var(--action-text);
   --link: var(--action-bg);
   --focus: var(--action-bg);
+  --switch-bg: light-dark(hsl(223.146067 53.939394% 32.352941%), hsl(0 0% 28%));
+  --switch-thumb: light-dark(hsl(0 0% 100%), hsl(0 0% 100%));
   --operator-join: light-dark(hsl(272.673267 40.562249% 51.176471%), hsl(269.210526 66.666667% 77.647059%));
   --operator-join-bg: light-dark(hsl(270 53.333333% 94.117647%), hsl(273.913043 22.330097% 20.196078%));
   --operator-orders: light-dark(hsl(203.809524 61.165049% 40.392157%), hsl(204.356436 75.93985% 73.921569%));

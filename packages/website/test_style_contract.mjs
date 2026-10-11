@@ -91,14 +91,15 @@ test('static pages link their CSS Module stylesheets', () => {
   }
 });
 
-test('theme toggle buttons have accessible names and pressed states', () => {
+test('theme switches have accessible names and checked states', () => {
   for (const file of htmlPages) {
     const route = relative(pages, file);
     const html = readFileSync(file, 'utf8');
     for (const [toggle] of html.matchAll(/<button\b[^>]*data-theme-preference[^>]*>/g)) {
       assert.match(toggle, /type="button"/, `${route}: theme toggle should not submit forms`);
       assert.match(toggle, /aria-label="[^"]*[^\s"][^"]*"/, `${route}: theme toggle needs an accessible name`);
-      assert.match(toggle, /aria-pressed="(?:true|false)"/, `${route}: theme toggle needs a pressed state`);
+      assert.match(toggle, /role="switch"/, `${route}: theme toggle should expose switch semantics`);
+      assert.match(toggle, /aria-checked="(?:true|false)"/, `${route}: theme switch needs a checked state`);
     }
   }
 });
