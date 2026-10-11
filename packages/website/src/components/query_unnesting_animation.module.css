@@ -2,9 +2,7 @@
   width: 100%;
   max-width: 460px;
   margin: 0;
-  border: 1px solid var(--card-border);
-  border-radius: 0.375rem;
-  background: var(--subtle-bg);
+  background: radial-gradient(ellipse closest-side, var(--soft-surface-end) 25%, transparent 100%);
   overflow: hidden;
 }
 

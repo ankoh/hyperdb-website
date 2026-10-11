@@ -199,7 +199,7 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                 </ul>
             </div>
         </div>
-        <div class={styles.animation_panel}>
+        <div class:list={[styles.animation_panel, styles.unnesting_panel]}>
             <QueryUnnestingAnimation />
             <figcaption class={styles.animation_caption}>Hyper implements advanced query optimization techniques like this unnesting of arbitrary queries to eliminate dependent joins.</figcaption>
         </div>
