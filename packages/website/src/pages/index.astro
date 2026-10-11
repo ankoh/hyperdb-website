@@ -5,6 +5,7 @@ import FederationAnimation from '../components/federation_animation.astro';
 import JitAnimation from '../components/jit_animation.astro';
 import QueryUnnestingAnimation from '../components/query_unnesting_animation.astro';
 import GovernanceAnimation from '../components/governance_animation.astro';
+import SqlInstrumentationAnimation from '../components/sql_instrumentation_animation.astro';
 import PaperReference from '../components/paper_reference.astro';
 import BlogReference from '../components/blog_reference.astro';
 import VideoReference from '../components/video_reference.astro';
@@ -291,6 +292,7 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
     <section class={styles.feature_section} id="sql" aria-labelledby="sql-heading">
         <div class={styles.section_copy}>
             <h2 id="sql-heading">Embracing SQL</h2>
+            <p>Hyper cares about SQL semantics, offering tools that navigate the complexities of relational algebra. Beyond handling interactive analytics for Salesforce, Hyper is also an optimizer for Spark and a SQL instrumentation tool for apps and agents.</p>
             <div class={styles.papers}>
                 <h3>Selected documentation:</h3>
                 <ul>
@@ -324,6 +326,10 @@ const documentation = 'https://tableau.github.io/hyper-db/docs';
                     </li>
                 </ul>
             </div>
+        </div>
+        <div class={styles.animation_panel}>
+            <SqlInstrumentationAnimation />
+            <p class={styles.animation_caption}>One query, many perspectives: Hyper provides SQL instrumentation and transpilation for apps, agents and engines at Salesforce.</p>
         </div>
     </section>
 

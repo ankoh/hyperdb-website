@@ -4,6 +4,7 @@ import FederationAnimation from '../components/federation_animation.astro';
 import JitAnimation from '../components/jit_animation.astro';
 import QueryUnnestingAnimation from '../components/query_unnesting_animation.astro';
 import GovernanceAnimation from '../components/governance_animation.astro';
+import SqlInstrumentationAnimation from '../components/sql_instrumentation_animation.astro';
 import styles from './experiments.module.css';
 ---
 
@@ -50,6 +51,15 @@ import styles from './experiments.module.css';
         </div>
       </header>
       <GovernanceAnimation />
+    </section>
+    <section id="embracing-sql" class={styles.experiment} aria-labelledby="sql-heading">
+      <header class={styles.experiment_heading}>
+        <div>
+          <p class={styles.eyebrow}>Experiment 05</p>
+          <h2 id="sql-heading">Embracing SQL</h2>
+        </div>
+      </header>
+      <SqlInstrumentationAnimation />
     </section>
   </div>
 </SiteLayout>
