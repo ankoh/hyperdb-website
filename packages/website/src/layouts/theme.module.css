@@ -20,7 +20,7 @@
   --control-border: light-dark(hsl(0 0% 46.27451%), hsl(0 0% 57.254902%));
   --action-bg: light-dark(hsl(223.146067 53.939394% 32.352941%), hsl(223.146067 70% 78%));
   --action-text: light-dark(hsl(0 0% 100%), hsl(0 0% 9.019608%));
-  --primary-action-bg: var(--action-bg);
+  --primary-action-bg: light-dark(var(--action-bg), hsl(0 0% 100%));
   --primary-action-text: var(--action-text);
   --link: var(--action-bg);
   --focus: var(--action-bg);
@@ -33,10 +33,10 @@
   --gazelle-fill-color: light-dark(hsl(0 0% 98%), hsl(0 0% 45%));
   --gazelle-fill-shade: light-dark(hsl(0 0% 90%), hsl(0 0% 34%));
   --gazelle-accent: light-dark(hsl(0 0% 38%), hsl(0 0% 60%));
-  --hyper-disk-top: light-dark(hsl(223.146067 53.939394% 32.352941%), hsl(0 0% 38%));
-  --hyper-disk-middle: light-dark(hsl(19.899497 81.22449% 51.960784%), hsl(0 0% 32%));
-  --hyper-disk-bottom: light-dark(hsl(92.25 44.444444% 35.294118%), hsl(0 0% 28%));
-  --hyper-cap: light-dark(hsl(0 0% 18.823529%), hsl(0 0% 28%));
+  --hyper-disk-top: light-dark(hsl(223.146067 53.939394% 32.352941%), hsl(0 0% 58%));
+  --hyper-disk-middle: light-dark(hsl(19.899497 81.22449% 51.960784%), hsl(0 0% 52%));
+  --hyper-disk-bottom: light-dark(hsl(92.25 44.444444% 35.294118%), hsl(0 0% 48%));
+  --hyper-cap: light-dark(hsl(0 0% 18.823529%), hsl(0 0% 34%));
   --hyper-shade: light-dark(hsl(0 0% 0% / 0.10), hsl(0 0% 0% / 0.09));
   --hyper-highlight: light-dark(hsl(0 0% 100% / 0.08), hsl(0 0% 100% / 0.04));
 
