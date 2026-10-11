@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="packages/website/src/assets/hyper_banner.svg" width="300" alt="HyperDB">
+  <img src="packages/website/src/assets/hyper_banner.svg" width="240" alt="HyperDB">
 </p>
 
 ## Building
