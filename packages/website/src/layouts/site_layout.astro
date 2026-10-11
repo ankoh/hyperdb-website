@@ -42,9 +42,25 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           <use href={`${symbolAtlasUrl}#hyper_banner`} />
         </svg>
       </a>
+      <nav class={styles.navigation} aria-label="Main navigation">
+        <a href="/team/" aria-current={Astro.url.pathname.replace(/\/$/, '') === '/team' ? 'page' : undefined}>Team</a>
+      </nav>
       <div class={styles.header_actions}>
-        <!-- <nav aria-label="Main navigation"><a href="/docs/hello-world/">Docs</a></nav> -->
-        <ThemePreference />
+        <div class={styles.button_group} role="group" aria-label="Get started with Hyper">
+        <a class={styles.get_hyper} href="https://tableau.github.io/hyper-db/docs/installation" target="_blank" rel="noopener noreferrer">
+          <svg class={styles.action_icon} viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <use href={`${symbolAtlasUrl}#download_16`} />
+          </svg>
+          <span class={styles.action_label}>Install</span><span class={styles.new_tab_hint}> (opens in a new tab)</span>
+        </a>
+        <a class={styles.browser_action} href="https://hyperdb.sh" target="_blank" rel="noopener noreferrer">
+          <svg class={styles.action_icon} viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+            <use href={`${symbolAtlasUrl}#paper_airplane_16`} />
+          </svg>
+          <span class={styles.action_label}>Run</span><span class={styles.new_tab_hint}> (opens in a new tab)</span>
+        </a>
+        <ThemePreference class={styles.theme_action} />
+        </div>
       </div>
     </header>
     <main class:list={[styles.main, { [styles.main_full_width]: fullWidth }]}><slot /></main>

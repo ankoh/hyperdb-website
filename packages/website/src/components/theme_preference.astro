@@ -1,27 +1,28 @@
 ---
 import styles from './theme_preference.module.css';
+import symbolAtlasUrl from 'hyperdb-symbol-atlas';
+
+interface Props { class?: string; }
+const { class: className } = Astro.props;
 ---
 
 <button
-  class={styles.toggle}
+  class:list={[styles.toggle, className]}
   type="button"
-  role="switch"
-  aria-label="Dark mode"
-  aria-checked="false"
-  title="Switch to dark theme"
+  aria-label="Dark"
+  title="Dark Mode"
   data-theme-preference
   disabled
 >
-  <span class={styles.track} aria-hidden="true">
-    <span class={styles.thumb}>
-      <svg class={styles.sun} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" focusable="false">
-        <circle cx="12" cy="12" r="4" />
-        <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+      <svg class={styles.sun} aria-hidden="true" viewBox="0 0 16 16" focusable="false">
+        <use href={`${symbolAtlasUrl}#sun_16`} />
       </svg>
-      <svg class={styles.moon} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-        <path d="M20.9 13a9 9 0 0 1-9.9-9.9A9 9 0 1 0 20.9 13Z" />
+      <svg class={styles.moon} aria-hidden="true" viewBox="0 0 16 16" focusable="false">
+        <use href={`${symbolAtlasUrl}#moon_16`} />
       </svg>
-    </span>
+  <span class={styles.label}>
+    <span class={styles.moon}>Dark</span>
+    <span class={styles.sun}>Light</span>
   </span>
 </button>
 
@@ -30,16 +31,16 @@ import styles from './theme_preference.module.css';
   if (toggle) {
     const root = document.documentElement;
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const isDark = () => root.dataset.theme === 'dark' || (root.dataset.theme !== 'light' && systemTheme.matches);
     const syncToggle = () => {
-      const dark = root.dataset.theme === 'dark' || (root.dataset.theme !== 'light' && systemTheme.matches);
-      toggle.setAttribute('aria-checked', String(dark));
-      toggle.title = `Switch to ${dark ? 'light' : 'dark'} theme`;
+      toggle.title = isDark() ? 'Light Mode' : 'Dark Mode';
+      toggle.setAttribute('aria-label', toggle.title);
     };
     syncToggle();
     toggle.disabled = false;
 
     toggle.addEventListener('click', () => {
-      const preference = toggle.getAttribute('aria-checked') === 'true' ? 'light' : 'dark';
+      const preference = isDark() ? 'light' : 'dark';
       root.dataset.theme = preference;
       syncToggle();
       try {

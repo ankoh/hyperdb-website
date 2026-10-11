@@ -48,7 +48,7 @@ genrule(
         "src/assets/snowflake.svg",
         "src/assets/tableau.svg",
         "src/assets/tableau_monochrome.svg",
-    ],
+    ] + glob(["src/assets/icons/*.svg"]),
     outs = ["dependencies/svg-symbols/symbols.generated.svg"],
     cmd = "python3 $(location generate_svg_symbols.py) --output $@ $(SRCS)",
     tools = ["generate_svg_symbols.py"],

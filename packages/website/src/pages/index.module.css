@@ -43,7 +43,7 @@
   }
 
   .hero_artwork {
-    align-self: center;
+    display: none;
   }
 }
 
@@ -77,6 +77,11 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
+}
+
+.property_grid:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
 }
 
 .property_card {
@@ -144,11 +149,7 @@
   width: 1.1rem;
   height: 1.1rem;
   margin-top: 0.1rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  fill: currentColor;
   color: var(--text-muted);
 }
 
@@ -380,10 +381,6 @@
 }
 
 @media (max-width: 54rem) {
-  .property_grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .feature_section {
     grid-template-columns: minmax(0, 1fr);
     gap: 2rem;
@@ -408,13 +405,28 @@
     padding: 1.25rem;
   }
 
+}
+
+@media (max-width: 54rem) {
   .property_grid {
-    grid-template-columns: minmax(0, 1fr);
+    display: flex;
     gap: 0.75rem;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding: 0.25rem;
+    margin-inline: -0.25rem;
   }
 
-  .wide_card {
-    grid-column: span 1;
+  .property_grid::-webkit-scrollbar { display: none; }
+
+  .property_grid > .property_card {
+    box-sizing: border-box;
+    flex: 0 0 min(88%, 24rem);
+    scroll-snap-align: start;
+    scroll-margin-inline: 0.25rem;
+    padding: 1.25rem;
   }
 
   .wide_card:has(.card_graphic) .card_copy {
@@ -427,13 +439,11 @@
   }
 
   .federation_graphic {
-    position: relative;
-    top: auto;
-    right: auto;
-    align-self: flex-end;
-    width: 100%;
-    max-width: 12.5rem;
-    max-height: none;
+    display: none;
   }
 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .property_grid { scroll-behavior: auto; }
 }

@@ -1,66 +1,25 @@
 .toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  min-height: 2.75rem;
-  padding: 0;
-  border: 0;
-  border-radius: 0.5rem;
-  color: var(--text);
-  background: transparent;
-  font: inherit;
+  flex: none;
   cursor: pointer;
 }
 
-.track {
-  box-sizing: border-box;
-  flex: none;
-  width: 3.25rem;
-  height: 1.875rem;
-  padding: 2px;
-  border: 1px solid var(--control-border);
-  border-radius: 2rem;
-  background: var(--switch-bg);
-  transition: background-color 180ms ease;
+.toggle svg {
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
 }
 
-.thumb {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  background: var(--switch-thumb);
-  color: var(--switch-bg);
-  box-shadow: 0 1px 3px var(--soft-surface-shadow);
-  transition: transform 180ms ease;
+.sun { display: none; }
+:global(:root[data-theme='dark']) .sun { display: block; }
+:global(:root[data-theme='dark']) .moon { display: none; }
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme='light'])) .sun { display: block; }
+  :global(:root:not([data-theme='light'])) .moon { display: none; }
 }
 
-.toggle[aria-checked='true'] .thumb {
-  transform: translateX(1.375rem);
-}
+.toggle:disabled { cursor: default; }
 
-.thumb svg {
-  width: 0.9375rem;
-  height: 0.9375rem;
-}
-
-.moon, .toggle[aria-checked='true'] .sun {
-  display: none;
-}
-
-.toggle[aria-checked='true'] .moon {
-  display: block;
-}
-
-.toggle:disabled {
-  cursor: default;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .track, .thumb {
-    transition: none;
-  }
+@media (max-width: 54rem) {
+  .label { display: none; }
 }
