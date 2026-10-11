@@ -167,6 +167,10 @@
   font-size: 0.9375rem;
 }
 
+.card_copy .text_link:hover {
+  text-decoration: none;
+}
+
 .text_link {
   display: inline-flex;
   align-items: center;
