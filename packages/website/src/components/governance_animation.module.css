@@ -37,6 +37,7 @@
 .code {
   fill: var(--text);
   font: 12px 'Geist Mono', monospace;
+  font-variant-ligatures: none;
 }
 .keyword { fill: var(--syntax-keyword); }
 .value { fill: var(--syntax-string); }
@@ -46,9 +47,16 @@
   font-variant-ligatures: none;
 }
 
+.gdpr > rect { animation: highlight_gdpr var(--cycle) steps(1, end) infinite; }
 .dataspace > rect { animation: highlight_dataspace var(--cycle) steps(1, end) infinite; }
 .tenant > rect { animation: highlight_tenant var(--cycle) steps(1, end) infinite; }
 .output { animation: center_output var(--cycle) steps(1, end) infinite; }
+.gdpr_highlight {
+  fill: color-mix(in srgb, var(--syntax-string) 12%, var(--surface-bg));
+  stroke: var(--syntax-string);
+  opacity: 0;
+  animation: highlight_gdpr_predicate var(--cycle) steps(1, end) infinite;
+}
 .dataspace_highlight {
   fill: var(--operator-orders-bg);
   stroke: var(--operator-orders);
@@ -69,6 +77,10 @@
   visibility: hidden;
   animation: insert_tenant var(--cycle) steps(1, end) infinite;
 }
+.dataspace_predicate {
+  visibility: hidden;
+  animation: insert_dataspace var(--cycle) steps(1, end) infinite;
+}
 .policy_end { animation: move_policy_end var(--cycle) steps(1, end) infinite; }
 .query {
   transform: translateY(52px);
@@ -80,68 +92,85 @@
   animation: insert_policy var(--cycle) steps(1, end) infinite;
 }
 
+@keyframes highlight_gdpr {
+  0%, 38%, 100% { fill: var(--surface-bg); stroke: var(--card-border); }
+  18% { fill: color-mix(in srgb, var(--syntax-string) 12%, var(--surface-bg)); stroke: var(--syntax-string); }
+}
 @keyframes highlight_dataspace {
-  0%, 50%, 100% { fill: var(--surface-bg); stroke: var(--card-border); }
-  28% { fill: var(--operator-orders-bg); stroke: var(--operator-orders); }
+  0%, 60%, 100% { fill: var(--surface-bg); stroke: var(--card-border); }
+  42% { fill: var(--operator-orders-bg); stroke: var(--operator-orders); }
 }
 @keyframes highlight_tenant {
   0%, 94%, 100% { fill: var(--surface-bg); stroke: var(--card-border); }
-  54% { fill: var(--operator-join-bg); stroke: var(--operator-join); }
+  64% { fill: var(--operator-join-bg); stroke: var(--operator-join); }
+}
+@keyframes highlight_gdpr_predicate {
+  0%, 38%, 100% { opacity: 0; }
+  18% { opacity: 1; }
 }
 @keyframes highlight_dataspace_predicate {
-  0%, 50%, 100% { opacity: 0; }
-  28% { opacity: 1; }
+  0%, 60%, 100% { opacity: 0; }
+  42% { opacity: 1; }
 }
 @keyframes highlight_tenant_predicate {
   0%, 94%, 100% { opacity: 0; }
-  54% { opacity: 1; }
+  64% { opacity: 1; }
 }
 @keyframes insert_policy {
   0%, 94%, 100% { visibility: hidden; }
-  34% { visibility: visible; }
+  22% { visibility: visible; }
+}
+@keyframes insert_dataspace {
+  0%, 94%, 100% { visibility: hidden; }
+  46% { visibility: visible; }
 }
 @keyframes insert_tenant {
   0%, 94%, 100% { visibility: hidden; }
-  60% { visibility: visible; }
+  68% { visibility: visible; }
 }
 @keyframes move_policy_end {
   0%, 94%, 100% { transform: translateY(0); }
-  60% { transform: translateY(18px); }
+  46% { transform: translateY(18px); }
+  68% { transform: translateY(36px); }
 }
 @keyframes move_query {
   0%, 94%, 100% { transform: translateY(52px); }
-  34% { transform: translateY(72px); }
-  60% { transform: translateY(90px); }
+  22% { transform: translateY(90px); }
+  46% { transform: translateY(108px); }
+  68% { transform: translateY(126px); }
 }
 @keyframes center_output {
   0%, 94%, 100% { transform: translateY(0); }
-  34% { transform: translateY(23px); }
-  60% { transform: translateY(14px); }
+  22% { transform: translateY(14px); }
+  46% { transform: translateY(5px); }
+  68% { transform: translateY(-4px); }
 }
 @keyframes original_relation {
   0%, 94%, 100% { visibility: visible; }
-  34% { visibility: hidden; }
+  22% { visibility: hidden; }
 }
 
-/* Inspection shows both predicates without waiting for the timeline. */
+/* Inspection shows all governance clauses without waiting for the timeline. */
 .figure:is(:hover, :focus-within) .diagram * { animation: none; }
-.figure:is(:hover, :focus-within) :is(.policy, .tenant_predicate, .governed_relation) { visibility: visible; }
-.figure:is(:hover, :focus-within) .policy_end { transform: translateY(18px); }
-.figure:is(:hover, :focus-within) .query { transform: translateY(90px); }
-.figure:is(:hover, :focus-within) .output { transform: translateY(14px); }
+.figure:is(:hover, :focus-within) :is(.policy, .dataspace_predicate, .tenant_predicate, .governed_relation) { visibility: visible; }
+.figure:is(:hover, :focus-within) .policy_end { transform: translateY(36px); }
+.figure:is(:hover, :focus-within) .query { transform: translateY(126px); }
+.figure:is(:hover, :focus-within) .output { transform: translateY(-4px); }
 .figure:is(:hover, :focus-within) .original_relation { visibility: hidden; }
+.figure:is(:hover, :focus-within) .gdpr > rect { fill: color-mix(in srgb, var(--syntax-string) 12%, var(--surface-bg)); stroke: var(--syntax-string); }
 .figure:is(:hover, :focus-within) .dataspace > rect { fill: var(--operator-orders-bg); stroke: var(--operator-orders); }
 .figure:is(:hover, :focus-within) .tenant > rect { fill: var(--operator-join-bg); stroke: var(--operator-join); }
-.figure:is(:hover, :focus-within) :is(.dataspace_highlight, .tenant_highlight) { opacity: 1; }
+.figure:is(:hover, :focus-within) :is(.gdpr_highlight, .dataspace_highlight, .tenant_highlight) { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   .diagram * { animation: none !important; }
-  .policy, .tenant_predicate, .governed_relation { visibility: visible; }
-  .policy_end { transform: translateY(18px); }
-  .query { transform: translateY(90px); }
-  .output { transform: translateY(14px); }
+  .policy, .dataspace_predicate, .tenant_predicate, .governed_relation { visibility: visible; }
+  .policy_end { transform: translateY(36px); }
+  .query { transform: translateY(126px); }
+  .output { transform: translateY(-4px); }
+  .gdpr > rect { fill: color-mix(in srgb, var(--syntax-string) 12%, var(--surface-bg)); stroke: var(--syntax-string); }
   .original_relation { visibility: hidden; }
   .dataspace > rect { fill: var(--operator-orders-bg); stroke: var(--operator-orders); }
   .tenant > rect { fill: var(--operator-join-bg); stroke: var(--operator-join); }
-  .dataspace_highlight, .tenant_highlight { opacity: 1; }
+  .gdpr_highlight, .dataspace_highlight, .tenant_highlight { opacity: 1; }
 }

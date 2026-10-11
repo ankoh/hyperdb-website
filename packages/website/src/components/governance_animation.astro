@@ -5,20 +5,24 @@ import timing from './animation_timing.module.css';
 
 <figure class:list={[styles.figure, timing.cycle]}>
   <div class={styles.viewport} tabindex="0" role="region" aria-label="Reliable governance animation. Hover or focus to inspect the governed query. Scroll horizontally on small screens.">
-    <svg class={styles.diagram} viewBox="0 0 640 250" role="img" aria-label="A user on the left submits SQL shown above an arrow, with dataspace business_unit_1 and tenant-id 42 tags below it. The same SQL initially appears on the right. The dataspace tag is highlighted, then a secure documents_governed common table expression adds the predicate dataspace = 'business_unit_1'. Next, the tenant-id tag is highlighted and the predicate tenant_id = 42 is added. The original query reads from documents_governed and retains its own conditions.">
+    <svg class={styles.diagram} viewBox="0 0 660 245" role="img" aria-label="A user submits a query over individuals. Below the arrow are database lakehouse, dataspace business_unit_1, and tenant-id 42 tags. The same SQL initially appears on the right. First, database lakehouse is highlighted and a secure individuals_governed common table expression excludes opted-out individuals with an anti join to gdpr_opted_out on i.id = g.id. Next, dataspace is highlighted and i.dataspace = 'business_unit_1' is added. Finally, tenant-id is highlighted and i.classification != 'top_secret' is added. Each injected clause is highlighted with its tag. The original query reads from individuals_governed and retains its own conditions.">
       <g aria-hidden="true">
+        <g class:list={[styles.context, styles.gdpr]}>
+          <rect x="90" y="143" width="140" height="24" rx="5" />
+          <text x="100" y="159">database <tspan class={styles.value}>lakehouse</tspan></text>
+        </g>
         <g class:list={[styles.context, styles.dataspace]}>
-          <rect x="90" y="143" width="184" height="24" rx="5" />
-          <text x="100" y="159">dataspace <tspan class={styles.value}>business_unit_1</tspan></text>
+          <rect x="90" y="173" width="184" height="24" rx="5" />
+          <text x="100" y="189">dataspace <tspan class={styles.value}>business_unit_1</tspan></text>
         </g>
         <g class:list={[styles.context, styles.tenant]}>
-          <rect x="90" y="173" width="112" height="24" rx="5" />
-          <text x="100" y="189">tenant-id <tspan class={styles.constant}>42</tspan></text>
+          <rect x="90" y="203" width="112" height="24" rx="5" />
+          <text x="100" y="219">tenant-id <tspan class={styles.constant}>42</tspan></text>
         </g>
 
         <text class={styles.code} x="90" y="55">
           <tspan x="90"><tspan class={styles.keyword}>select</tspan> *</tspan>
-          <tspan x="90" dy="18"><tspan class={styles.keyword}>from</tspan> documents</tspan>
+          <tspan x="90" dy="18"><tspan class={styles.keyword}>from</tspan> individuals</tspan>
           <tspan x="90" dy="18"><tspan class={styles.keyword}>where</tspan><tspan class={styles.ellipsis}>{' ...'}</tspan></tspan>
         </text>
         <path class={styles.connector} d="M82 120H264M258 116L264 120L258 124" />
@@ -31,24 +35,29 @@ import timing from './animation_timing.module.css';
 
         <g class={styles.output}>
         <g class={styles.policy}>
-          <rect class={styles.dataspace_highlight} x="310" y="78" width="316" height="18" rx="3" />
+          <rect class={styles.gdpr_highlight} x="310" y="60" width="224" height="54" rx="3" />
           <text class={styles.code} x="300" y="37">
-            <tspan x="300"><tspan class={styles.keyword}>with</tspan> documents_governed <tspan class={styles.keyword}>as secure</tspan> (</tspan>
+            <tspan x="300"><tspan class={styles.keyword}>with</tspan> individuals_governed <tspan class={styles.keyword}>as secure</tspan> (</tspan>
             <tspan x="314" dy="18"><tspan class={styles.keyword}>select</tspan> *</tspan>
-            <tspan x="314" dy="18"><tspan class={styles.keyword}>from</tspan> documents</tspan>
-            <tspan x="314" dy="18"><tspan class={styles.keyword}>where</tspan> dataspace = <tspan class={styles.value}>'business_unit_1'</tspan></tspan>
+            <tspan x="314" dy="18"><tspan class={styles.keyword}>from</tspan> individuals i</tspan>
+            <tspan x="328" dy="18"><tspan class={styles.keyword}>anti join</tspan> gdpr_opted_out g</tspan>
+            <tspan x="328" dy="18"><tspan class={styles.keyword}>on</tspan> i.id = g.id</tspan>
           </text>
-          <g class={styles.tenant_predicate}>
-            <rect class={styles.tenant_highlight} x="324" y="96" width="140" height="18" rx="3" />
-            <text class={styles.code} x="328" y="109"><tspan class={styles.keyword}>and</tspan> tenant_id = <tspan class={styles.constant}>42</tspan></text>
+          <g class={styles.dataspace_predicate}>
+            <rect class={styles.dataspace_highlight} x="310" y="114" width="330" height="18" rx="3" />
+            <text class={styles.code} x="314" y="127"><tspan class={styles.keyword}>where</tspan> i.dataspace = <tspan class={styles.value}>'business_unit_1'</tspan></text>
           </g>
-          <text class:list={[styles.code, styles.policy_end]} x="300" y="109">)</text>
+          <g class={styles.tenant_predicate}>
+            <rect class={styles.tenant_highlight} x="324" y="132" width="270" height="18" rx="3" />
+            <text class={styles.code} x="328" y="145"><tspan class={styles.keyword}>and</tspan> i.classification != <tspan class={styles.value}>'top_secret'</tspan></text>
+          </g>
+          <text class:list={[styles.code, styles.policy_end]} x="300" y="127">)</text>
         </g>
         <g class={styles.query}>
           <text class={styles.code} x="300" y="55">
             <tspan x="300"><tspan class={styles.keyword}>select</tspan> *</tspan>
-            <tspan x="300" dy="18" class={styles.original_relation}><tspan class={styles.keyword}>from</tspan> documents</tspan>
-            <tspan x="300" dy="0" class={styles.governed_relation}><tspan class={styles.keyword}>from</tspan> documents_governed</tspan>
+            <tspan x="300" dy="18" class={styles.original_relation}><tspan class={styles.keyword}>from</tspan> individuals</tspan>
+            <tspan x="300" dy="0" class={styles.governed_relation}><tspan class={styles.keyword}>from</tspan> individuals_governed</tspan>
             <tspan x="300" dy="18"><tspan class={styles.keyword}>where</tspan><tspan class={styles.ellipsis}>{' ...'}</tspan></tspan>
           </text>
         </g>
