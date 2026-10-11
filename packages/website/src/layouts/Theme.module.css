@@ -21,12 +21,13 @@
   --operator-orders: light-dark(#2874a6, #8ac6ef);
   --operator-orders-bg: light-dark(#e5f1fa, #243442);
 
-  --gazelle-outline: light-dark(#999999, hsl(0 0% 46.27451%));
-  --gazelle-fill-color: light-dark(#f5f5f5, hsl(0 0% 14.372549%));
-  --hyper-disk-top: light-dark(#263f7f, #777777);
-  --hyper-disk-middle: light-dark(#e86321, #999999);
-  --hyper-disk-bottom: light-dark(#578232, #888888);
-  --hyper-cap: light-dark(#303030, #555555);
+  --gazelle-outline: light-dark(#999999, hsl(0 0% 10%));
+  --gazelle-fill-color: light-dark(#f5f5f5, hsl(0 0% 40%));
+  --gazelle-accent: light-dark(#e0e0e0, hsl(0 0% 32%));
+  --hyper-disk-top: light-dark(#263f7f, hsl(0 0% 28%));
+  --hyper-disk-middle: light-dark(#e86321, hsl(0 0% 24%));
+  --hyper-disk-bottom: light-dark(#578232, hsl(0 0% 20%));
+  --hyper-cap: light-dark(#303030, hsl(0 0% 40%));
 
   --backdrop: hsl(0 0% 0% / 0.65);
   --greeter-card-brand-logos: light-dark(hsl(0 0% 78.431373%), hsl(0 0% 70.588235%));

@@ -64,7 +64,7 @@ test('hero SVG fills reference shared theme tokens', () => {
   const hyper = readFileSync(join(source, 'assets/hyper.svg'), 'utf8');
   const gazelle = readFileSync(join(source, 'assets/gazelle_fill.svg'), 'utf8');
   const heroStyles = readFileSync(join(source, 'pages/index.module.css'), 'utf8');
-  for (const token of ['--hyper-disk-top', '--hyper-disk-middle', '--hyper-disk-bottom', '--hyper-cap', '--gazelle-outline']) {
+  for (const token of ['--hyper-disk-top', '--hyper-disk-middle', '--hyper-disk-bottom', '--hyper-cap', '--gazelle-outline', '--gazelle-accent']) {
     assert.ok(palette.includes(`${token}: light-dark(`), `${token}: missing shared light/dark token`);
     assert.ok((token.startsWith('--hyper') ? hyper : gazelle).includes(`var(${token},`), `${token}: SVG fill must consume the token`);
   }
