@@ -6,6 +6,7 @@ import JitAnimation from '../components/jit_animation.astro';
 import QueryUnnestingAnimation from '../components/query_unnesting_animation.astro';
 import SqlInstrumentationAnimation from '../components/sql_instrumentation_animation.astro';
 import MultimodalityAnimation from '../components/multimodality_animation.astro';
+import VectorSearchAnimation from '../components/vector_search_animation.astro';
 import PaperReference from '../components/paper_reference.astro';
 import BlogReference from '../components/blog_reference.astro';
 import styles from './index.module.css';
@@ -71,6 +72,17 @@ import symbolAtlasUrl from 'hyperdb-symbol-atlas';
                     </h2>
                     <p>Combine relational data, graph traversal, AI classification, and vector or hybrid search in a single SQL query.</p>
                     <a class={styles.text_link} href="#multi-modality">Multi-Modality<span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </article>
+
+            <article class={styles.property_card}>
+                <div class={styles.card_copy}>
+                    <h2 class={styles.card_title}>
+                        <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href={`${symbolAtlasUrl}#search_24`} /></svg>
+                        Vector Search
+                    </h2>
+                    <p>Find semantically similar data with vector search and keep indexes fresh through incremental, in-place updates.</p>
+                    <a class={styles.text_link} href="#vector-search">Vector Search<span aria-hidden="true">&rarr;</span></a>
                 </div>
             </article>
 
@@ -254,6 +266,29 @@ import symbolAtlasUrl from 'hyperdb-symbol-atlas';
                             source="Salesforce Developers"
                         />
                     </li>
+                </ul>
+            </div>
+        </div>
+        <div class={styles.animation_panel}>
+            <MultimodalityAnimation />
+            <p class={styles.animation_caption}>Find battery-hazard reviews with a vector search, classify their hazard category and sentiment, then follow supplier relationships to quantify upstream warranty exposure.</p>
+        </div>
+    </section>
+
+    <section class={styles.feature_section} id="vector-search" aria-labelledby="vector-search-heading">
+        <div class={styles.section_copy}>
+            <h2 id="vector-search-heading">Scalable Vector Search</h2>
+            <p>Hyper finds semantically similar data with <code>vector_search</code> and implements the incremental, in-place indexing approach from Microsoft's SPFresh paper. Its lightweight rebalancing protocol splits growing partitions and reassigns nearby boundary vectors, avoiding periodic global index rebuilds.</p>
+            <div class={styles.papers}>
+                <h3>Research and documentation:</h3>
+                <ul>
+                    <li>
+                        <PaperReference
+                            href="https://www.microsoft.com/en-us/research/wp-content/uploads/2023/08/SPFresh_SOSP.pdf"
+                            title="SPFresh: Incremental In-Place Update for Billion-Scale Vector Search"
+                            venue="SOSP 2023"
+                        />
+                    </li>
                     <li>
                         <BlogReference
                             href="https://help.salesforce.com/s/articleView?language=en_US&id=data.c360_a_search_index_query.htm&type=5"
@@ -265,8 +300,8 @@ import symbolAtlasUrl from 'hyperdb-symbol-atlas';
             </div>
         </div>
         <div class={styles.animation_panel}>
-            <MultimodalityAnimation />
-            <p class={styles.animation_caption}>Find battery-hazard reviews with a vector search, classify their hazard category and sentiment, then follow supplier relationships to quantify upstream warranty exposure.</p>
+            <VectorSearchAnimation />
+            <p class={styles.animation_caption}>New vectors trigger a local partition split and boundary reassignment, then a query retrieves nearby vectors from the updated index.</p>
         </div>
     </section>
 

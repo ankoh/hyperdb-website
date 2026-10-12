@@ -149,3 +149,15 @@ test('multi-modality experiment pairs query stages with accessible scenes', () =
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /white-space:\s*pre-wrap/);
 });
+
+test('landing page dedicates a tile and section to vector search', () => {
+  const html = readFileSync(join(pages, 'index.html'), 'utf8');
+  const tiles = [...html.matchAll(/<article\b[^]*?<\/article>/g)].map(([tile]) => tile);
+  assert.equal(tiles.length, 6);
+  assert.match(tiles[3], /href="#multi-modality"/);
+  assert.match(tiles[4], /href="#vector-search"/);
+  assert.match(tiles[5], /href="#sql"/);
+  assert.match(html, /id="vector-search"/);
+  assert.match(html, /SPFresh_SOSP\.pdf/);
+  assert.match(html, /schematic two-dimensional projection/);
+});
