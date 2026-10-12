@@ -30,6 +30,10 @@
   --operator-join-bg: light-dark(hsl(270 53.333333% 94.117647%), hsl(273.913043 22.330097% 20.196078%));
   --operator-orders: light-dark(hsl(203.809524 61.165049% 40.392157%), hsl(204.356436 75.93985% 73.921569%));
   --operator-orders-bg: light-dark(hsl(205.714286 67.741935% 93.921569%), hsl(208 29.411765% 20%));
+  --cluster-mobility: light-dark(hsl(210 65% 35%), hsl(210 75% 76%));
+  --cluster-culture: light-dark(hsl(275 40% 40%), hsl(275 60% 78%));
+  --cluster-living: light-dark(hsl(145 40% 29%), hsl(145 45% 72%));
+  --cluster-discovery: light-dark(hsl(25 65% 33%), hsl(25 75% 74%));
 
   --gazelle-outline: light-dark(hsl(0 0% 60%), hsl(0 0% 10%));
   --gazelle-fill-color: light-dark(hsl(0 0% 98%), hsl(0 0% 45%));

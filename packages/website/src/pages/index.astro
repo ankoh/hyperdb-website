@@ -278,7 +278,7 @@ import symbolAtlasUrl from 'hyperdb-symbol-atlas';
     <section class={styles.feature_section} id="vector-search" aria-labelledby="vector-search-heading">
         <div class={styles.section_copy}>
             <h2 id="vector-search-heading">Scalable Vector Search</h2>
-            <p>Hyper finds semantically similar data with <code>vector_search</code> and implements the incremental, in-place indexing approach from Microsoft's SPFresh paper. Its lightweight rebalancing protocol splits growing partitions and reassigns nearby boundary vectors, avoiding periodic global index rebuilds.</p>
+            <p>Hyper implements scalable and efficient vector similarity search directly in the relational database. Use <code>vector_search</code> in SQL and combine semantic matches with pre-filters, post-filters, joins, and aggregations. Incremental indexing is based on Microsoft's SPFresh paper and keeps the index balanced as data grows, avoiding periodic global rebuilds.</p>
             <div class={styles.papers}>
                 <h3>Research and documentation:</h3>
                 <ul>
@@ -301,7 +301,7 @@ import symbolAtlasUrl from 'hyperdb-symbol-atlas';
         </div>
         <div class={styles.animation_panel}>
             <VectorSearchAnimation />
-            <p class={styles.animation_caption}>New vectors trigger a local partition split and boundary reassignment, then a query retrieves nearby vectors from the updated index.</p>
+            <p class={styles.animation_caption}>New data grows several clusters at once. Local splits keep the index balanced; a query searches the relevant partitions.</p>
         </div>
     </section>
 

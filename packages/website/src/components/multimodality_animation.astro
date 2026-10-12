@@ -1,6 +1,7 @@
 ---
 import { Code } from 'astro:components';
 import styles from './multimodality_animation.module.css';
+import timing from './animation_timing.module.css';
 
 const query = [
   { sql: `WITH hazards AS (\n  SELECT DISTINCT r.product_id`, stage: null },
@@ -13,7 +14,7 @@ const query = [
 ];
 ---
 
-<figure class={styles.figure} data-multimodality-animation data-stage="graph">
+<figure class:list={[styles.figure, timing.cycle]} data-multimodality-animation data-stage="graph">
   <div class={styles.workspace} tabindex="0" role="region" aria-label="Multi-modality animation. Hover or focus to pause the query highlights and visualization.">
     <div class={styles.query} role="region" aria-label="SQL combining vector search, AI classification, and property graph traversal">
       <div class={styles.code}>
@@ -85,6 +86,7 @@ const query = [
   for (const figure of document.querySelectorAll<HTMLElement>('[data-multimodality-animation]')) {
     const scenes = [...figure.querySelectorAll<HTMLElement>('[data-scene]')];
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const cycleMs = parseFloat(getComputedStyle(figure).getPropertyValue('--cycle')) * 1000;
     let current = 0;
     let timer: ReturnType<typeof setInterval> | undefined;
 
@@ -98,7 +100,7 @@ const query = [
       clearInterval(timer);
       timer = undefined;
       figure.dataset.paused = String(!playing);
-      if (playing) timer = setInterval(() => show((current + 1) % scenes.length), 2000);
+      if (playing) timer = setInterval(() => show((current + 1) % scenes.length), cycleMs / scenes.length);
     }
 
     function updatePlayback() {

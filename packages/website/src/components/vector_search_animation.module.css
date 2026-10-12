@@ -1,116 +1,44 @@
 .figure {
-  --cycle: 9s;
   width: 100%;
-  max-width: 500px;
+  max-width: 440px;
   margin: 0;
-  background: radial-gradient(ellipse closest-side, var(--soft-surface-end) 25%, transparent 100%);
+  color: var(--text);
 }
-.viewport:focus-visible {
-  outline: 2px solid var(--focus);
-  outline-offset: 3px;
-}
+.figure [data-color='mobility'] { --cluster-color: var(--cluster-mobility); }
+.figure [data-color='culture'] { --cluster-color: var(--cluster-culture); }
+.figure [data-color='living'] { --cluster-color: var(--cluster-living); }
+.figure [data-color='discovery'] { --cluster-color: var(--cluster-discovery); }
+.figure:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 .diagram { display: block; width: 100%; height: auto; }
-.partition { fill: none; stroke: var(--border); stroke-width: 1; }
-.points { fill: var(--text-muted); }
-.centroids { fill: none; stroke: var(--text-muted); stroke-width: 2; }
-.growing { animation: growing var(--cycle) linear infinite; }
-.split {
-  fill: none;
-  stroke: var(--action-bg);
-  stroke-width: 1.5;
-  stroke-dasharray: 1;
-  animation: split var(--cycle) linear infinite;
-}
-.new_centroids { stroke: var(--action-bg); animation: new_centroids var(--cycle) steps(1, end) infinite; }
-.old_centroid { animation: old_centroid var(--cycle) steps(1, end) infinite; }
-.incoming { fill: var(--syntax-string); }
-.insert_one { animation: insert_one var(--cycle) ease infinite; }
-.insert_two { animation: insert_two var(--cycle) ease infinite; }
-.insert_three { animation: insert_three var(--cycle) ease infinite; }
-.reassigned { fill: var(--syntax-function); }
-.move_left { animation: move_left var(--cycle) ease infinite; }
-.move_right { animation: move_right var(--cycle) ease infinite; }
+.partition { fill: color-mix(in srgb, var(--cluster-color) 4%, var(--surface-bg)); stroke: color-mix(in srgb, var(--cluster-color) 55%, var(--surface-bg)); stroke-width: 1; }
+.point { fill: var(--cluster-color); opacity: 0.65; }
+.centroid { fill: none; stroke: var(--cluster-color); stroke-width: 2; }
+.old_centroid { animation: old_centroid var(--cycle) linear infinite; }
+.new_centroids { animation: new_centroids var(--cycle) linear infinite; }
+.split { animation: split var(--cycle) linear infinite; }
+.split path { stroke: var(--cluster-color); stroke-width: 1; stroke-dasharray: 1; }
+.incoming { fill: var(--cluster-color); animation: insert var(--cycle) ease infinite; }
+.second_insert { animation-name: insert_second; }
 .search { animation: search var(--cycle) linear infinite; }
-.search ellipse {
-  fill: color-mix(in srgb, var(--action-bg) 6%, transparent);
-  stroke: var(--action-bg);
-  stroke-dasharray: 3 4;
-}
+.search ellipse { fill: none; stroke: var(--action-bg); stroke-dasharray: 3 4; }
 .search_links { fill: none; stroke: var(--action-bg); stroke-dasharray: 2 3; }
-.results { fill: var(--action-bg); }
-.query { fill: var(--syntax-function); }
-.phase_labels {
-  fill: var(--text-muted);
-  text-anchor: middle;
-  font: 11px 'Geist Mono', monospace;
-}
-.update_label { animation: update_label var(--cycle) steps(1, end) infinite; }
-.rebalance_label { animation: rebalance_label var(--cycle) steps(1, end) infinite; }
-.search_label { animation: search_label var(--cycle) steps(1, end) infinite; }
+.search circle { fill: none; stroke: var(--action-bg); stroke-width: 1; }
+.query_dot { fill: var(--action-bg); }
+.relevant { animation: relevant var(--cycle) linear infinite; }
 
-@keyframes growing {
-  0%, 8%, 88%, 100% { stroke: var(--border); }
-  18%, 65% { stroke: var(--action-bg); }
-}
-@keyframes split {
-  0%, 32% { opacity: 0; stroke-dashoffset: 1; }
-  44%, 88% { opacity: 1; stroke-dashoffset: 0; }
-  96%, 100% { opacity: 0; stroke-dashoffset: 0; }
-}
-@keyframes new_centroids {
-  0%, 96%, 100% { opacity: 0; }
-  44% { opacity: 1; }
-}
-@keyframes old_centroid {
-  0%, 96%, 100% { opacity: 1; }
-  44% { opacity: 0; }
-}
-@keyframes insert_one {
-  0%, 4% { opacity: 0; transform: translate(-25px, -100px); }
-  14%, 88% { opacity: 1; transform: translate(0, 0); }
-  96%, 100% { opacity: 0; }
-}
-@keyframes insert_two {
-  0%, 10% { opacity: 0; transform: translate(15px, -145px); }
-  22%, 88% { opacity: 1; transform: translate(0, 0); }
-  96%, 100% { opacity: 0; }
-}
-@keyframes insert_three {
-  0%, 18% { opacity: 0; transform: translate(25px, -155px); }
-  30%, 88% { opacity: 1; transform: translate(0, 0); }
-  96%, 100% { opacity: 0; }
-}
-@keyframes move_left {
-  0%, 44%, 100% { transform: translateX(0); }
-  58%, 96% { transform: translateX(-14px); }
-}
-@keyframes move_right {
-  0%, 48%, 100% { transform: translateX(0); }
-  62%, 96% { transform: translateX(15px); }
-}
-@keyframes search {
-  0%, 64%, 96%, 100% { opacity: 0; }
-  72%, 88% { opacity: 1; }
-}
-@keyframes update_label {
-  0%, 100% { opacity: 1; }
-  32% { opacity: 0; }
-}
-@keyframes rebalance_label {
-  0%, 64%, 100% { opacity: 0; }
-  32% { opacity: 1; }
-}
-@keyframes search_label {
-  0%, 100% { opacity: 0; }
-  64% { opacity: 1; }
-}
+@keyframes insert { 0%, 4% { opacity: 0; transform: translateY(-35px); } 10%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes insert_second { 0%, 15% { opacity: 0; transform: translateY(-35px); } 21%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes old_centroid { 0%, 38%, 100% { opacity: 1; } 44%, 94% { opacity: 0; } }
+@keyframes new_centroids { 0%, 38%, 100% { opacity: 0; } 44%, 94% { opacity: 1; } }
+@keyframes split { 0%, 30%, 100% { opacity: 0; stroke-dashoffset: 1; } 34%, 94% { opacity: 1; stroke-dashoffset: 0; } }
+@keyframes search { 0%, 48%, 100% { opacity: 0; } 54%, 94% { opacity: 1; } }
+@keyframes relevant { 0%, 48%, 100% { stroke-width: 1; } 54%, 94% { stroke-width: 2.5; } }
 
-.figure:is(:hover, :focus-within) .diagram * { animation-play-state: paused; }
+.figure:is(:hover, :focus-within) * { animation-play-state: paused; }
 
 @media (prefers-reduced-motion: reduce) {
-  .diagram * { animation: none !important; }
-  .old_centroid, .update_label, .rebalance_label { opacity: 0; }
-  .split { stroke-dashoffset: 0; }
-  .move_left { transform: translateX(-14px); }
-  .move_right { transform: translateX(15px); }
+  .figure * { animation: none !important; }
+  .old_centroid { display: none; }
+  .split path { stroke-dashoffset: 0; }
+  .relevant { stroke-width: 2.5; }
 }
