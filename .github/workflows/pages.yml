@@ -24,7 +24,8 @@ jobs:
           bazelisk test //packages/website:check //packages/website:style_contract_test
           bazelisk build //packages/website:pages_deploy
       - name: Deploy prebuilt site
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        # Cloudflare publishing is suspended; keep checks and builds running.
+        if: ${{ false }}
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

@@ -25,5 +25,7 @@ wrangler pages deploy bazel-bin/packages/website/pages_deploy \
   --project-name=hyperdb --branch=main
 ```
 
-GitHub Actions deploys `main` automatically. Configure the repository secrets
-`CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` for deployment.
+Cloudflare publishing is currently suspended. GitHub Actions still runs checks
+and builds, but its deployment step is disabled in `.github/workflows/pages.yml`.
+The manual command above is retained for when publishing resumes. Deployment
+requires the repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
