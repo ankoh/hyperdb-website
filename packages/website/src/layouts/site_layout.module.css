@@ -34,7 +34,7 @@
   outline-offset: 3px;
 }
 
-.header, .footer {
+.header {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -162,23 +162,6 @@
   height: 22px;
 }
 
-.footer {
-  justify-content: flex-end;
-  padding-block: 2rem;
-  border-bottom: 0;
-  font-size: 1rem;
-}
-
-.footer a {
-  color: color-mix(in srgb, var(--text-muted) 90%, var(--page-bg));
-  text-decoration: none;
-}
-
-.footer a:hover {
-  color: var(--text);
-  text-decoration: underline;
-}
-
 .main {
   max-width: var(--content-width);
   min-height: 60vh;
@@ -207,7 +190,7 @@
 }
 
 @media (max-width: 36rem) {
-  .header, .footer {
+  .header {
     padding-inline: 1rem;
   }
 

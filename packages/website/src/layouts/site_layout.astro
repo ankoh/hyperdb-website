@@ -65,6 +65,5 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       </div>
     </header>
     <main class:list={[styles.main, { [styles.main_full_width]: fullWidth }]}><slot /></main>
-    <footer class={styles.footer}><a href="/impress/" lang="de" aria-label="Impressum">Impress</a></footer>
   </body>
 </html>
