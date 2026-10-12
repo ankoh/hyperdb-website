@@ -27,7 +27,7 @@
 
 .introduction {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: clamp(2rem, 5vw, 4rem);
   padding-block: 3rem 4rem;

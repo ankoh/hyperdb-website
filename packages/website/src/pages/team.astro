@@ -3,7 +3,7 @@ import SiteLayout from '../layouts/site_layout.astro';
 import PaperReference from '../components/paper_reference.astro';
 import { Image } from 'astro:assets';
 import skylineImage from '../assets/muc_skyline_2k.png';
-import teamPhoto from '../assets/tech_summit_2026_august.png';
+// import teamPhoto from '../assets/tech_summit_2026_august.png';
 import TumLogo from '../assets/tum_logo.svg';
 import styles from './team.module.css';
 ---
@@ -27,6 +27,7 @@ import styles from './team.module.css';
         <p class={styles.lead}>Database research, built for the real world.</p>
         <p>We build the analytical database engine behind Tableau and Salesforce Data 360. Our work brings together query optimization, SQL semantics and low-level systems engineering to make interactive analytics fast and reliable.</p>
       </div>
+      {/* Temporarily hidden; keep the team photo for later.
       <figure class={styles.team_figure}>
         <Image
           class={styles.team_photo}
@@ -40,6 +41,7 @@ import styles from './team.module.css';
         />
         <figcaption><em>The Hyper team at our August 2026 QSM Tech Summit.</em></figcaption>
       </figure>
+      */}
     </section>
 
     <section class={styles.research} aria-labelledby="research-heading">
