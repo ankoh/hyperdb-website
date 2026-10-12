@@ -97,10 +97,6 @@
   backdrop-filter: blur(4px);
 }
 
-.wide_card {
-  grid-column: span 2;
-}
-
 .production_card {
   box-sizing: border-box;
   width: fit-content;
@@ -127,10 +123,6 @@
   flex-direction: column;
   align-items: flex-start;
   min-width: 0;
-}
-
-.wide_card:has(.card_graphic) .card_copy {
-  width: 65%;
 }
 
 .card_title {
@@ -187,103 +179,6 @@
   color: var(--text);
   text-decoration: underline;
   text-underline-offset: 0.25em;
-}
-
-/* These decorative panels can be replaced with animated artwork. */
-.card_graphic {
-  position: absolute;
-  inset: 1.5rem 1.5rem 1.5rem auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 28%;
-  pointer-events: none;
-}
-
-.federation_card {
-  justify-content: space-between;
-}
-
-.federation_graphic {
-  position: relative;
-  inset: auto;
-  display: block;
-  flex: none;
-  align-self: center;
-  width: 32%;
-  aspect-ratio: 3 / 2;
-  transform: translateX(7%);
-  color: color-mix(in srgb, var(--text-muted) 35%, var(--subtle-bg));
-  mask-image: linear-gradient(to bottom, currentColor 45%, transparent 100%);
-}
-
-.federation_tile {
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-width: 1px;
-  border-style: solid;
-  border-color: var(--card-border);
-  border-radius: 0.4rem;
-  background: var(--subtle-bg);
-}
-
-.federation_tile {
-  position: absolute;
-  width: 32%;
-  aspect-ratio: 1;
-}
-
-.federation_tile:nth-child(1) {
-  top: 0;
-  right: 26%;
-  z-index: 4;
-  width: 38%;
-  color: color-mix(in srgb, var(--text-muted) 45%, var(--subtle-bg));
-}
-
-.federation_tile:nth-child(2) {
-  top: 28%;
-  left: 0;
-  z-index: 3;
-}
-
-.federation_tile:nth-child(3) {
-  top: 25%;
-  right: 7%;
-  z-index: 3;
-}
-
-.federation_tile:nth-child(4) {
-  top: 50%;
-  left: 6%;
-  z-index: 2;
-}
-
-.federation_tile:nth-child(5) {
-  top: 6%;
-  left: 6%;
-  z-index: 1;
-}
-
-.federation_tile:nth-child(6) {
-  top: 30%;
-  left: 30%;
-  z-index: 2;
-}
-
-.federation_tile:nth-child(7) {
-  top: 52%;
-  right: 12%;
-  z-index: 1;
-}
-
-.federation_graphic svg {
-  display: block;
-  width: 68%;
-  max-width: 100%;
-  height: auto;
 }
 
 .brand_salesforce {
@@ -353,15 +248,6 @@
   max-width: 510px;
 }
 
-.governance_panel {
-  padding-block: 1rem;
-  background: radial-gradient(ellipse closest-side, var(--soft-surface-end) 25%, transparent 100%);
-}
-
-.governance_panel :global(figure) {
-  background: none;
-}
-
 .animation_panel :global([data-federation-animation]),
 :global([data-federation-animation]) + .animation_caption {
   max-width: 450px;
@@ -372,6 +258,68 @@
   color: var(--text-muted);
   font-size: 0.8125rem;
   font-weight: 500;
+}
+
+.modality_list {
+  display: grid;
+  gap: 1rem;
+  margin: 2rem 0 0;
+}
+
+.modality_list > div {
+  padding-left: 1rem;
+  border-left: 2px solid var(--border);
+}
+
+.modality_list dt {
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.modality_list dd {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.section_copy code {
+  font-size: 0.85em;
+  overflow-wrap: anywhere;
+}
+
+.query_panel {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--soft-surface-border);
+  border-radius: 0.875rem;
+  background: var(--subtle-bg);
+}
+
+.query_heading {
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--soft-surface-border);
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.query_panel :global(pre) {
+  margin: 0;
+  padding: 1.25rem;
+  font-size: 0.75rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.query_caption {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--soft-surface-border);
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  line-height: 1.5;
 }
 
 .papers ul {
@@ -437,19 +385,6 @@
     scroll-snap-align: start;
     scroll-margin-inline: 0.25rem;
     padding: 1.25rem;
-  }
-
-  .wide_card:has(.card_graphic) .card_copy {
-    width: 100%;
-  }
-
-  .federation_card {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .federation_graphic {
-    display: none;
   }
 
 }

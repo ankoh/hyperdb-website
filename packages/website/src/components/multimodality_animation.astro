@@ -1,0 +1,117 @@
+---
+import { Code } from 'astro:components';
+import styles from './multimodality_animation.module.css';
+
+const query = [
+  { sql: `WITH hazards AS (\n  SELECT DISTINCT r.product_id`, stage: null },
+  { sql: `  FROM vector_search(TABLE(reviews_index),\n    'overheating, smoke, swollen battery',\n    '', 250) h`, stage: 'vector' },
+  { sql: `  JOIN reviews r ON r.id = h.id`, stage: null },
+  { sql: `  WHERE ai_classify(r.text,\n    ARRAY['safety_hazard', 'runs_warm'])\n    = 'safety_hazard'\n  AND ai_sentiment(r.text) = 'negative'`, stage: 'ai' },
+  { sql: `) SELECT g.vendor, SUM(g.warranty_cost)`, stage: null },
+  { sql: `FROM GRAPH_TABLE(sc\n  MATCH (p:Product)-[:USES_CELL]->\n        (c:CellSupplier)-[:SOURCES_FROM]->\n        (mv:MaterialVendor)\n  COLUMNS (p.id, mv.vendor, p.warranty_cost)) g`, stage: 'graph' },
+  { sql: `JOIN hazards h ON h.product_id = g.id\nGROUP BY g.vendor;`, stage: null },
+];
+---
+
+<figure class={styles.figure} data-multimodality-animation data-stage="graph">
+  <div class={styles.workspace} tabindex="0" role="region" aria-label="Multi-modality animation. Hover or focus to pause the query highlights and visualization.">
+    <div class={styles.query} role="region" aria-label="SQL combining vector search, AI classification, and property graph traversal">
+      <div class={styles.code}>
+        {query.map(({ sql, stage }) => (
+          <div class={styles.query_block} data-query-stage={stage}>
+            <Code code={sql} lang="sql" theme="css-variables" />
+          </div>
+        ))}
+      </div>
+    </div>
+    <div class={styles.visualization}>
+      <section class={styles.scene} data-scene="graph" aria-label="Property graph traversal">
+        <svg class={styles.diagram} viewBox="0 0 460 320" role="img" aria-label="A product uses cells from a cell supplier, which sources material from a material vendor. The cell supplier is also connected to a factory. The highlighted path follows Product to CellSupplier to MaterialVendor.">
+          <g class={styles.edges}>
+            <path d="M104 76L230 164L356 252M230 164L356 76" />
+          </g>
+          <path class={styles.traversal} data-edge-step="1" pathLength="1" d="M104 76L230 164" />
+          <path class={styles.traversal} data-edge-step="2" pathLength="1" d="M230 164L356 252" />
+          <g class:list={[styles.node, styles.path_node]} data-node-step="1"><circle cx="104" cy="76" r="30" /><text x="104" y="81">P1</text></g>
+          <g class:list={[styles.node, styles.path_node]} data-node-step="2"><circle cx="230" cy="164" r="32" /><text x="230" y="169">C1</text></g>
+          <g class:list={[styles.node, styles.path_node]} data-node-step="3"><circle cx="356" cy="252" r="30" /><text x="356" y="257">M1</text></g>
+          <g class:list={[styles.node, styles.secondary]}><circle cx="356" cy="76" r="24" /><text x="356" y="81">F1</text></g>
+          <g class={styles.labels}>
+            <text x="104" y="125">Product</text>
+            <text x="230" y="216">CellSupplier</text>
+            <text x="356" y="125">Factory</text>
+            <text x="356" y="302">MaterialVendor</text>
+          </g>
+        </svg>
+      </section>
+      <section class={styles.scene} data-scene="vector" aria-label="Vector similarity search" hidden>
+        <svg class={styles.diagram} viewBox="0 0 460 320" role="img" aria-label="An illustrative two-dimensional projection of review embeddings. A query for overheating, smoke, and swollen batteries retrieves three nearby reviews describing a burning smell, a hot battery, and a swollen cell.">
+          <path class={styles.axes} d="M38 24V282H430" />
+          <ellipse class={styles.neighborhood} cx="275" cy="142" rx="72" ry="68" />
+          <g class={styles.points}>
+            <circle cx="75" cy="72" r="4" /><circle cx="99" cy="210" r="4" /><circle cx="130" cy="150" r="4" />
+            <circle cx="153" cy="53" r="4" /><circle cx="173" cy="241" r="4" /><circle cx="205" cy="265" r="4" />
+            <circle cx="365" cy="44" r="4" /><circle cx="400" cy="201" r="4" /><circle cx="356" cy="265" r="4" />
+            <circle cx="74" cy="261" r="4" /><circle cx="410" cy="95" r="4" /><circle cx="195" cy="94" r="4" />
+          </g>
+          <g class={styles.neighbors}>
+            <path d="M275 145L244 107M275 145L321 124M275 145L267 193" />
+            <circle cx="244" cy="107" r="6" /><circle cx="321" cy="124" r="6" /><circle cx="267" cy="193" r="6" />
+          </g>
+          <path class={styles.query_point} d="M275 136L284 145L275 154L266 145Z" />
+        </svg>
+      </section>
+      <section class={styles.scene} data-scene="ai" aria-label="AI classification and sentiment" hidden>
+        <div class={styles.reviews}>
+          <div class={styles.review}>
+            <p>"The battery started smoking."</p>
+            <div class={styles.prediction}><span>safety_hazard</span><span>negative</span></div>
+          </div>
+          <div class={styles.review}>
+            <p>"A burning smell from the cell."</p>
+            <div class={styles.prediction}><span>safety_hazard</span><span>negative</span></div>
+          </div>
+          <div class={styles.review}>
+            <p>"Runs warm, but works well."</p>
+            <div class={styles.prediction}><span>runs_warm</span><span>positive</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</figure>
+
+<script>
+  for (const figure of document.querySelectorAll<HTMLElement>('[data-multimodality-animation]')) {
+    const scenes = [...figure.querySelectorAll<HTMLElement>('[data-scene]')];
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let current = 0;
+    let timer: ReturnType<typeof setInterval> | undefined;
+
+    function show(index: number) {
+      current = index;
+      figure.dataset.stage = scenes[index].dataset.scene;
+      scenes.forEach((scene, i) => { scene.hidden = !reducedMotion.matches && i !== index; });
+    }
+
+    function setPlaying(playing: boolean) {
+      clearInterval(timer);
+      timer = undefined;
+      figure.dataset.paused = String(!playing);
+      if (playing) timer = setInterval(() => show((current + 1) % scenes.length), 2000);
+    }
+
+    function updatePlayback() {
+      figure.dataset.static = String(reducedMotion.matches);
+      show(current);
+      setPlaying(!reducedMotion.matches && !figure.matches(':hover, :focus-within'));
+    }
+    figure.addEventListener('mouseenter', updatePlayback);
+    figure.addEventListener('mouseleave', updatePlayback);
+    figure.addEventListener('focusin', updatePlayback);
+    figure.addEventListener('focusout', () => requestAnimationFrame(updatePlayback));
+    reducedMotion.addEventListener('change', updatePlayback);
+    updatePlayback();
+    document.addEventListener('astro:before-swap', () => clearInterval(timer), { once: true });
+  }
+</script>

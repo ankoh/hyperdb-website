@@ -5,6 +5,7 @@ import JitAnimation from '../components/jit_animation.astro';
 import QueryUnnestingAnimation from '../components/query_unnesting_animation.astro';
 import GovernanceAnimation from '../components/governance_animation.astro';
 import SqlInstrumentationAnimation from '../components/sql_instrumentation_animation.astro';
+import MultimodalityAnimation from '../components/multimodality_animation.astro';
 import styles from './experiments.module.css';
 ---
 
@@ -60,6 +61,15 @@ import styles from './experiments.module.css';
         </div>
       </header>
       <SqlInstrumentationAnimation />
+    </section>
+    <section id="multi-modality" class={styles.experiment} aria-labelledby="multi-modality-heading">
+      <header class={styles.experiment_heading}>
+        <div>
+          <p class={styles.eyebrow}>Experiment 06</p>
+          <h2 id="multi-modality-heading">Multi-Modality</h2>
+        </div>
+      </header>
+      <MultimodalityAnimation />
     </section>
   </div>
 </SiteLayout>

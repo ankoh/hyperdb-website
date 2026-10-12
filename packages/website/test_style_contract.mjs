@@ -131,3 +131,21 @@ test('experiments opt out of indexing', () => {
   assert.match(robots, /content="[^"]*\bnoindex\b[^"]*"/);
   assert.match(robots, /content="[^"]*\bnofollow\b[^"]*"/);
 });
+
+test('multi-modality experiment pairs query stages with accessible scenes', () => {
+  const html = readFileSync(join(pages, 'experiments/index.html'), 'utf8');
+  assert.match(html, /id="multi-modality"/);
+  const figure = html.match(/<figure[^>]*data-multimodality-animation[^]*?<\/figure>/)?.[0];
+  assert.ok(figure, 'experiments should include the multi-modality animation');
+  for (const stage of ['graph', 'vector', 'ai']) {
+    assert.match(figure, new RegExp(`data-query-stage="${stage}"`));
+    assert.match(figure, new RegExp(`data-scene="${stage}"[^>]*aria-label="[^"]+"`));
+  }
+  assert.doesNotMatch(figure, /<button\b|data-playback|data-step|<h3\b/);
+  assert.match(figure, /tabindex="0"[^>]*aria-label="[^"]*pause/);
+  assert.match(figure, /vector_search/);
+  assert.doesNotMatch(figure, /hybrid_search/);
+  const css = readFileSync(join(source, 'components/multimodality_animation.module.css'), 'utf8');
+  assert.match(css, /prefers-reduced-motion:\s*reduce/);
+  assert.match(css, /white-space:\s*pre-wrap/);
+});

@@ -4,11 +4,10 @@ import LandingUsecaseCarousel from '../components/landing_usecase_carousel.astro
 import FederationAnimation from '../components/federation_animation.astro';
 import JitAnimation from '../components/jit_animation.astro';
 import QueryUnnestingAnimation from '../components/query_unnesting_animation.astro';
-import GovernanceAnimation from '../components/governance_animation.astro';
 import SqlInstrumentationAnimation from '../components/sql_instrumentation_animation.astro';
+import MultimodalityAnimation from '../components/multimodality_animation.astro';
 import PaperReference from '../components/paper_reference.astro';
 import BlogReference from '../components/blog_reference.astro';
-import VideoReference from '../components/video_reference.astro';
 import styles from './index.module.css';
 import GazelleArtwork from '../assets/gazelle_fill.svg';
 import HyperArtwork from '../assets/hyper_hero.svg';
@@ -56,56 +55,33 @@ import symbolAtlasUrl from 'hyperdb-symbol-atlas';
             <article class={styles.property_card}>
                 <div class={styles.card_copy}>
                     <h2 class={styles.card_title}>
-                        <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href={`${symbolAtlasUrl}#database_24`} /></svg>
-                        Embracing SQL
-                    </h2>
-                    <p>Hyper elevates apps, agents and engines through powerful instrumentation and transpilers.</p>
-                    <a class={styles.text_link} href="#sql">SQL<span aria-hidden="true">&rarr;</span></a>
-                </div>
-            </article>
-
-            <article class:list={[styles.property_card, styles.wide_card, styles.federation_card]}>
-                <div class={styles.card_copy}>
-                    <h2 class={styles.card_title}>
                         <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href={`${symbolAtlasUrl}#share_android_24`} /></svg>
                         Zero-Copy at Scale
                     </h2>
                     <p>Process data where it lives with aligned semantics. Hyper pushes complex subqueries to Snowflake, Google BigQuery, Databricks and many more.</p>
                     <a class={styles.text_link} href="#federation">Federation<span aria-hidden="true">&rarr;</span></a>
                 </div>
-                <div class:list={[styles.card_graphic, styles.federation_graphic]} data-graphic="federation" aria-hidden="true">
-                    <span class={styles.federation_tile}>
-                        <svg viewBox="0 0 24 24" focusable="false"><use href={`${symbolAtlasUrl}#snowflake`} /></svg>
-                    </span>
-                    <span class={styles.federation_tile}>
-                        <svg viewBox="0 0 24 24" focusable="false"><use href={`${symbolAtlasUrl}#databricks`} /></svg>
-                    </span>
-                    <span class={styles.federation_tile}>
-                        <svg viewBox="0 0 24 24" focusable="false"><use href={`${symbolAtlasUrl}#google_bigquery`} /></svg>
-                    </span>
-                    <span class={styles.federation_tile}>
-                        <svg viewBox="0 0 24 24" focusable="false"><use href={`${symbolAtlasUrl}#apache_spark`} /></svg>
-                    </span>
-                    <span class={styles.federation_tile}>
-                        <svg viewBox="0 0 24 24" focusable="false"><use href={`${symbolAtlasUrl}#postgresql`} /></svg>
-                    </span>
-                    <span class={styles.federation_tile}>
-                        <svg viewBox="32 38 192 180" focusable="false"><use href={`${symbolAtlasUrl}#amazon_aurora`} /></svg>
-                    </span>
-                    <span class={styles.federation_tile}>
-                        <svg viewBox="0 0 24 24" focusable="false"><use href={`${symbolAtlasUrl}#amazon_redshift`} /></svg>
-                    </span>
+            </article>
+
+            <article class={styles.property_card}>
+                <div class={styles.card_copy}>
+                    <h2 class={styles.card_title}>
+                        <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href={`${symbolAtlasUrl}#ai_model_24`} /></svg>
+                        Multi-Modality
+                    </h2>
+                    <p>Combine relational data, graph traversal, AI classification, and vector or hybrid search in a single SQL query.</p>
+                    <a class={styles.text_link} href="#multi-modality">Multi-Modality<span aria-hidden="true">&rarr;</span></a>
                 </div>
             </article>
 
             <article class={styles.property_card}>
                 <div class={styles.card_copy}>
                     <h2 class={styles.card_title}>
-                        <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href={`${symbolAtlasUrl}#shield_check_24`} /></svg>
-                        Reliable Governance
+                        <svg class={styles.card_icon} viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href={`${symbolAtlasUrl}#database_24`} /></svg>
+                        Embracing SQL
                     </h2>
-                    <p>Data security is key at Salesforce and Hyper implements a robust data governance system.</p>
-                    <a class={styles.text_link} href="#governance">Governance<span aria-hidden="true">&rarr;</span></a>
+                    <p>Hyper elevates apps, agents and engines through powerful instrumentation and transpilers.</p>
+                    <a class={styles.text_link} href="#sql">SQL<span aria-hidden="true">&rarr;</span></a>
                 </div>
             </article>
         </div>
@@ -250,39 +226,47 @@ import symbolAtlasUrl from 'hyperdb-symbol-atlas';
         </figure>
     </section>
 
-    <section class={styles.feature_section} id="governance" aria-labelledby="governance-heading">
+    <section class={styles.feature_section} id="multi-modality" aria-labelledby="multi-modality-heading">
         <div class={styles.section_copy}>
-            <h2 id="governance-heading">Reliable Governance</h2>
-            <p>Data Governance is an integral platform capability for Salesforce Data 360. Hyper provides GDPR, ABAC and CDP concepts such as Dataspaces for Salesforce.</p>
+            <h2 id="multi-modality-heading">Many Modalities. One Query.</h2>
+            <p>Hyper brings relational analytics, graph traversal, AI, and search together in SQL. Combine <code>graph_table</code>, <code>ai_classify</code>, and <code>vector_search</code> in a single query, without stitching together separate pipelines.</p>
             <div class={styles.papers}>
                 <h3>Selected documentation:</h3>
                 <ul>
                     <li>
                         <BlogReference
-                            href="https://admin.salesforce.com/blog/2025/data-cloud-governance-protecting-your-data-agentforce"
-                            title="Data Cloud Governance: Protecting Your Data in the Agentic Landscape"
-                            source="Salesforce Admins"
+                            href="https://developer.salesforce.com/docs/data/data-cloud-query-guide/references/dc-sql-reference/graph-table-match.html"
+                            title="Querying with GRAPH_TABLE and MATCH"
+                            source="Salesforce Developers"
                         />
                     </li>
                     <li>
                         <BlogReference
-                            href="https://www.salesforce.com/blog/salesforce-data-cloud-governance-ga/"
-                            title="Salesforce Data Cloud Governance is Generally Available"
-                            source="Salesforce"
+                            href="https://developer.salesforce.com/docs/data/data-cloud-query-guide/references/dc-sql-reference/ai-classify.html"
+                            title="AI_CLASSIFY"
+                            source="Salesforce Developers"
                         />
                     </li>
                     <li>
-                        <VideoReference
-                            href="https://salesforce.vidyard.com/watch/AbMCHtB6WrZxjrsYvgqry4?"
-                            title="Data Cloud Governance"
+                        <BlogReference
+                            href="https://developer.salesforce.com/docs/data/data-cloud-query-guide/references/dc-sql-reference/ai-sentiment.html"
+                            title="AI_SENTIMENT"
+                            source="Salesforce Developers"
+                        />
+                    </li>
+                    <li>
+                        <BlogReference
+                            href="https://help.salesforce.com/s/articleView?language=en_US&id=data.c360_a_search_index_query.htm&type=5"
+                            title="Run Vector Searches Using Query API"
+                            source="Salesforce Help"
                         />
                     </li>
                 </ul>
             </div>
         </div>
-        <div class:list={[styles.animation_panel, styles.governance_panel]}>
-            <GovernanceAnimation />
-            <figcaption class={styles.animation_caption}>Hyper supports secure views and a flexible view resolution system to enforce data policies at scale across the platform.</figcaption>
+        <div class={styles.animation_panel}>
+            <MultimodalityAnimation />
+            <p class={styles.animation_caption}>Find battery-hazard reviews with a vector search, classify their hazard category and sentiment, then follow supplier relationships to quantify upstream warranty exposure.</p>
         </div>
     </section>
 
