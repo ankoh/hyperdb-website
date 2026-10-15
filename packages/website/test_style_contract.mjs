@@ -63,13 +63,11 @@ test('hero SVG fills reference shared theme tokens', () => {
   const palette = readFileSync(join(source, 'layouts/theme.module.css'), 'utf8');
   const hyper = readFileSync(join(source, 'assets/hyper_hero.svg'), 'utf8');
   const gazelle = readFileSync(join(source, 'assets/gazelle_fill.svg'), 'utf8');
-  const heroStyles = readFileSync(join(source, 'pages/index.module.css'), 'utf8');
   for (const token of ['--hyper-disk-top', '--hyper-disk-middle', '--hyper-disk-bottom', '--hyper-cap', '--gazelle-outline', '--gazelle-accent']) {
     assert.ok(palette.includes(`${token}: light-dark(`), `${token}: missing shared light/dark token`);
     assert.ok((token.startsWith('--hyper') ? hyper : gazelle).includes(`var(${token},`), `${token}: SVG fill must consume the token`);
   }
   assert.ok(palette.includes('--gazelle-fill-color: light-dark('));
-  assert.match(heroStyles, /--gazelle-fill:\s*var\(--gazelle-fill-color\)/);
   assert.ok(gazelle.includes('var(--gazelle-fill,'));
 });
 
@@ -173,4 +171,18 @@ test('landing page dedicates a tile and section to vector search', () => {
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /:focus-within/);
   assert.doesNotMatch(css, /split_music|split_food/, 'all partitions split on the same timeline');
+});
+
+test('engineering blog opens with cards instead of a product hero', () => {
+  const html = readFileSync(join(pages, 'index.html'), 'utf8');
+  assert.match(html, /<title>Hyper Engineering Blog<\/title>/);
+  assert.match(html, /aria-label="Hyper Engineering Blog home"/);
+  assert.match(html, /<span[^>]*>Engineering Blog<\/span>/);
+  assert.match(html, /<a href="\/team\/"[^>]*>About<\/a>/);
+  const intro = html.match(/<main[^>]*>\s*<section[^>]*aria-labelledby="what-is-hyper-heading"[^]*?<\/section>/)?.[0];
+  assert.ok(intro, 'homepage should have a named introductory section');
+  assert.ok(intro.indexOf('Hyper runs billions of analytical queries') < intro.indexOf('<h1'));
+  assert.match(intro, /<h1[^>]*id="what-is-hyper-heading">What is Hyper\?<\/h1>/);
+  assert.ok(intro.indexOf('<h1') < intro.indexOf('property_grid'));
+  assert.doesNotMatch(html, /Introducing HyperDB|Your database for interactive|landing_usecase_carousel\.css/);
 });

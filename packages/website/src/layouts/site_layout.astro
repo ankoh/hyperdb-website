@@ -38,13 +38,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body class:list={[styles.body, { [styles.under_header]: underHeader }]}>
     <header class={styles.header}>
-      <a href="/" aria-label="HyperDB home">
+      <a href="/" aria-label="Hyper Engineering Blog home">
         <svg class={styles.header_logo} viewBox="0 0 740 140" aria-hidden="true" focusable="false">
           <use href={`${symbolAtlasUrl}#hyper_banner`} />
         </svg>
+        <span class={styles.blog_label}>Engineering Blog</span>
       </a>
       <nav class={styles.navigation} aria-label="Main navigation">
-        <a href="/team/" aria-current={Astro.url.pathname.replace(/\/$/, '') === '/team' ? 'page' : undefined}>Team</a>
+        <a href="/team/" aria-current={Astro.url.pathname.replace(/\/$/, '') === '/team' ? 'page' : undefined}>About</a>
       </nav>
       <div class={styles.header_actions}>
         <div class={styles.button_group} role="group" aria-label="Get started with Hyper">

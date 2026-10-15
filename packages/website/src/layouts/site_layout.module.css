@@ -73,6 +73,14 @@
 .header > a {
   display: inline-flex;
   align-items: center;
+  gap: 0.75rem;
+  color: var(--text);
+  text-decoration: none;
+}
+.blog_label {
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
 }
 .navigation {
   display: flex;
@@ -205,6 +213,7 @@
     width: 90px;
     height: auto;
   }
+  .blog_label { font-size: 0.875rem; }
   .navigation {
     margin-left: 0;
     font-size: 0.875rem;

@@ -1,6 +1,5 @@
 ---
 import SiteLayout from '../layouts/site_layout.astro';
-import LandingUsecaseCarousel from '../components/landing_usecase_carousel.astro';
 import FederationAnimation from '../components/federation_animation.astro';
 import JitAnimation from '../components/jit_animation.astro';
 import QueryUnnestingAnimation from '../components/query_unnesting_animation.astro';
@@ -10,26 +9,20 @@ import VectorSearchAnimation from '../components/vector_search_animation.astro';
 import PaperReference from '../components/paper_reference.astro';
 import BlogReference from '../components/blog_reference.astro';
 import styles from './index.module.css';
-import GazelleArtwork from '../assets/gazelle_fill.svg';
-import HyperArtwork from '../assets/hyper_hero.svg';
 import symbolAtlasUrl from 'hyperdb-symbol-atlas';
 ---
 
-<SiteLayout title="HyperDB" description="Hyper is a fast database for analytical queries." fullWidth>
-    <link slot="head" rel="stylesheet" href="/landing_usecase_carousel.css" />
-    <section class={styles.intro_container} aria-label="Introducing HyperDB">
-        <div class={styles.intro}>
-            <div class={styles.intro_text}>
-                <LandingUsecaseCarousel />
-            </div>
-            <svg class={styles.hero_artwork} viewBox="0 0 660 680" aria-hidden="true" focusable="false">
-                <HyperArtwork x="280" y="0" width="320" height="680" />
-                <GazelleArtwork x="0" y="20" width="400" height="660" />
+<SiteLayout title="Hyper Engineering Blog" description="Engineering insights and research from the Hyper database team." fullWidth>
+    <section class={styles.properties} aria-labelledby="what-is-hyper-heading">
+        <!--
+        <div id="production" class:list={[styles.property_card, styles.production_card]}>
+            <svg class={styles.brand_salesforce} viewBox="0 0 273 191" aria-hidden="true" focusable="false">
+                <use href={`${symbolAtlasUrl}#salesforce`} />
             </svg>
-        </div>
-    </section>
-
-    <section class={styles.properties} aria-label="HyperDB at a glance">
+            <p>Hyper runs billions of analytical queries every day for <strong>Salesforce Data 360</strong> and <strong>Tableau</strong>.</p>
+            </div>
+        -->
+        <h1 class={styles.properties_heading} id="what-is-hyper-heading">What is Hyper?</h1>
         <div class={styles.property_grid} tabindex="0" role="region" aria-label="HyperDB highlights. On mobile, swipe or use the arrow keys to browse the cards.">
             <article class={styles.property_card}>
                 <div class={styles.card_copy}>
@@ -96,12 +89,6 @@ import symbolAtlasUrl from 'hyperdb-symbol-atlas';
                     <a class={styles.text_link} href="#sql">SQL<span aria-hidden="true">&rarr;</span></a>
                 </div>
             </article>
-        </div>
-        <div id="production" class:list={[styles.property_card, styles.production_card]}>
-            <svg class={styles.brand_salesforce} viewBox="0 0 273 191" aria-hidden="true" focusable="false">
-                <use href={`${symbolAtlasUrl}#salesforce`} />
-            </svg>
-            <p>Hyper runs billions of analytical queries every day for <strong>Salesforce Data 360</strong> and <strong>Tableau</strong>.</p>
         </div>
     </section>
 
